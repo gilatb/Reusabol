@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function () {
+export default function ({ text }) {
   return (
     <div>
-      <h3>Text field.</h3>
+      <h5>{text}</h5>
     </div>
   )
 }

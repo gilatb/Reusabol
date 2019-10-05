@@ -3,7 +3,7 @@ import React from 'react'
 export default function Image({ alt }) {
   return (
     <div>
-      <h3>{alt}</h3>
+      <h5>{alt}</h5>
     </div>
   )
 }

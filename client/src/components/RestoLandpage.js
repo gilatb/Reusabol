@@ -6,10 +6,14 @@ import Footer from './Footer';
 
 
 export default function RestoLandpage () {
+
+  //TODO: THIS ARRAY SHOULD BE THE ARRAY OF PREVIOUS RESTO TRANSACTIONS (FROM DB)
+  const pendingTransactions = [1, 2, 3];
+
   return (
     <div>
       <Header />
-      <List />
+      <List array={pendingTransactions} />
       <Footer />
     </div>
   )

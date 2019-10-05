@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+
+import SquareBtn from './atomic-components/SquareBtn';
 
 export default function () {
   return (
     <div>
-      <h3>Footer</h3>
+      <SquareBtn text={'PENDING'} />
+      <SquareBtn text={'COMPLETE'} />
     </div>
   )
 }
