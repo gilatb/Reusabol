@@ -1,9 +1,16 @@
-import React from 'react'
+import React from 'react';
+
+import Title from './atomic-components/Title';
 
 export default function UserModal() {
+
+  //TODO: IMPORT THE RESTO NAME FROM REDUX
+  const restoName = 'La Bodegueta';
+  const numBols = 2;
+
   return (
     <div>
-      <h3>UserModal</h3>
+      <Title text={`${restoName} has provided ${numBols} bowls`}/>
     </div>
   )
 }
