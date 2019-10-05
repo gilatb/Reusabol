@@ -1,4 +1,6 @@
 # Reusabol
-Circular food packaging service 
+Circular food packaging service
 
-Here will be readme! 
+Here will be readme!
+
+Linnea
