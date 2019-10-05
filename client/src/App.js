@@ -1,11 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+import Login from './components/Login';
+
+//TODO: DELETE THE BELOW IMPORTS ONCE APP IS UP AND RUNNING, THEY ARE FOR UI TESTING ONLY
+import UserLandpage from './components/UserLandpage';
+import RestoLandpage from './components/RestoLandpage';
+import RestoModal from './components/RestoModal';
 
 function App() {
   return (
     <div className="App">
-      <h1>An amazing app!</h1>
+      <RestoModal />
     </div>
   );
 }
