@@ -11,12 +11,12 @@ import Counter from './atomic-components/Counter';
 export default function RestoModal () {
 
   //TODO: IMPORT THE USER FIRSTNAME AND LASTNAME FROM REDUX
-  const name = 'Eileen Juergens'
+  const userName = 'Eileen Juergens'
 
   return (
     <div>
       <Image alt={'User image'} />
-      <Title text={'Order by ' + name + '!'} />
+      <Title text={`Order by ${userName}!`} />
       <Subtitle text={'Please update the number of bowls and click confirm.'} />
       <RoundBtn text={'+'} />
       <Counter />
