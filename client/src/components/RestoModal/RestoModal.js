@@ -1,12 +1,11 @@
 import React from 'react';
-import { Button } from '@material-ui/core';
 
-import Image from './atomic-components/Image';
-import Title from './atomic-components/Title';
-import Subtitle from './atomic-components/Subtitle';
-import SquareBtn from '../components/atomic-components/SquareBtn';
-import RoundBtn from './atomic-components/RoundBtn';
-import Counter from './atomic-components/Counter';
+import Image from '../atomic-components/Image/Image';
+import Title from '../atomic-components/Title';
+import Subtitle from '../atomic-components/Subtitle/Subtitle';
+import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
+import RoundBtn from '../atomic-components/RoundBtn/RoundBtn';
+import Counter from '../atomic-components/Counter/Counter';
 
 export default function RestoModal () {
 

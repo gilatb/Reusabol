@@ -1,10 +1,11 @@
 import React from 'react';
 
-import Image from './atomic-components/Image';
+import './Header.css';
+import Image from '../atomic-components/Image/Image';
 
 export default function Header() {
   return (
-    <div>
+    <div className="header">
       <Image alt={'Logo image'} />
       <Image alt={'Burger image'} />
     </div>

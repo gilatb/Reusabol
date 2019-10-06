@@ -1,7 +1,7 @@
 import React from 'react';
 import { Fab } from '@material-ui/core';
 
-export default function SquareBtn ({ text }) {
+export default function RoundBtn ({ text }) {
   return (
     <div>
       <Fab

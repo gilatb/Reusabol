@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Title from './atomic-components/Title';
-import SquareBtn from './atomic-components/SquareBtn';
+import Title from '../atomic-components/Title';
+import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
 
 export default function UserModal () {
 

@@ -1,8 +1,9 @@
 import React from 'react'
 
-import Header from './Header';
-import List from './List';
-import Footer from './Footer';
+import './RestoLandpage.css';
+import Header from '../Header/Header';
+import List from '../List/List';
+import Footer from '../Footer/Footer';
 
 
 export default function RestoLandpage () {
@@ -11,7 +12,7 @@ export default function RestoLandpage () {
   const pendingTransactions = [1, 2, 3];
 
   return (
-    <div>
+    <div className="resto-landpage">
       <Header />
       <List array={pendingTransactions} />
       <Footer />

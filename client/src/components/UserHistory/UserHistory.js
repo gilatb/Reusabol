@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Header from './Header';
-import Title from './atomic-components/Title';
-import List from './List';
+import Header from '../Header/Header';
+import Title from '../atomic-components/Title';
+import List from '../List/List';
 
 
 export default function UserHistory() {
