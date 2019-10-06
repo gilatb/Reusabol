@@ -1,7 +1,8 @@
-.footer {
-  width: 100%;
+.row {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-bottom: 1rem;
   justify-content: space-around;
-  padding-top: 1rem;
 }

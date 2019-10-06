@@ -1,0 +1,16 @@
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-bottom: 1rem;
+  justify-content: space-around;
+}
+
+.column {
+  display: flex;
+  flex-direction: row;
+  flex-basis: 100%;
+  flex: 1;
+  justify-content: space-evenly;
+}

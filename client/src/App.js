@@ -6,7 +6,6 @@ import Login from './components/Login/Login';
 import UserLandpage from './components/UserLandpage/UserLandpage';
 import RestoLandpage from './components/RestoLandpage/RestoLandpage';
 
-
 function App() {
   return (
     <div className="App">
