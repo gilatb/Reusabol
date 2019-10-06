@@ -12,7 +12,8 @@ exports.getRestaurants = async (req, res) => {
     res.send(err);
   } 
 };
-exports.createPlace = async (req, res) => {
+
+exports.createRestaurant = async (req, res) => {
   try {
     const restaurant = await Restaurant.create(req.body);
     res.status(201);
@@ -21,4 +22,4 @@ exports.createPlace = async (req, res) => {
     res.status(500);
     res.send(err);
   }
-}
+};
