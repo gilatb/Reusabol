@@ -1,7 +1,7 @@
 const mongoose = require('../db');
 const Schema = mongoose.Schema;
 
-const RestaurantSchema = new Schema({
+const RestoSchema = new Schema({
   name: {type: String, required: true},
   address: {type: String},
   coordinates: {
@@ -18,6 +18,6 @@ const RestaurantSchema = new Schema({
   previousTransactions: {type: Array},
 });
 
-const Restaurant = mongoose.model('Restaurant', RestaurantSchema);
+const Resto = mongoose.model('Restaurant', RestoSchema);
 
-module.exports = Restaurant;
+module.exports = Resto;
