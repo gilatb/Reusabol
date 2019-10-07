@@ -1,6 +1,8 @@
 
-import React from 'react'
+import React from 'react';
 import { GoogleMap, useLoadScript } from '@react-google-maps/api';
+
+import './Map.css';
 
 const API_KEY = process.env.REACT_APP_API_KEY
 
