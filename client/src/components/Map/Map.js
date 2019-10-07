@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 
 import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
@@ -9,7 +9,7 @@ const API_KEY = process.env.REACT_APP_API_KEY
 
 export default function Map () {
 
-  const [center, setCenter] = useState({ lat: 45.390205, lng: 2.154007 });
+  const [location, setLocation] = useState({ lat: 42.076613, lng: 2.362239833 });
   const [selectedResto, setSelectedResto] = useState(null);
   const [markerMap, setMarkerMap] = useState({});
   const [infoOpen, setInfoOpen] = useState(false);
@@ -19,19 +19,19 @@ export default function Map () {
       id: 1,
       name: 'Banana place',
       address: "Carrer d'Àvila, 27, 08005 Barcelona",
-      coordinates: { lat: 45.394205, lng: 2.15400725345 }
+      coordinates: { lat: 41.394205, lng: 2.15400725345 }
     },
     {
       id: 2,
       name: 'Ice-cream place',
       address: "Carrer d'Banana, 27, 08005 Barcelona",
-      coordinates: { lat: 45.378205, lng: 2.156007231 }
+      coordinates: { lat: 41.378205, lng: 2.156007231 }
     },
     {
       id: 3,
       name: 'Menssana',
       address: "Carrer d'Àvila, 27, 08005 Barcelona",
-      coordinates: { lat: 45.390765, lng: 2.121554007 }
+      coordinates: { lat: 41.390765, lng: 2.121554007 }
     }
   ];
 
@@ -50,6 +50,20 @@ export default function Map () {
     infoOpen ? setInfoOpen(false) : setInfoOpen(true);
   }
 
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        setLocation({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        });
+      }, (err) => {
+        console.log(err);
+      });
+    }
+    // eslint-disable-next-line 
+  }, [])
+
   const renderMap = () => {
     return (
       <GoogleMap
@@ -58,7 +72,7 @@ export default function Map () {
           height: "70vh",
           width: "100%"
         }}
-        center={center}
+        center={location}
         zoom={12}
       >
         {restos.map(resto => (
