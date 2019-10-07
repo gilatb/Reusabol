@@ -1,12 +1,12 @@
 'use strict';
 
-const Restaurant = require('../models/restaurants.models');
+const Resto = require('../models/restaurants.models');
 
 exports.getRestaurants = async (req, res) => {
   try {
-    const restaurants = await Restaurant.find();
-    res.status(201);
-    res.json(restaurants);
+    const restos = await Resto.find();
+    res.status(200);
+    res.json(restos);
   } catch (err) {
     res.status(500);
     res.send(err);
@@ -15,9 +15,9 @@ exports.getRestaurants = async (req, res) => {
 
 exports.createRestaurant = async (req, res) => {
   try {  
-    const restaurant = await Restaurant.create(req.body);
+    const resto = await Resto.create(req.body);
     res.status(201);
-    res.json(restaurant);
+    res.json(resto);
   } catch (err) {
     res.status(500);
     res.send(err);
@@ -26,11 +26,11 @@ exports.createRestaurant = async (req, res) => {
 
 exports.deleteRestaurant = async (req, res) => {
   try {
-    const restaurant = await Restaurant.deleteOne({ 
+    const resto = await Resto.deleteOne({ 
       id: req.body.id  
     });
-    res.status(201);
-    res.json(restaurant);
+    res.status(204);
+    res.json(resto);
   } catch (err) {
     res.status(500);
     res.send(err);

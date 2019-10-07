@@ -1,12 +1,12 @@
 'use strict';
 
 const router = require('express').Router();
-const restoContr = require('./controllers/restaurants');
+const restoContr = require('./controllers/restos');
 
 
-router.get('/user/restaurants', restoContr.getRestaurants);
-router.post('/user/restaurants', restoContr.createRestaurant);
-router.delete('/user/restaurants', restoContr.deleteRestaurant);
+router.get('/user/restos', restoContr.getRestos);
+router.post('/user/restos', restoContr.createResto);
+router.delete('/user/restos', restoContr.deleteResto);
 
 
 
