@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
-
+  showHistoryModal: false,
+  modalActions: [],
 };
 
 export default (state = INITIAL_STATE, action) => {
