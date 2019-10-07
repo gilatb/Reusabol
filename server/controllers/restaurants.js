@@ -14,10 +14,21 @@ exports.getRestaurants = async (req, res) => {
 };
 
 exports.createRestaurant = async (req, res) => {
-  try {
-    console.log(req.body);
-    
+  try {  
     const restaurant = await Restaurant.create(req.body);
+    res.status(201);
+    res.json(restaurant);
+  } catch (err) {
+    res.status(500);
+    res.send(err);
+  }
+};
+
+exports.deleteRestaurant = async (req, res) => {
+  try {
+    const restaurant = await Restaurant.deleteOne({ 
+      id: req.body.id  
+    });
     res.status(201);
     res.json(restaurant);
   } catch (err) {

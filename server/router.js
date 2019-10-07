@@ -6,6 +6,7 @@ const restoContr = require('./controllers/restaurants');
 
 router.get('/user/restaurants', restoContr.getRestaurants);
 router.post('/user/restaurants', restoContr.createRestaurant);
+router.delete('/user/restaurants', restoContr.deleteRestaurant);
 
 
 
