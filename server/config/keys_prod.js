@@ -1,3 +1,3 @@
 module.exports = {
-  mongoURI: 'mongodb://urlroa5p2cetw5ih3imq:ene6g1TDzKElWHqVDBDy@bzporkjluccl9d1-mongodb.services.clever-cloud.com:27017/bzporkjluccl9d1',
+  mongoURI:'mongodb+srv://Eileen:v4P*@p9C&HieNLh@dbreusabol-o0isk.mongodb.net/test?retryWrites=true&w=majority'
 };
