@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import './UserHome.css';
 import Header from '../Header/Header';
-import Map from '../Map/Map'
+import Map from '../Map/Map';
 import actions from '../../redux/actions/index';
 
 export function UserHome ({ userData, getUserData }) {
@@ -13,7 +13,6 @@ export function UserHome ({ userData, getUserData }) {
   return (
     <div className="user-home">
       <Header />
-      <h3>Map container goes here:</h3>
       <Map />
     </div>
   )
