@@ -1,8 +1,8 @@
 'use strict';
 
-const Resto = require('../models/restaurants.models');
+const Resto = require('../models/resto.models');
 
-exports.getRestaurants = async (req, res) => {
+exports.getRestos = async (req, res) => {
   try {
     const restos = await Resto.find();
     res.status(200);
@@ -13,7 +13,7 @@ exports.getRestaurants = async (req, res) => {
   } 
 };
 
-exports.createRestaurant = async (req, res) => {
+exports.createResto = async (req, res) => {
   try {  
     const resto = await Resto.create(req.body);
     res.status(201);
@@ -24,7 +24,7 @@ exports.createRestaurant = async (req, res) => {
   }
 };
 
-exports.deleteRestaurant = async (req, res) => {
+exports.deleteResto = async (req, res) => {
   try {
     const resto = await Resto.deleteOne({ 
       id: req.body.id  
