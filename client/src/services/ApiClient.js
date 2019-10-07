@@ -4,7 +4,7 @@ const BASE_URL = 'mongodb://localhost:27017/Reusabol';
 export default {
   //TODO: CHECK THAT THIS IS ACCESSING THE ENDPOINT CORRECTLY USING BASE_URL AND :USERID
   getUserData: (userId) => {
-    return fetchRequest(`users/:${userId}`);
+    return fetchRequest(`users/:_${userId}`);
   }
 }
 
