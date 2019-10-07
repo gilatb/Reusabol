@@ -6,9 +6,7 @@ const API_KEY = process.env.REACT_APP_API_KEY
 
 export default function Map () {
   const { isLoaded, loadError } = useLoadScript({
-
-    googleMapsApiKey: API_KEY // ,
-    // ...otherOptions
+    googleMapsApiKey: API_KEY
   })
 
   const onMapLoad = map => {
@@ -20,8 +18,8 @@ export default function Map () {
       <GoogleMap
         id="google-map"
         mapContainerStyle={{
-          height: "400px",
-          width: "800px"
+          height: "70vh",
+          width: "100%"
         }}
         center={{
           lat: 45.390205,
