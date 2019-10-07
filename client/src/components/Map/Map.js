@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 
+import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
 import './Map.css';
 
 const API_KEY = process.env.REACT_APP_API_KEY
@@ -14,9 +15,24 @@ export default function Map () {
   const [infoOpen, setInfoOpen] = useState(false);
 
   const restos = [
-    { id: 1, pos: { lat: 45.394205, lng: 2.15400725345 } },
-    { id: 2, pos: { lat: 45.378205, lng: 2.156007231 } },
-    { id: 3, pos: { lat: 45.390765, lng: 2.121554007 } }
+    {
+      id: 1,
+      name: 'Banana place',
+      address: "Carrer d'Àvila, 27, 08005 Barcelona",
+      coordinates: { lat: 45.394205, lng: 2.15400725345 }
+    },
+    {
+      id: 2,
+      name: 'Ice-cream place',
+      address: "Carrer d'Banana, 27, 08005 Barcelona",
+      coordinates: { lat: 45.378205, lng: 2.156007231 }
+    },
+    {
+      id: 3,
+      name: 'Menssana',
+      address: "Carrer d'Àvila, 27, 08005 Barcelona",
+      coordinates: { lat: 45.390765, lng: 2.121554007 }
+    }
   ];
 
   const { isLoaded, loadError } = useLoadScript({
@@ -48,9 +64,9 @@ export default function Map () {
         {restos.map(resto => (
           <Marker
             key={resto.id}
-            position={resto.pos}
+            position={resto.coordinates}
             onLoad={marker => markerLoadHandler(marker, resto)}
-            onClick={event => markerClickHandler(event, resto)} 
+            onClick={event => markerClickHandler(event, resto)}
           />
         ))}
 
@@ -59,9 +75,17 @@ export default function Map () {
             anchor={markerMap[selectedResto.id]}
             onCloseClick={() => setInfoOpen(false)}
           >
-            <div>
-              <h3>{selectedResto.id}</h3>
-              <div>This is your info window content</div>
+            <div className="InfoWindow">
+              <h3>{selectedResto.name}</h3>
+              <p>{selectedResto.address}</p>
+              <div className="Buttons">
+                <SquareBtn
+                  className="Take" text="Take"
+                />
+                <SquareBtn
+                  className="Return" text="Return"
+                />
+              </div>
             </div>
           </InfoWindow>
         )}
