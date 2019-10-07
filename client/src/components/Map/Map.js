@@ -10,7 +10,8 @@ export default function Map () {
 
   const [center, setCenter] = useState({ lat: 45.390205, lng: 2.154007 });
   const [selectedResto, setSelectedResto] = useState(null);
-  
+  const [markerMap, setMarkerMap] = useState({});
+  const [infoOpen, setInfoOpen] = useState(false);
 
   const restos = [
     { id: 1, pos: { lat: 45.394205, lng: 2.15400725345 } },
@@ -21,6 +22,17 @@ export default function Map () {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: API_KEY
   })
+
+  const markerLoadHandler = (marker, resto) => {
+    return setMarkerMap(prevState => {
+      return { ...prevState, [resto.id]: marker };
+    });
+  }
+
+  const markerClickHandler = (event, resto) => {
+    setSelectedResto(resto);
+    infoOpen ? setInfoOpen(false) : setInfoOpen(true);
+  }
 
   const renderMap = () => {
     return (
@@ -37,15 +49,15 @@ export default function Map () {
           <Marker
             key={resto.id}
             position={resto.pos}
-            onClick={() => setSelectedResto(resto)} // will trigger useEffect of selectedResto
+            onLoad={marker => markerLoadHandler(marker, resto)}
+            onClick={event => markerClickHandler(event, resto)} 
           />
         ))}
 
-        {selectedResto && (
+        {infoOpen && selectedResto && (
           <InfoWindow
-            // anchor={selectedResto.id} //TODO: 
-            position={selectedResto.pos}
-            onCloseClick={() => setSelectedResto(null)}
+            anchor={markerMap[selectedResto.id]}
+            onCloseClick={() => setInfoOpen(false)}
           >
             <div>
               <h3>{selectedResto.id}</h3>
