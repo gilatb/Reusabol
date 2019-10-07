@@ -1,4 +1,5 @@
 .App {
   display: flex;
   padding: 8vw;
+  height: 100vh;
 }
