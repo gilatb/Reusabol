@@ -4,10 +4,9 @@ const Schema = mongoose.Schema;
 const RestoSchema = new Schema({
   name: {type: String, required: true},
   address: {type: String},
-  coordinates: {
-    lat: {type: String},
-    long:{type: String},
-  },
+  coordinates: {type: String},
+  // lat: {type: String},
+  // long:{type: String},
   phoneNumber: {type: String},
   contactPerson: {type: String},
   email: {type: String},
