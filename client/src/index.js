@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'react';
+import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 import './index.css';
@@ -8,8 +8,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import reducers from './redux/reducers/index';
 
-let store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ &&
-  window.__REDUX_DEVTOOLS_EXTENSION__());
+let store = createStore(reducers);
 
 ReactDOM.render(
   <Provider store={store}>
