@@ -1,10 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import './UserHome.css';
 import Header from '../Header/Header';
 import Map from '../Map/Map'
+import actions from '../../redux/actions/index';
 
-export default function UserHome () {
+export function UserHome ({ userData, getUserData }) {
+
+  const userId = '1';
+
   return (
     <div className="user-home">
       <Header />
@@ -13,3 +18,14 @@ export default function UserHome () {
     </div>
   )
 }
+
+const mapStateToProps = (state) => ({
+  userData: state.userData,
+});
+
+//TODO: DELETE
+const mapDispatchToProps = (dispatch) => ({
+  //CODE
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserHome);
