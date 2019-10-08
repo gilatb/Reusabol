@@ -40,7 +40,7 @@ exports.deleteResto = async (req, res) => {
 exports.getRestoDetails = async (req, res) => {
   try {
     const resto = await Resto.findById({
-      _id: req.body.d
+      _id: req.body.id
     });
     res.status(200);
     res.json(resto);
@@ -75,7 +75,7 @@ exports.updateRestoNumBols = async (req, res) => {
 exports.createRestoPrevTrans = async (req, res) => {
   try {
     const xxx = await Resto;
-    res.status(200);
+    res.status(201);
     res.json(xxx);
   } catch (err) {
     res.status(500);
@@ -86,7 +86,7 @@ exports.createRestoPrevTrans = async (req, res) => {
 exports.deleteRestoPendTrans = async (req, res) => {
   try {
     const xxx = await Resto;
-    res.status(200);
+    res.status(204);
     res.json(xxx);
   } catch (err) {
     res.status(500);
