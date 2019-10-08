@@ -38,8 +38,6 @@ exports.deleteUser = async (req, res) => {
 };
 
 exports.getUserDetails = async (req, res) => {
-exports.getSpecificUser = async (req, res) => {
-
   try {
     const user = await User.findById({
       _id: req.params._id

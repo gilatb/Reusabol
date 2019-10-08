@@ -22,6 +22,7 @@ import socketIOClient from 'socket.io-client';
 
 export default function Login () {
 
+<<<<<<< HEAD
   const socket = socketIOClient.connect('http://localhost:4000', {reconnect: true});
 
   socket.on('test', (data) => {
@@ -29,6 +30,8 @@ export default function Login () {
   })
 
 >>>>>>> feat(sockets): test sockets
+=======
+>>>>>>> fix(sockets): remove test sockets
   return (
 
     <div>

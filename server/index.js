@@ -1,8 +1,6 @@
 'use strict';
 const express = require('express');
 const app = express();
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
@@ -28,6 +26,7 @@ app.listen(port, (err) => {
   else console.log(`Server listening on port ${port}`);
 });
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 // GET /auth/google
 //   Use passport.authenticate() as route middleware to authenticate the
@@ -83,3 +82,5 @@ io.sockets.on('connection', socket => {
   // });
 });
 >>>>>>> feat(sockets): test sockets
+=======
+>>>>>>> fix(sockets): remove test sockets
