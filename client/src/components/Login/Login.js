@@ -5,9 +5,9 @@ export default function Login () {
   return (
     <div>
       <h3>Login page</h3>
-      <NavLink to="/UserLandPage"><span>User</span></NavLink>
+      <NavLink to="/UserHome"><span>User</span></NavLink>
       <br />
-      <NavLink to="/RestoLandPage"><span>Restaurant</span></NavLink>
+      <NavLink to="/RestoHome"><span>Restaurant</span></NavLink>
     </div>
   )
 }
