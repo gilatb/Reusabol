@@ -6,8 +6,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const passport = require("./passport/config");
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
+
 
 const router = require('./router');
 const port = 4000;
@@ -26,20 +25,6 @@ app.use(passport.session()); //this is creating req.user
 app.listen(port, (err) => {
   if (err) console.log('Error connecting to the db', err);
   else console.log(`Server listening on port ${port}`);
-});
-
-io.on('connection', socket => {
-  console.log('New client connected');
-  socket.emit('test', { message: 'This is a test message' });
-  //Here we listen on a new namespace called "new transaction"
-  socket.on('transaction', (transaction) => {
-    socket.emit('new transaction', transaction);
-  });
-
-  //A special namespace "disconnect" for when a client disconnects
-  socket.on('disconnect', () => {
-    console.log('Client disconnected');
-  });
 });
 
 // GET /auth/google

@@ -1,18 +1,10 @@
 import React from 'react';
 import axios from 'axios';
-import socketIOClient from 'socket.io-client';
-
 
 import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
 
 
 export default function Login () {
-  
-  const socket = socketIOClient.connect('/');
-
-  socket.on('test', (data)=> {
-    console.log('data.message: ', data.message);
-  })
 
   function callMe() {
     axios.get('http://localhost:8888/me', { withCredentials: true}).then(res=>{
