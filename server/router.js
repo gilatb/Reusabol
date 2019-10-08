@@ -25,7 +25,8 @@ router.put('/resto/inventory', restoContr.updateRestoInventory);
 router.post('/admin/user', userContr.createUser);
 router.post('/admin/restos', restoContr.createResto);
 router.get('/admin/users', userContr.getUsers);
-router.delete('/admin/restos', restoContr.deleteResto);
+router.get('/admin/restos', restoContr.getRestos);
 router.delete('/admin/users', userContr.deleteUser);
+router.delete('/admin/restos', restoContr.deleteResto);
 
 module.exports = router;
