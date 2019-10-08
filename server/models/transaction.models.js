@@ -1,10 +1,11 @@
 const mongoose = require('../db');
 const Schema = mongoose.Schema;
 
-const TransSchema = new Schema({
-  userId: {type: String},
-  restoId: {type: String},
-  numBols: {type: Number}
+const TransactionSchema = new Schema({
+  transId: String,
+  userId: String,
+  restoId: String,
+  numBols: Number
 });
 
-module.exports = TransSchema;
+module.exports = TransactionSchema;
