@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import './UserHome.css';
 import Header from '../Header/Header';
 import Map from '../Map/Map';
-import actions from '../../redux/actions/index';
+import actions from '../../redux/actions';
 
 export function UserHome ({ userData, getUserData }) {
 
-  const userId = '1';
+  //TODO: DELETE THIS VARIABLE ONCE YOU SET UP THE CONNECTION TO THE LOGIN
+  const userId = '5d9b6dcf50187122380a9203';
+console.log('userData: ', userData);
+  useEffect(() => {
+    getUserData(userId);
+  }, []);
 
   return (
     <div className="user-home">
@@ -18,13 +23,13 @@ export function UserHome ({ userData, getUserData }) {
   )
 }
 
-const mapStateToProps = (state) => ({
-  userData: state.userData,
-});
+const mapStateToProps = (state) => {
+  console.log('state: ', state);
+ return { userData: state.user.userData,}
+}
 
-//TODO: DELETE
 const mapDispatchToProps = (dispatch) => ({
-  //CODE
+  getUserData: (userId) => dispatch(actions.user.getUserData(userId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserHome);
