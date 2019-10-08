@@ -1,7 +1,8 @@
 'use strict';
-
 const express = require('express');
 const app = express();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
@@ -27,6 +28,7 @@ app.listen(port, (err) => {
   else console.log(`Server listening on port ${port}`);
 });
 
+<<<<<<< HEAD
 // GET /auth/google
 //   Use passport.authenticate() as route middleware to authenticate the
 //   request.  The first step in Google authentication will involve
@@ -52,7 +54,7 @@ app.get('/auth/google',
 //   request.  If authentication fails, the user will be redirected back to the
 //   login page.  Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
-app.get('/auth/google/callback', 
+app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('http://localhost:3000/UserHome');
@@ -62,6 +64,22 @@ app.get('/auth/google/callback',
   app.listen(process.env.PORT||8888, function () {
     console.log('Express running on http://localhost:8888/auth/google');
   })
-  
+
   module.exports = app;
-  
+
+=======
+//Web sockets
+io.sockets.on('connection', socket => {
+  console.log('New client connected');
+  socket.emit('test', { message: 'This is a test message' });
+  //Here we listen on a new namespace called "new transaction"
+  // socket.on('transaction', (transaction) => {
+  //   socket.emit('new transaction', transaction);
+  // });
+
+  //A special namespace "disconnect" for when a client disconnects
+  // socket.on('disconnect', () => {
+  //   console.log('Client disconnected');
+  // });
+});
+>>>>>>> feat(sockets): test sockets
