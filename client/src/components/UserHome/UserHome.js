@@ -13,6 +13,8 @@ export function UserHome ({ userData, getUserName }) {
     getUserName();
   }, []);
 
+import Map from '../Map/Map'
+export default function UserHome () {
   return (
     <div className="user-home">
       <Header />
