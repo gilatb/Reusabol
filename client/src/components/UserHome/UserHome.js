@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import './UserHome.css';
 import Header from '../Header/Header';
+import Title from '../atomic-components/Title/Title';
 import Map from '../Map/Map';
 import actions from '../../redux/actions';
 
@@ -10,7 +11,7 @@ export function UserHome ({ userData, getUserData }) {
 
   //TODO: DELETE THIS VARIABLE ONCE YOU SET UP THE CONNECTION TO THE LOGIN
   const userId = '5d9b6dcf50187122380a9203';
-console.log('userData: ', userData);
+
   useEffect(() => {
     getUserData(userId);
   }, []);
@@ -18,14 +19,14 @@ console.log('userData: ', userData);
   return (
     <div className="user-home">
       <Header />
+      {userData && <Title text={`Hi ${userData.firstName}!`} />}
       <Map />
     </div>
   )
 }
 
 const mapStateToProps = (state) => {
-  console.log('state: ', state);
- return { userData: state.user.userData,}
+  return { userData: state.user.userData, }
 }
 
 const mapDispatchToProps = (dispatch) => ({
