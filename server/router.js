@@ -5,34 +5,27 @@ const restoContr = require('./controllers/restos');
 const userContr = require('./controllers/users');
 
 // User Endpoints
-router.post('/user', userContr.createUser);
 router.get('/user/:_id', userContr.getUserDetails);
 router.get('/user/restos', restoContr.getRestos);
-router.put('user/exchange/', userContr.changeNumBols);
+router.post('/user/pendTrans', userContr.createUserPendTrans);
+router.put('/user/pendTrans/numBols', userContr.updateUserNumBols);
+router.post('/user/prevTrans', userContr.createUserPrevTrans);
+router.delete('/user/pendTrans', userContr.deleteUserPendTrans);
+router.put('/user/inventory', userContr.updateUserInventory);
+
+// Restaurant Endpoints
+router.get('/resto/:_id', restoContr.getRestoDetails);
+router.post('/resto/pendTrans', restoContr.createRestoPendTrans);
+router.put('/resto/pendTrans/numBols', restoContr.updateRestoNumBols);
+router.post('/resto/prevTrans', restoContr.createRestoPrevTrans);
+router.delete('/resto/pendTrans', restoContr.deleteRestoPendTrans);
+router.put('/resto/inventory', restoContr.updateRestoInventory);
 
 // Admin Endpoints
-router.get('/user', userContr.getUsers);
-router.post('/user/restos', restoContr.createResto);
-router.delete('/user/restos', restoContr.deleteResto);
-
+router.post('/admin/user', userContr.createUser);
+router.post('/admin/restos', restoContr.createResto);
+router.get('/admin/users', userContr.getUsers);
+router.delete('/admin/restos', restoContr.deleteResto);
+router.delete('/admin/users', userContr.deleteUser);
 
 module.exports = router;
-
-// User:
-// user/confirm => POST (updates numBols) with a new transactionId (subscribe to the websocket with this transactionId).
-// user/cancel => DELETE (updates numBols) 
-// (or take and another one for return) 
-
-
-// Restaurants:
-// 'restaurant/transactions?complete=false | ?complete=true' => GET 
-// 'restaurant/order/:transaction-id/confirm' => PUT 
-// 'restaurant/order/:transaction-id/deny' => DELETE
-// 'restaurant/details' => GET
-// 'restaurant/:payment' => GET (would be PUT as well)
-
-// Admin:
-// 'admin/' 
-// 'admin/users => GET
-// 'admin/restaurants' => GET
-// 'admin/transactions' => GET
