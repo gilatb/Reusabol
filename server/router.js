@@ -4,6 +4,8 @@ const router = require('express').Router();
 const restoContr = require('./controllers/restos');
 const userContr = require('./controllers/users');
 
+//TODO: ?take ?return for post pendTrans
+
 // User Endpoints
 router.get('/user/:_id', userContr.getUserDetails);
 router.get('/user/restos', restoContr.getRestos);
