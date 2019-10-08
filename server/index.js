@@ -1,6 +1,8 @@
 'use strict';
 const express = require('express');
 const app = express();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
@@ -20,6 +22,22 @@ app.use(cookieParser());
 app.use(session({ secret: 'lolcats lollipops %%¬' }));
 app.use(passport.initialize());
 app.use(passport.session()); //this is creating req.user
+
+//Setting up a socket with the namespace "connection" for new sockets
+io.on('connection', socket => {
+  console.log('New client connected');
+  socket.emit('test', { message: 'This is a test message' });
+  //Here we listen on a new namespace called "new transaction"
+  socket.on('transaction', (transaction) => {
+    socket.emit('new transaction', transaction);
+  });
+
+  //A special namespace "disconnect" for when a client disconnects
+  socket.on('disconnect', () => {
+    console.log('Client disconnected');
+  });
+});
+
 
 app.listen(port, (err) => {
   if (err) console.log('Error connecting to the db', err);
