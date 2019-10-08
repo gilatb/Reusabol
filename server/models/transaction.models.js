@@ -7,6 +7,4 @@ const TransSchema = new Schema({
   numBols: {type: Number}
 });
 
-const Trans = mongoose.model('Transaction', TransSchema);
-
-module.exports = Trans;
+module.exports = TransSchema;
