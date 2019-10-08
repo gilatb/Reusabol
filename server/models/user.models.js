@@ -12,7 +12,7 @@ const UserSchema = new Schema({
   email: {type: String},
   hashPassword: {type: String},
   google: {type: String},
-  numOfBols: {type: Number},
+  numBols: {type: Number},
   pendingTransactions: {type: Array},
   previousTransactions: {type: Array},
   notifications: {

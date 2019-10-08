@@ -12,7 +12,7 @@ const RestoSchema = new Schema({
   email: {type: String},
   hashPassword: {type: String},
   google: {type: String},
-  inventory: {type: Number},
+  numBols: {type: Number},
   pendingTransactions: {type: Array},
   previousTransactions: {type: Array},
 });
