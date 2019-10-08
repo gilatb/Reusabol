@@ -1,13 +1,22 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-
+import axios from 'axios'
 export default function Login () {
+  
+  function callme() {
+    axios.get('http://localhost:8888/me',{withCredentials: true}).then(res=>{
+      console.log(res);
+      
+    })
+  }
   return (
+
     <div>
+      <button onClick={callme}>me</button>
       <h3>Login page</h3>
-      <NavLink to="/UserHome"><span>User</span></NavLink>
+      
+      <a href="http://localhost:8888/auth/google">User</a>
       <br />
-      <NavLink to="/RestoHome"><span>Restaurant</span></NavLink>
+      <span>Restaurant</span>
     </div>
   )
 }
