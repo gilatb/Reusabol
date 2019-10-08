@@ -1,20 +1,21 @@
 const mongoose = require('../db');
 const Schema = mongoose.Schema;
+const TransactionSchema = require('./transaction.models');
+const CoordinatesSchema = require('./coordinates.models');
+const GoogleSchema = require('./google.models');
 
 const RestoSchema = new Schema({
-  name: {type: String, required: true},
-  address: {type: String},
-  coordinates: {type: String},
-  // lat: {type: String},
-  // long:{type: String},
-  phoneNumber: {type: String},
-  contactPerson: {type: String},
-  email: {type: String},
-  hashPassword: {type: String},
-  google: {type: String},
-  numBols: {type: Number, default: 0},
-  pendingTransactions: {type: Array},
-  previousTransactions: {type: Array},
+  name: String,
+  address: String,
+  coordinates: CoordinatesSchema,
+  phoneNumber: String,
+  contactPerson: String,
+  email: String,
+  hashPassword: String,
+  google: GoogleSchema,
+  inventory: {type: Number, default: 0},
+  pendingTrans: [TransactionSchema],
+  previousTrans: [TransactionSchema]
 });
 
 const Resto = mongoose.model('Restaurant', RestoSchema);
