@@ -1,7 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
-// import Login from './components/login/Login';
 import './App.css';
 import Login from './components/Login/Login';
 import UserHome from './components/UserHome/UserHome';
