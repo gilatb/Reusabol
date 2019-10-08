@@ -24,7 +24,7 @@ exports.createUser = async (req, res) => {
   }
 };
 
-exports.getSpecificUser = async (req, res) => {
+exports.getUserDetails = async (req, res) => {
   try {
     const user = await User.findById({ 
       _id: req.body.id  
@@ -36,3 +36,34 @@ exports.getSpecificUser = async (req, res) => {
     res.send(err);
   }
 };
+
+// exports.changeNumBols
+
+exports.changeNumBols = async (req, res) => {
+  try {
+    //TODO: the transactionId have to come from the websockets
+    //TODO: define take and return
+    const transactionId = req.params.id;
+    if (take == true) {
+      const numBols = await User.findByIdAndUpdate(
+        {_id: transactionId},
+        {$inc: {numBols: 1}},
+        {new: true}
+      );
+      res.status(200);
+      res.json(numBols);
+    }
+    else if (return == true) {
+      const numBols = await User.findByIdAndUpdate(
+        {_id: transactionId},
+        {$inc: {numBols: -1}},
+        {new: true}
+      );
+      res.status(200);
+      res.json(numBols);
+    }
+  } catch (err) {
+    res.status(500);
+    res.send(err);  
+  }
+}
