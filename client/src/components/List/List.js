@@ -1,4 +1,5 @@
 import React from 'react';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
 import './List.css';
 import ListItem from '../ListItem/ListItem';
@@ -10,7 +11,9 @@ export default function List ({ array }) {
   return (
     <div className="list">
       {array.map(el => {
-        return <ListItem key={array[el]} title={'title'} subtitle={'subtitle'}/>
+        return <ButtonBase className="list-item">
+          <ListItem key={array[el]} title={`${el.userFirstName} ${el.userLastName}`} subtitle={`Order placed at ${el.orderTime}`} />
+        </ButtonBase>
       })}
     </div>
   )
