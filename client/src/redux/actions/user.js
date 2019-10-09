@@ -1,12 +1,10 @@
-import ApiClient from '../../services/ApiClient';
+import services from '../../services';
 
-export const getUserData = userId => dispatch => {
-  ApiClient.getUserData(userId)
-    .then(user => {
-      //TODO: WHY IS THE NUMBOLS NOT BEING RETURNED WITH THE USER INFO?
-      dispatch({ type: 'SET_USER_NAME', user });
-    // dispatch({type: 'SET_NUMBOLS', listName: category, list: moviesList});
-  })
+export const getUserName = () => dispatch => {
+  services.db.getUserName()
+    // .then(res => console.log('I am insidethe action: ', res))
+    .then(name => {
+      dispatch({ type: 'SET_USER_NAME', name });
+      // dispatch({type: 'SET_NUMBOLS', listName: category, list: moviesList});
+    })
 }
-
-

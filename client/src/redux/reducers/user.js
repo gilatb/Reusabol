@@ -8,16 +8,13 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case 'GET_USER_DATA':
-      console.log('I am in the GET_USER_DATA reducer')
-      return state;
     case 'SET_USER_NAME':
-      return {
+    return {
         ...state,
         userData: {
           ...state.userData,
-          firstName: action.user.firstName,
-          lastName: action.user.lastName,
+          firstName: action.name.firstName,
+          lastName: action.name.lastName,
         }
       };
     default:

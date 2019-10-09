@@ -7,13 +7,10 @@ import Title from '../atomic-components/Title/Title';
 import Map from '../Map/Map';
 import actions from '../../redux/actions';
 
-export function UserHome ({ userData, getUserData }) {
-
-  //TODO: DELETE THIS VARIABLE ONCE YOU SET UP THE CONNECTION TO THE LOGIN
-  const userId = '5d9b6dcf50187122380a9203';
+export function UserHome ({ userData, getUserName }) {
 
   useEffect(() => {
-    getUserData(userId);
+    getUserName();
   }, []);
 
   return (
@@ -30,7 +27,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  getUserData: (userId) => dispatch(actions.user.getUserData(userId)),
+  getUserName: () => dispatch(actions.user.getUserName()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserHome);
