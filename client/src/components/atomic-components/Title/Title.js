@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function Title ({ text }) {
+export default function Title ({ text, id }) {
   return (
-    <div>
+    <div id={id}>
       <span>{text}</span>
     </div>
   )
