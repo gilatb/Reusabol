@@ -27,7 +27,7 @@ exports.createResto = async (req, res) => {
 exports.deleteResto = async (req, res) => {
   try {
     const resto = await Resto.deleteOne({ 
-      id: req.body.id  
+      _id: req.body.id  
     });
     res.status(204);
     res.json(resto);
