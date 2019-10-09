@@ -1,5 +1,5 @@
-export function setOpen () {
+export function toggleOpen () {
   return {
-    type: 'SET_OPEN',
+    type: 'TOGGLE_OPEN',
   }
 }
