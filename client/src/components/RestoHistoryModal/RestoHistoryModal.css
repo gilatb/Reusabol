@@ -1,4 +1,9 @@
-.resto-history {
-  width: 100%;
-  height: 100%;
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paper {
+  background-color: white;
 }
