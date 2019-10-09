@@ -25,10 +25,10 @@ router.put('/resto/inventory', restoContr.updateRestoInventory);
 
 // Admin Endpoints
 router.post('/admin/user', userContr.createUser);
-router.post('/admin/restos', restoContr.createResto);
+router.post('/admin/resto', restoContr.createResto);
 router.get('/admin/users', userContr.getUsers);
 router.get('/admin/restos', restoContr.getRestos);
-router.delete('/admin/users', userContr.deleteUser);
-router.delete('/admin/restos', restoContr.deleteResto);
+router.delete('/admin/user', userContr.deleteUser);
+router.delete('/admin/resto', restoContr.deleteResto);
 
 module.exports = router;
