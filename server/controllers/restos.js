@@ -85,14 +85,20 @@ exports.createRestoPrevTrans = async (req, res) => {
 
 exports.deleteRestoPendTrans = async (req, res) => {
   try {
-    const xxx = await Resto;
+    const resto = await Resto.findOneAndUpdate(
+      {_id: req.body.restoId},
+      { $pull: { pendingTrans: { _id: req.body.transId } } },
+      { new: true}
+    );
     res.status(204);
-    res.json(xxx);
+    res.json(resto);
   } catch (err) {
     res.status(500);
     res.send(err);
   }
 };
+
+
 
 exports.updateRestoInventory = async (req, res) => {
   try {
