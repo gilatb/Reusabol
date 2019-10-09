@@ -11,8 +11,8 @@ import ModalComp from '../atomic-components/Modal/ModalComp';
 import RestoHistoryModal from '../RestoHistoryModal/RestoHistoryModal';
 
 //TODO: DELETE SQUAREBTN ONCE THE MODAL WORKS AND YOU MOVE THIS FUNCTIONALITY TO THE BUTTON IN THE FOOTER
-import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
-import { lightBlue } from '@material-ui/core/colors';
+  import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
+  import { lightBlue } from '@material-ui/core/colors';
 
 // the socket should have its own connection
 const socket = socketIOClient('localhost:4001'); // TODO: can be also: socket.connect('localhost:4001');
