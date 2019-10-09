@@ -92,10 +92,14 @@ exports.createUserPrevTrans = async (req, res) => {
 };
 
 exports.deleteUserPendTrans = async (req, res) => {
-  try {
-    const xxx = await User;
+  try {  
+    const user = await User.findOneAndUpdate(
+      {_id: req.body.userId},
+      { $pull: { pendingTrans: { _id: req.body.transId } } },
+      { new: true }
+    );    
     res.status(200);
-    res.json(xxx);
+    res.json(user);
   } catch (err) {
     res.status(500);
     res.send(err);
