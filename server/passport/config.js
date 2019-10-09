@@ -30,10 +30,14 @@ function (accessToken, refreshToken, profile, done) {
 
 passport.serializeUser(function (user, done) {
   done(null, user);
-});
+});  
 
-passport.deserializeUser(function (user, done) {
+passport.deserializeUser(function(user, done) {
   done(null, user);
+  //Miguels code below. He says we might not want this in the future. Because we are overriding the google.id with the mongo.id which can potentially cause problems later on. 
+  // User.findOne({ googleId: user.id }, (err, dbuser) => {
+  //   done(null, dbuser)
+  // })
 });
 
 module.exports = passport;

@@ -18,7 +18,6 @@ const UserSchema = new Schema({
   previousTrans: [TransactionSchema],
   notifications: NotificationSchema,
   googleId: {type: String, required: true},
-
   createdAt: {type: Date, default: new Date()},
 });
 
