@@ -16,7 +16,10 @@ const UserSchema = new Schema({
   inventory: {type: Number, default: 0},
   pendingTrans: [TransactionSchema],
   previousTrans: [TransactionSchema],
-  notifications: NotificationSchema
+  notifications: NotificationSchema,
+  googleId: {type: String, required: true},
+
+  createdAt: {type: Date, default: new Date()},
 });
 
 const User = mongoose.model('User', UserSchema);
