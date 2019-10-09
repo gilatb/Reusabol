@@ -6,8 +6,7 @@ import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
 export default function () {
   return (
     <div className="footer">
-      <SquareBtn text={'PENDING'} />
-      <SquareBtn text={'COMPLETE'} />
+      <SquareBtn text={'TRANSACTION HISTORY'} />
     </div>
   )
 }
