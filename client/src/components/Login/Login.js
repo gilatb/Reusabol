@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
-import socketIOClient from 'socket.io-client';
 
 import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
 

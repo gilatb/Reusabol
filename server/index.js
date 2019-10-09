@@ -1,16 +1,26 @@
 'use strict';
-const express = require('express');
-const app = express();
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
-const cors = require('cors');
+// const express = require('express');
+// const app = express();
+// const server = require('http').Server(app);
+// const io = require('socket.io')(server);
+// const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const passport = require('./passport/config');
 
 
+// our 'normal' server 
+const app = express();
 const router = require('./router');
 const port = 4000;
+
+// our socket.io server:
+const socketPort = process.env.IO_PORT || 4001;
+
+// creating a socketIo middleware
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
+const cors = require('cors');
 
 app.use(cors({
   origin: ['http://localhost:3000'],
@@ -26,11 +36,13 @@ app.use(passport.session()); //this is creating req.user
 //Setting up a socket with the namespace "connection" for new sockets
 io.on('connection', socket => {
   console.log('New client connected');
-  socket.emit('test', { message: 'This is a test message' });
-  //Here we listen on a new namespace called "new transaction"
-  socket.on('transaction', (transaction) => {
-    socket.emit('new transaction', transaction);
+
+  // in the userHomepage (incoming data)
+  socket.on('user ask transaction', (data) => {
+    // in the restoHomepage (outgoing data)
+    socket.emit('resto receive transaction', {transaction: data});
   });
+
 
   //A special namespace "disconnect" for when a client disconnects
   socket.on('disconnect', () => {
@@ -38,12 +50,13 @@ io.on('connection', socket => {
   });
 });
 
-
+// normal server 
 app.listen(port, (err) => {
   if (err) console.log('Error connecting to the db', err);
   else console.log(`Server listening on port ${port}`);
 });
 
+<<<<<<< HEAD
 
 // GET /auth/google
 //   Use passport.authenticate() as route middleware to authenticate the
@@ -84,3 +97,20 @@ app.listen(process.env.PORT || 8888, function () {
 module.exports = app;
 
 
+=======
+// socket server:
+server.listen(socketPort, () => {
+  console.log(`Listening to socket on port ${socketPort}`);
+});
+
+
+// TODO: older version of the socket:
+// const express = require('express');
+// const app = express();
+// const server = require('http').Server(app);
+// const io = require('socket.io')(server);
+// const cors = require('cors');
+
+// const router = require('./router');
+// const port = 4000;
+>>>>>>> feat(socket): setup basic socket for transaction only, change location later
