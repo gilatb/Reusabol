@@ -61,7 +61,7 @@ export default function Map () {
         console.log(err);
       });
     }
-    // eslint-disable-next-line 
+    // eslint-disable-next-line
   }, [])
 
   const renderMap = () => {

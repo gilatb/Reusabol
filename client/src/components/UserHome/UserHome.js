@@ -1,14 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 
 import './UserHome.css';
 import Header from '../Header/Header';
-import Map from '../Map/Map'
-export default function UserHome () {
+import Title from '../atomic-components/Title/Title';
+import Map from '../Map/Map';
+import actions from '../../redux/actions';
+
+export function UserHome ({ userData, getUserName }) {
+
+  useEffect(() => {
+    getUserName();
+  }, []);
+
   return (
     <div className="user-home">
       <Header />
-      <h3>Map container goes here:</h3>
+      {userData && <Title text={`Hi ${userData.firstName}!`} />}
       <Map />
     </div>
   )
 }
+
+const mapStateToProps = (state) => {
+  return { userData: state.user.userData, }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  getUserName: () => dispatch(actions.user.getUserName()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserHome);

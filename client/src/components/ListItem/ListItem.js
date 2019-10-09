@@ -9,11 +9,11 @@ export default function ListItem ({ title, subtitle }) {
 
   return (
     <div className="list-item">
-      <div class="row">
-        <div class="column">
+      <div className="row">
+        <div className="column">
           <Image alt={'image'} />
         </div>
-        <div class="column">
+        <div className="column">
           <Subtitle text={title} />
           <TextField text={subtitle} />
         </div>

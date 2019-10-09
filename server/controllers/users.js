@@ -10,7 +10,7 @@ exports.getUsers = async (req, res) => {
   } catch (err) {
     res.status(500);
     res.send(err);
-  } 
+  }
 };
 
 exports.createUser = async (req, res) => {
@@ -39,8 +39,8 @@ exports.deleteUser = async (req, res) => {
 
 exports.getUserDetails = async (req, res) => {
   try {
-    const user = await User.findById({ 
-      _id: req.body.id  
+    const user = await User.findById({
+      _id: req.params._id
     });
     res.status(200);
     res.json(user);
