@@ -29,3 +29,23 @@ exports.createPendTrans = async (req, res) => {
     res.send(err);
   }
 };
+
+exports.deletePendTrans = async (req, res) => {
+  try {  
+    const user = await User.findOneAndUpdate(
+      {_id: req.body.userId},
+      { $pull: { pendingTrans: { transId: req.body.transId } } },
+      { new: true }
+    );
+    const resto = await Resto.findOneAndUpdate(
+      { _id: req.body.restoId },
+      { $pull: { pendingTrans: { transId: req.body.transId } } },
+      { new: true }
+    );    
+    res.status(200);
+    res.json({user, resto});
+  } catch (err) {
+    res.status(500);
+    res.send(err);
+  }
+};
