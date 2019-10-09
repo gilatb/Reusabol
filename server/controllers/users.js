@@ -27,7 +27,7 @@ exports.createUser = async (req, res) => {
 exports.deleteUser = async (req, res) => {
   try {
     const user = await User.deleteOne({
-      id: req.body.id
+      _id: req.body.id
     });
     res.status(204);
     res.json(user);
@@ -52,9 +52,17 @@ exports.getUserDetails = async (req, res) => {
 
 exports.createUserPendTrans = async (req, res) => {
   try {
-    const xxx = await User;
+    const transaction = {
+      userId: req.body.userId,
+      restoId: req.body.restoId
+    };
+    user = await User.findOneAndUpdate(
+      {_id: req.body.userId},
+      { $push: { pendingTrans: transaction } },
+      { new: true }
+    );  
     res.status(200);
-    res.json(xxx);
+    res.json(user);
   } catch (err) {
     res.status(500);
     res.send(err);
