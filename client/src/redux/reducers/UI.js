@@ -7,12 +7,12 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case 'SET_OPEN':
+    case 'TOGGLE_OPEN':
     return {
       ...state,
       resto: {
         ...state.resto,
-        openHistory: true,
+        openHistory: !state.resto.openHistory,
       }
     };
     default:

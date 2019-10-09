@@ -9,6 +9,8 @@ import actions from '../../redux/actions';
 
 export function UserHome ({ userData, getUserName }) {
 
+  console.log('userData: ', userData);
+
   useEffect(() => {
     getUserName();
   }, []);

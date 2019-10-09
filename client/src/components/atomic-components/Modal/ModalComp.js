@@ -5,30 +5,22 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 
 import './ModalComp.css';
-import SquareBtn from '../SquareBtn/SquareBtn';
+import RoundBtn from '../RoundBtn/RoundBtn';
 import Title from '../Title/Title';
+import actions from '../../../redux/actions';
 
 
-export function TransitionsModal() {
+export function ModalComp({ UIState, toggleOpen }) {
 
-  const [open, setOpen] = React.useState(false);
+  let open = UIState.openHistory;
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
   return (
     <div>
-      <SquareBtn onClick={handleOpen} text={'OPEN MODAL'} />
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         className="modal"
         open={open}
-        onClose={handleClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
@@ -37,21 +29,23 @@ export function TransitionsModal() {
       >
         <Fade in={open}>
           <div className="paper">
+            <RoundBtn text={'close'} onClick={toggleOpen}/>
             <Title id="transition-modal-title" text={'Transaction history'} />
             <p id="transition-modal-description">Render the list of previous transactions here.</p>
           </div>
         </Fade>
       </Modal>
+
     </div>
   );
 }
 
 const mapStateToProps = (state) => {
-  return { UIState: state.UI.UIState, }
+  return { UIState: state.UI.resto }
 }
 
-// const mapDispatchToProps = (dispatch) => ({
-//   getUserName: () => dispatch(actions.user.getUserName()),
-// });
+const mapDispatchToProps = (dispatch) => ({
+  toggleOpen: () => dispatch(actions.UI.toggleOpen()),
+});
 
-export default connect(mapStateToProps)(TransitionsModal);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalComp);
