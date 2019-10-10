@@ -19,8 +19,6 @@ export function UserHome ({ userData, getUserName }) {
 
   return (
     <div className="user-home">
-      {/*To be deleted */}
-      {/* <SquareBtn onClick={callMe} text={"me"}/> */}
       <Header />
       {userData && <Title text={`Hi ${userData.firstName}!`} />}
       <Map />
