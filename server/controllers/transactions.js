@@ -5,6 +5,8 @@ const Resto = require('../models/resto.models');
 
 const uuid = require('uuidv4').default;
 
+//TODO: send always the exchange type within the body
+
 exports.createPendTrans = async (req, res) => {
   try {
     const transaction = {
@@ -88,6 +90,17 @@ exports.deletePendTrans = async (req, res) => {
     );
     res.status(200);
     res.json({ user, resto });
+  } catch (err) {
+    res.status(500);
+    res.send(err);
+  }
+};
+
+exports.updateInventory = async (req, res) => {
+  try {
+    //TODO: update inventory based on exchange type
+    res.status(200);
+    res.json({ user, resto }); 
   } catch (err) {
     res.status(500);
     res.send(err);
