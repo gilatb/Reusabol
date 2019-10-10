@@ -12,8 +12,9 @@ export default {
 //Generic fetch request for use with different endpoints
 const fetchRequest = (url) => {
   return axios.get(`${BASE_URL}/${url}`, {withCredentials: true})
-    .then(res => res.status <= 400 ? res : Promise.reject(res))
-    .then(result => result.json())
+    // .then(res => res.status <= 400 ? res : Promise.reject(res))
+    // .then(result => result.json())
+    .then(res=>Promise.resolve(res))
     .catch((err) => {
       console.log(`${err.message} while fetching /${url}`)
     });
