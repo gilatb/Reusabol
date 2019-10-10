@@ -30,33 +30,15 @@ exports.createPendTrans = async (req, res) => {
   }
 };
 
-exports.increaseNumBols = async (req, res) => {
+exports.changeNumBols = async (req, res) => {
   try {
     const user = await User.findOneAndUpdate(
       { _id: req.body.userId, 'pendingTrans.transId': req.body.transId },
-      { $inc: { 'pendingTrans.$.numBols': 1 } }
+      { $set: { 'pendingTrans.$.numBols': req.body.numBols } }
     );
     const resto = await Resto.findOneAndUpdate(
       { _id: req.body.restoId, 'pendingTrans.transId': req.body.transId },
-      { $inc: { 'pendingTrans.$.numBols': 1 } }
-    );
-    res.status(200);
-    res.json({ user, resto });
-  } catch (err) {
-    res.status(500);
-    res.send(err);
-  }
-};
-
-exports.decreaseNumBols = async (req, res) => {
-  try {
-    const user = await User.findOneAndUpdate(
-      { _id: req.body.userId, 'pendingTrans.transId': req.body.transId },
-      { $inc: { 'pendingTrans.$.numBols': -1 } }
-    );
-    const resto = await Resto.findOneAndUpdate(
-      { _id: req.body.restoId, 'pendingTrans.transId': req.body.transId },
-      { $inc: { 'pendingTrans.$.numBols': -1 } }
+      { $set: { 'pendingTrans.$.numBols': req.body.numBols } }
     );
     res.status(200);
     res.json({ user, resto });
@@ -91,7 +73,6 @@ exports.createPrevTrans = async (req, res) => {
     res.send(err);
   }
 };
-
 
 exports.deletePendTrans = async (req, res) => {
   try {
