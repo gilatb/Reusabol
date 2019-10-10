@@ -27,7 +27,7 @@ exports.createUser = async (req, res) => {
 exports.deleteUser = async (req, res) => {
   try {
     const user = await User.deleteOne({
-      id: req.body.id
+      _id: req.body.id
     });
     res.status(204);
     res.json(user);
@@ -50,57 +50,3 @@ exports.getUserDetails = async (req, res) => {
   }
 };
 
-exports.createUserPendTrans = async (req, res) => {
-  try {
-    const xxx = await User;
-    res.status(200);
-    res.json(xxx);
-  } catch (err) {
-    res.status(500);
-    res.send(err);
-  }
-};
-
-exports.updateUserNumBols = async (req, res) => {
-  try {
-    const xxx = await User;
-    res.status(200);
-    res.json(xxx);
-  } catch (err) {
-    res.status(500);
-    res.send(err);
-  }
-};
-
-exports.createUserPrevTrans = async (req, res) => {
-  try {
-    const xxx = await User;
-    res.status(200);
-    res.json(xxx);
-  } catch (err) {
-    res.status(500);
-    res.send(err);
-  }
-};
-
-exports.deleteUserPendTrans = async (req, res) => {
-  try {
-    const xxx = await User;
-    res.status(200);
-    res.json(xxx);
-  } catch (err) {
-    res.status(500);
-    res.send(err);
-  }
-};
-
-exports.updateUserInventory = async (req, res) => {
-  try {
-    const xxx = await User;
-    res.status(200);
-    res.json(xxx);
-  } catch (err) {
-    res.status(500);
-    res.send(err);
-  }
-};

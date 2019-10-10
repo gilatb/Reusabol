@@ -1,7 +1,7 @@
 ### Start server local
 command: npm run dev
 
-### Start server remote (Clever cloud)
+### Start server remote
 command: npm start
 
 !!! Attention !!!

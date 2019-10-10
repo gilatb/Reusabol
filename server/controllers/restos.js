@@ -27,7 +27,7 @@ exports.createResto = async (req, res) => {
 exports.deleteResto = async (req, res) => {
   try {
     const resto = await Resto.deleteOne({ 
-      id: req.body.id  
+      _id: req.body.id  
     });
     res.status(204);
     res.json(resto);
@@ -44,61 +44,6 @@ exports.getRestoDetails = async (req, res) => {
     });
     res.status(200);
     res.json(resto);
-  } catch (err) {
-    res.status(500);
-    res.send(err);
-  }
-};
-
-exports.createRestoPendTrans = async (req, res) => {
-  try {
-    const xxx = await Resto;
-    res.status(200);
-    res.json(xxx);
-  } catch (err) {
-    res.status(500);
-    res.send(err);
-  }
-};
-
-exports.updateRestoNumBols = async (req, res) => {
-  try {
-    const xxx = await Resto;
-    res.status(200);
-    res.json(xxx);
-  } catch (err) {
-    res.status(500);
-    res.send(err);
-  }
-};
-
-exports.createRestoPrevTrans = async (req, res) => {
-  try {
-    const xxx = await Resto;
-    res.status(201);
-    res.json(xxx);
-  } catch (err) {
-    res.status(500);
-    res.send(err);
-  }
-};
-
-exports.deleteRestoPendTrans = async (req, res) => {
-  try {
-    const xxx = await Resto;
-    res.status(204);
-    res.json(xxx);
-  } catch (err) {
-    res.status(500);
-    res.send(err);
-  }
-};
-
-exports.updateRestoInventory = async (req, res) => {
-  try {
-    const xxx = await Resto;
-    res.status(200);
-    res.json(xxx);
   } catch (err) {
     res.status(500);
     res.send(err);

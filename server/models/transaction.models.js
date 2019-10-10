@@ -5,7 +5,8 @@ const TransactionSchema = new Schema({
   transId: String,
   userId: String,
   restoId: String,
-  numBols: Number
+  numBols: {type:Number, default:0},
+  exchangeType: String
 });
 
 module.exports = TransactionSchema;
