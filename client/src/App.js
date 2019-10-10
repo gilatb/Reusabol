@@ -14,7 +14,7 @@ function App() {
           <Route path="/UserHome" component={UserHome} exact />
           <Route path="/RestoHome" component={RestoHome} exact />
         </Switch>
-      </BrowserRouter>
+      </BrowserRouter>      
     </div>
   );
 }

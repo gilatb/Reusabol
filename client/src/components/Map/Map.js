@@ -1,13 +1,15 @@
 
 import React, { useState, useEffect } from 'react';
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps/api';
+import { connect } from 'react-redux';
 
 import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
 import './Map.css';
+import { sendUserTransaction } from '../../redux/actions/transaction';
 
 const API_KEY = process.env.REACT_APP_API_KEY
 
-export default function Map () {
+function Map ({sendUserTransaction}) {
 
   const [location, setLocation] = useState({ lat: 42.076613, lng: 2.362239833 });
   const [selectedResto, setSelectedResto] = useState(null);
@@ -48,6 +50,11 @@ export default function Map () {
   const markerClickHandler = (event, resto) => {
     setSelectedResto(resto);
     infoOpen ? setInfoOpen(false) : setInfoOpen(true);
+  }
+
+
+  const transactionClickHandler = (event) => {
+    sendUserTransaction()
   }
 
   useEffect(() => {
@@ -94,7 +101,10 @@ export default function Map () {
               <p>{selectedResto.address}</p>
               <div className="Buttons">
                 <SquareBtn
-                  className="Take" text="Take"
+                  className="Take"
+                  text="Take"
+                  onClick={transactionClickHandler}
+                // onClick={() => console.log('I am inside onclick!!!')}
                 />
                 <SquareBtn
                   className="Return" text="Return"
@@ -113,3 +123,13 @@ export default function Map () {
 
   return isLoaded ? renderMap() : <p>Waiting for map to arrive</p> // <Spinner />
 }
+
+const mapStateToProps = (state) => {
+  return { userData: state.user.userData }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  sendUserTransaction: () => dispatch(sendUserTransaction()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Map);

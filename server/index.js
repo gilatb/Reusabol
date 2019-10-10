@@ -6,9 +6,10 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const passport = require('./passport/config');
 
-
+// our 'normal' server 
 const router = require('./router');
 const port = 4000;
+
 
 app.use(cors({
   origin: ['http://localhost:3000'],
@@ -17,13 +18,47 @@ app.use(cors({
 app.use(express.json());
 app.use(router);
 app.use(cookieParser());
-app.use(session({ secret: 'lolcats lollipops %%¬' }));
+app.use(session({
+  secret: 'lolcats lollipops %%¬', 
+  resave: true,
+  saveUninitialized: true 
+}));
 app.use(passport.initialize());
 app.use(passport.session()); //this is creating req.user
 
 app.listen(port, (err) => {
   if (err) console.log('Error connecting to the db', err);
   else console.log(`Server listening on port ${port}`);
+});
+
+// our socket.io server: (we are creating a socket middleware)
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
+const socketPort = process.env.IO_PORT || 4001;
+
+//Setting up a socket with the namespace "connection" for new sockets
+io.on('connection', socket => {
+  console.log('New client connected');
+
+  // in the userHomepage (incoming data)
+  socket.on('user-ask-transaction', (data) => {
+    console.log('user-ask-transaction:', data);
+    
+    // in the restoHomepage (outgoing data)
+    socket.broadcast.emit('resto-receive-transaction', {transaction: data});
+    console.log('socket emitted transaction successfully');
+    
+  });
+
+  //A special namespace "disconnect" for when a client disconnects
+  socket.on('disconnect', () => {
+    console.log('Client disconnected');
+  });
+});
+
+// socket server:
+server.listen(socketPort, () => {
+  console.log(`Listening to socket on port ${socketPort}`);
 });
 
 
@@ -64,5 +99,6 @@ app.listen(process.env.PORT || 8888, function () {
 });
 
 module.exports = app;
+
 
 

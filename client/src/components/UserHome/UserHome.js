@@ -1,17 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import './UserHome.css';
 import Header from '../Header/Header';
 import Title from '../atomic-components/Title/Title';
-import Map from '../Map/Map';
+import Map  from '../Map/Map';
 import actions from '../../redux/actions';
+
 
 export function UserHome ({ userData, getUserName }) {
 
   useEffect(() => {
     getUserName();
   }, []);
+
+  // should be in redux
+  const [transaction, setTransaction] = useState({})
 
   return (
     <div className="user-home">

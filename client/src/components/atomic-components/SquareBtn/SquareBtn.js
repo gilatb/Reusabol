@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
 
-export default function SquareBtn ({ text }) {
+export default function SquareBtn ({ text, onClick }) {
   return (
     <div>
       <Button
@@ -9,6 +9,7 @@ export default function SquareBtn ({ text }) {
         color="default"
         size="small"
         children={text}
+        onClick={onClick}
     />
     </div>
   )
