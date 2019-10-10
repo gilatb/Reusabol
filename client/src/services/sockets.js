@@ -13,11 +13,19 @@ export default {
 
 // TODO: should be in RestoHome
 // on comoponentDidMount we want to emit (send) the transactionObj through the socket
+
+socket.on('resto-receive-transaction', (data) => {
+  console.log('In restaurant data:', data);
+
+  // setTransaction(data) // TODO: to state in redux
+  // and send to pending transaction and more... 
+});
+
 function getNewTransaction () {
   console.log('before resto-receive-transaction');
   
   socket.on('resto-receive-transaction', (data) => {
-    console.log('In restaurant data:', data);
+    console.log('In restaurant data CB:', data);
     
   // setTransaction(data) // TODO: to state in redux
   // and send to pending transaction and more... 

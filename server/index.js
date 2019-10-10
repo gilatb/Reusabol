@@ -45,7 +45,7 @@ io.on('connection', socket => {
     console.log('user-ask-transaction:', data);
     
     // in the restoHomepage (outgoing data)
-    socket.emit('resto-receive-transaction', data);
+    socket.broadcast.emit('resto-receive-transaction', {transaction: data});
     console.log('socket emitted transaction successfully');
     
   });

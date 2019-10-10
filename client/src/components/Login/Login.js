@@ -14,13 +14,6 @@ export default function Login () {
   }
 
   //Get rid of the onCLick 'me' button once done testing
-
-  const socket = socketIOClient.connect('http://localhost:4000', { reconnect: true });
-
-  socket.on('test', (data) => {
-    console.log('data.message: ', data.message);
-  })
-
   return (
     <div>
       <SquareBtn onClick={callMe} text={"me"} />
