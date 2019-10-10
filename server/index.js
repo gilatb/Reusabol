@@ -71,7 +71,7 @@ server.listen(socketPort, () => {
 app.get('/me', function (req, res, next) {
   //get rid of console logs after testing
   res.set('Access-Control-Allow-Credentials', 'true');
-  console.log('-----------------',req.user,);
+  // console.log('-----------------',req.user,);
   
   let user = req.user || null;
   res.json({
@@ -97,7 +97,7 @@ app.get(
 app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   (req, res) => {
-    console.log('usertype: ', req.session.usertype);
+    // console.log('usertype: ', req.session.usertype);
     const usertype = req.session.usertype;
     const route = {
       customer: 'UserHome',

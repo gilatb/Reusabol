@@ -8,8 +8,7 @@ import List from '../List/List';
 import Footer from '../Footer/Footer';
 import { getNewTransaction } from '../../redux/actions/transaction';
 import socketIOClient from 'socket.io-client';
-import ModalComp from '../atomic-components/Modal/ModalComp';
-import RestoHistoryModal from '../RestoHistoryModal/RestoHistoryModal';
+
 
 //TODO: DELETE SQUAREBTN ONCE THE MODAL WORKS AND YOU MOVE THIS FUNCTIONALITY TO THE BUTTON IN THE FOOTER
   import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
@@ -31,7 +30,7 @@ function RestoHome ({ getNewTransaction }) {
    }
 
   //TODO: THIS ARRAY SHOULD BE THE ARRAY OF PREVIOUS RESTO TRANSACTIONS (FROM DB)
-  const [pendingTransactions, setPendingTransactions] = useState([1, 2, 3])
+  // const [pendingTransactions, setPendingTransactions] = useState([1, 2, 3])
 
   socket.on('resto-receive-transaction', (data) => {
     console.log('In restaurant data:', data);

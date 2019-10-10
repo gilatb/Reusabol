@@ -22,7 +22,7 @@ export default {
 //Fetch request to the /me endpoint
 const fetchRequestMe = (url) => {
   return axios.get('http://localhost:8888/me', {withCredentials: true})
-  .then(res => console.log('I am inside the service', res))
+  // .then(res => console.log('I am inside the service', res))
     .then(res => res.status <= 400 ? res : Promise.reject(res))
     .then(res => Promise.resolve({firstName: res.data.user.name.givenName, lastName: res.data.user.name.familyName}))
     .catch((err) => {
