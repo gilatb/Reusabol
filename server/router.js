@@ -12,7 +12,7 @@ router.get('/user/restos', restoContr.getRestos);
 // Restaurant Endpoints
 router.get('/resto/:_id', restoContr.getRestoDetails);
 
-// Tansaction Endpoints
+// Transaction Endpoints
 router.post('/pendTrans', transContr.createPendTrans);
 router.put('/pendTrans/chanNumBols', transContr.changeNumBols);
 router.post('/prevTrans', transContr.createPrevTrans);

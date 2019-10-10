@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 
 import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
 import './Map.css';
-import { sendUserTransaction } from '../../redux/actions/transaction';
+import { userTransaction } from '../../redux/actions/transaction';
 
 const API_KEY = process.env.REACT_APP_API_KEY
 
-function Map ({sendUserTransaction}) {
+function Map ({ userTransaction }) {
 
   const [location, setLocation] = useState({ lat: 42.076613, lng: 2.362239833 });
   const [selectedResto, setSelectedResto] = useState(null);
@@ -54,7 +54,7 @@ function Map ({sendUserTransaction}) {
 
 
   const transactionClickHandler = (event) => {
-    sendUserTransaction()
+    userTransaction()
   }
 
   useEffect(() => {
@@ -104,7 +104,6 @@ function Map ({sendUserTransaction}) {
                   className="Take"
                   text="Take"
                   onClick={transactionClickHandler}
-                // onClick={() => console.log('I am inside onclick!!!')}
                 />
                 <SquareBtn
                   className="Return" text="Return"
@@ -129,7 +128,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  sendUserTransaction: () => dispatch(sendUserTransaction()),
+  userTransaction: () => dispatch(userTransaction()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Map);
