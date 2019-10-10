@@ -12,7 +12,7 @@ import actions from '../../redux/actions';
 
 export function RestoHistoryModal ({ UIState, toggleOpen }) {
 
-  let open = UIState.openHistory;
+  let open = UIState.restoHistory;
 
   return (
     <div>
