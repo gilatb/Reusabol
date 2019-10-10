@@ -13,17 +13,53 @@ exports.createPendTrans = async (req, res) => {
       restoId: req.body.restoId
     };
     const user = await User.findOneAndUpdate(
-      {_id: req.body.userId},
+      { _id: req.body.userId },
       { $push: { pendingTrans: transaction } },
       { new: true }
-    ); 
+    );
     const resto = await Resto.findOneAndUpdate(
       { _id: req.body.restoId },
       { $push: { pendingTrans: transaction } },
       { new: true }
     );
     res.status(200);
-    res.json({user, resto});
+    res.json({ user, resto });
+  } catch (err) {
+    res.status(500);
+    res.send(err);
+  }
+};
+
+exports.increaseNumBols = async (req, res) => {
+  try {
+    const user = await User.findOneAndUpdate(
+      { _id: req.body.userId, 'pendingTrans.transId': req.body.transId },
+      { $inc: { 'pendingTrans.$.numBols': 1 } }
+    );
+    const resto = await Resto.findOneAndUpdate(
+      { _id: req.body.restoId, 'pendingTrans.transId': req.body.transId },
+      { $inc: { 'pendingTrans.$.numBols': 1 } }
+    );
+    res.status(200);
+    res.json({ user, resto });
+  } catch (err) {
+    res.status(500);
+    res.send(err);
+  }
+};
+
+exports.decreaseNumBols = async (req, res) => {
+  try {
+    const user = await User.findOneAndUpdate(
+      { _id: req.body.userId, 'pendingTrans.transId': req.body.transId },
+      { $inc: { 'pendingTrans.$.numBols': -1 } }
+    );
+    const resto = await Resto.findOneAndUpdate(
+      { _id: req.body.restoId, 'pendingTrans.transId': req.body.transId },
+      { $inc: { 'pendingTrans.$.numBols': -1 } }
+    );
+    res.status(200);
+    res.json({ user, resto });
   } catch (err) {
     res.status(500);
     res.send(err);
@@ -31,9 +67,9 @@ exports.createPendTrans = async (req, res) => {
 };
 
 exports.deletePendTrans = async (req, res) => {
-  try {  
+  try {
     const user = await User.findOneAndUpdate(
-      {_id: req.body.userId},
+      { _id: req.body.userId },
       { $pull: { pendingTrans: { transId: req.body.transId } } },
       { new: true }
     );
@@ -41,9 +77,9 @@ exports.deletePendTrans = async (req, res) => {
       { _id: req.body.restoId },
       { $pull: { pendingTrans: { transId: req.body.transId } } },
       { new: true }
-    );    
+    );
     res.status(200);
-    res.json({user, resto});
+    res.json({ user, resto });
   } catch (err) {
     res.status(500);
     res.send(err);
