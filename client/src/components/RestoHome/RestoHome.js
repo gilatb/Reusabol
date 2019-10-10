@@ -1,29 +1,21 @@
-import React from 'react'
-import socketIOClient from 'socket.io-client';
+import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux';
 
 import './RestoHome.css';
 import Header from '../Header/Header';
 import List from '../List/List';
 import Footer from '../Footer/Footer';
+import { getNewTransaction } from '../../redux/actions/transaction';
 
-
-export default function RestoHome () {
+function RestoHome ({ getNewTransaction }) {
+  console.log('getNewTransaction: ', getNewTransaction());
 
   //TODO: THIS ARRAY SHOULD BE THE ARRAY OF PREVIOUS RESTO TRANSACTIONS (FROM DB)
-  const pendingTransactions = [1, 2, 3];
-
-  // TODO: will be in state:
-  const [transaction, settransaction] = useState({});
-
-  // the socket should have its own connection 
-  const socket = socketIOClient('localhost:4001'); // TODO: can be also: socket.connect('localhost:4001');
-
-  // on comoponentDidMount we want to emit (send) the transactionObj through the socket
+  const [pendingTransactions, setPendingTransactions] = useState([1, 2, 3])
+  
+  // when componentDodMount should:
   useEffect(() => {
-    socket.on('resto receive transaction', (data)=> {
-      setTransaction(data)
-      // and send to pending transaction and more... 
-    });
+    getNewTransaction()
   }, [])
 
   return (
@@ -34,3 +26,13 @@ export default function RestoHome () {
     </div>
   )
 }
+
+const mapStateToProps = (state) => {
+  return { userData: state.user.userData }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  getNewTransaction: () => dispatch(getNewTransaction()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(RestoHome);

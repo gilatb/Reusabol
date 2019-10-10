@@ -1,7 +1,8 @@
 import { createStore, applyMiddleware, combineReducers, compose} from 'redux';
+import logger from 'redux-logger';
+
 import reducers from './reducers';
 import thunk from './middleware/index';
-import logger from 'redux-logger';
 
 export default createStore(combineReducers(reducers), compose(
   applyMiddleware(thunk, logger),
