@@ -19,7 +19,15 @@ export default function List ({ array }) {
   )
 }
 
+// const mapStateToProps = (state) => {
+//   return { UIState: state.UI.UIState, }
+// }
 
+// const mapDispatchToProps = (dispatch) => ({
+//   toggleOpen: () => dispatch(actions.UI.toggleOpen()),
+// });
+
+// export default connect(mapStateToProps, mapDispatchToProps)(List);
 
 
 
