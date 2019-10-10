@@ -3,25 +3,21 @@
 const router = require('express').Router();
 const restoContr = require('./controllers/restos');
 const userContr = require('./controllers/users');
-
-//TODO: ?take ?return for post pendTrans
+const transContr = require('./controllers/transactions');
 
 // User Endpoints
 router.get('/user/:_id', userContr.getUserDetails);
 router.get('/user/restos', restoContr.getRestos);
-router.post('/user/pendTrans', userContr.createUserPendTrans);
-router.put('/user/pendTrans/numBols', userContr.updateUserNumBols);
-router.post('/user/prevTrans', userContr.createUserPrevTrans);
-router.put('/user/pendTrans', userContr.deleteUserPendTrans);
-router.put('/user/inventory', userContr.updateUserInventory);
 
 // Restaurant Endpoints
 router.get('/resto/:_id', restoContr.getRestoDetails);
-router.post('/resto/pendTrans', restoContr.createRestoPendTrans);
-router.put('/resto/pendTrans/numBols', restoContr.updateRestoNumBols);
-router.post('/resto/prevTrans', restoContr.createRestoPrevTrans);
-router.put('/resto/pendTrans', restoContr.deleteRestoPendTrans);
-router.put('/resto/inventory', restoContr.updateRestoInventory);
+
+// Tansaction Endpoints
+router.post('/pendTrans', transContr.createPendTrans);
+router.put('/pendTrans/chanNumBols', transContr.changeNumBols);
+router.post('/prevTrans', transContr.createPrevTrans);
+router.put('/pendTrans/del', transContr.deletePendTrans);
+router.put('/inventory', transContr.updateInventory);
 
 // Admin Endpoints
 router.post('/admin/user', userContr.createUser);
