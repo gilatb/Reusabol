@@ -13,7 +13,6 @@ passport.use(new GoogleStrategy({
 },
 function (accessToken, refreshToken, profile, done) {
   done(null, profile);
-  console.log(profile);
 
   User.findOneAndUpdate(
     { googleId: profile.id },
