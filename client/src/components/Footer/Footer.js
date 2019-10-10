@@ -6,23 +6,18 @@ import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
 import RestoHistoryModal from '../RestoHistoryModal/RestoHistoryModal';
 import actions from '../../redux/actions';
 
-export function Footer ({ UIState, toggleOpen }) {
-
+export function Footer ({ toggleOpen }) {
 
   return (
     <div className="footer">
-      <SquareBtn text={'PREVIOUS TRANSACTIONS'} onClick={toggleOpen} />
+      <SquareBtn text={'PREVIOUS TRANSACTIONS'} onClick={toggleOpen('restoHistory')} />
       <RestoHistoryModal/>
     </div>
   )
 }
 
-const mapStateToProps = (state) => {
-  return { UIState: state.UI.UIState, }
-}
-
 const mapDispatchToProps = (dispatch) => ({
-  toggleOpen: () => dispatch(actions.UI.toggleOpen()),
+  toggleOpen: (modalName) => dispatch(actions.UI.toggleOpen(modalName)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Footer);
+export default connect(null, mapDispatchToProps)(Footer);
