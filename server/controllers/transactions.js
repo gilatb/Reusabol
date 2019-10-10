@@ -66,6 +66,33 @@ exports.decreaseNumBols = async (req, res) => {
   }
 };
 
+exports.createPrevTrans = async (req, res) => {
+  try {
+    const transaction = {
+      numBols: req.body.numBols,
+      transId: req.body.transId,
+      userId: req.body.userId,
+      restoId: req.body.restoId
+    };
+    const user = await User.findOneAndUpdate(
+      { _id: req.body.userId },
+      { $push: { previousTrans: transaction } },
+      { new: true }
+    );
+    const resto = await Resto.findOneAndUpdate(
+      { _id: req.body.restoId },
+      { $push: { previousTrans: transaction } },
+      { new: true }
+    );
+    res.status(200);
+    res.json({ user, resto });
+  } catch (err) {
+    res.status(500);
+    res.send(err);
+  }
+};
+
+
 exports.deletePendTrans = async (req, res) => {
   try {
     const user = await User.findOneAndUpdate(
