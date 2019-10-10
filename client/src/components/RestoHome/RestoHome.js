@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 import './RestoHome.css';
 import Header from '../Header/Header';
@@ -7,8 +8,7 @@ import List from '../List/List';
 import Footer from '../Footer/Footer';
 import { getNewTransaction } from '../../redux/actions/transaction';
 import socketIOClient from 'socket.io-client';
-import ModalComp from '../atomic-components/Modal/ModalComp';
-import RestoHistoryModal from '../RestoHistoryModal/RestoHistoryModal';
+
 
 //TODO: DELETE SQUAREBTN ONCE THE MODAL WORKS AND YOU MOVE THIS FUNCTIONALITY TO THE BUTTON IN THE FOOTER
   import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
@@ -20,8 +20,17 @@ const socket = socketIOClient('localhost:4001'); // TODO: can be also: socket.co
 function RestoHome ({ getNewTransaction }) {
   console.log('getNewTransaction: ', getNewTransaction);
 
+  useEffect( () => {
+    callMe();
+   })
+ 
+   function callMe() {
+     axios.get('http://localhost:8888/me', { withCredentials: true}).then(res => {
+     })
+   }
+
   //TODO: THIS ARRAY SHOULD BE THE ARRAY OF PREVIOUS RESTO TRANSACTIONS (FROM DB)
-  const [pendingTransactions, setPendingTransactions] = useState([1, 2, 3])
+  // const [pendingTransactions, setPendingTransactions] = useState([1, 2, 3])
 
   socket.on('resto-receive-transaction', (data) => {
     console.log('In restaurant data:', data);

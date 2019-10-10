@@ -26,10 +26,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session()); //this is creating req.user
 
-app.listen(port, (err) => {
-  if (err) console.log('Error connecting to the db', err);
-  else console.log(`Server listening on port ${port}`);
-});
+// app.listen(port, (err) => {
+//   if (err) console.log('Error connecting to the db', err);
+//   else console.log(`Server listening on port ${port}`);
+// });
 
 // our socket.io server: (we are creating a socket middleware)
 const server = require('http').createServer(app);
@@ -70,17 +70,24 @@ server.listen(socketPort, () => {
 
 app.get('/me', function (req, res, next) {
   //get rid of console logs after testing
-  console.log(req.cookies, 'cookies');
   res.set('Access-Control-Allow-Credentials', 'true');
+  // console.log('-----------------',req.user,);
+  
   let user = req.user || null;
-  console.log(user, 'user');
   res.json({
     user
   });
 });
 
-app.get('/auth/google',
-  passport.authenticate('google', { scope: ['profile'] }));
+app.get(
+  '/auth/google',
+  (req, res, next) => {
+    req.session.usertype = req.query.usertype;
+    // console.log('req.query: ', req.query);
+    next();
+  },
+  passport.authenticate('google', { scope: ['profile'] }),
+  );
 
 // GET /auth/google/callback
 //   Use passport.authenticate() as route middleware to authenticate the
@@ -89,8 +96,14 @@ app.get('/auth/google',
 //   which, in this example, will redirect the user to the home page.
 app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
-  function (req, res) {
-    res.redirect('http://localhost:3000/UserHome');
+  (req, res) => {
+    // console.log('usertype: ', req.session.usertype);
+    const usertype = req.session.usertype;
+    const route = {
+      customer: 'UserHome',
+      restaurant: 'RestoHome'
+    }
+    res.redirect(`http://localhost:3000/${route[usertype]}`);
   });
 
 //This may need to be changed in the api console
