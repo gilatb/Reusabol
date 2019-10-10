@@ -1,6 +1,5 @@
-export function toggleOpen (modalName) {
+export function toggleOpenHistory () {
   return {
-    type: 'TOGGLE_OPEN',
-    modalName,
+    type: 'TOGGLE_OPEN_HISTORY',
   }
 }
