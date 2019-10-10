@@ -20,7 +20,7 @@ const fetchRequest = (url) => {
     });
 }
 
-//Fetch request to /me endpoint
+//Fetch request to the /me endpoint
 const fetchRequestMe = (url) => {
   return axios.get('http://localhost:8888/me', {withCredentials: true})
     .then(res => res.status <= 400 ? res : Promise.reject(res))
