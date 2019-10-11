@@ -10,7 +10,7 @@ import Title from '../atomic-components/Title/Title';
 import actions from '../../redux/actions';
 
 
-export function RestoHistoryModal ({ UIState, toggleOpen }) {
+export function RestoHistoryModal ({ UIState, toggleOpenHistory }) {
 
   let open = UIState.restoHistory;
 
@@ -29,7 +29,7 @@ export function RestoHistoryModal ({ UIState, toggleOpen }) {
       >
         <Fade in={open}>
           <div className="paper">
-            <RoundBtn text={'close'} onClick={toggleOpen}/>
+            <RoundBtn text={'close'} onClick={toggleOpenHistory}/>
             <Title id="transition-modal-title" text={'Transaction history'} />
             <p id="transition-modal-description">Render the list of previous transactions here.</p>
           </div>
@@ -45,7 +45,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleOpen: () => dispatch(actions.UI.toggleOpen()),
+  toggleOpenHistory: () => dispatch(actions.UI.toggleOpenHistory()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RestoHistoryModal);
