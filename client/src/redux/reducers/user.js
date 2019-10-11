@@ -4,7 +4,6 @@ const INITIAL_STATE = {
     lastName: '',
     numBols: 0,
   },
-  restos: [] //TODO: should start from an ampty array
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -18,16 +17,6 @@ export default (state = INITIAL_STATE, action) => {
           lastName: action.name.lastName,
         }
       };
-      // TODO:??? 
-    case 'GET_RESTOS':
-      console.log('here should be GET_RESTOS array, action:', action);
-      return { 
-        ...state,
-        restos: [
-          ...state.restos,
-          ...action.restos
-        ]
-      }
 
     default:
       return state;

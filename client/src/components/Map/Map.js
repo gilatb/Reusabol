@@ -131,7 +131,7 @@ function Map ({ userTransaction, getRestos, restos }) {
 const mapStateToProps = (state) => {
   return { 
     userData: state.user.userData,
-    restos: state.user.restos,
+    restos: state.restos.restos,
   }
 }
 
