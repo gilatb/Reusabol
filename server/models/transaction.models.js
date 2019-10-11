@@ -6,7 +6,12 @@ const TransactionSchema = new Schema({
   userId: String,
   restoId: String,
   numBols: {type:Number, default:0},
-  exchangeType: String
+  exchangeType: String,
+  userFirstName: String,
+  userLastName: String,
+  restoName: String,
+  image: String,
+  orderTime: String
 });
 
 module.exports = TransactionSchema;

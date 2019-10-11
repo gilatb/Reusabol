@@ -5,14 +5,17 @@ const Resto = require('../models/resto.models');
 
 const uuid = require('uuidv4').default;
 
-//TODO: send always the exchange type within the body
-
 exports.createPendTrans = async (req, res) => {
+  const hours = new Date().getHours();
+  const minutes = new Date().getMinutes();
+  console.log('req.body in the beckend: ', req.body); 
   try {
     const transaction = {
       transId: uuid(),
+      orderTime: `${hours}:${minutes}`,
       userId: req.body.userId,
-      restoId: req.body.restoId
+      restoId: req.body.restoId,
+      exchangeType: req.body.exchangeType,
     };
     const user = await User.findOneAndUpdate(
       { _id: req.body.userId },
@@ -25,15 +28,17 @@ exports.createPendTrans = async (req, res) => {
       { new: true }
     );
     res.status(200);
-    res.json({ user, resto });
+    res.json({ transaction, user, resto });
   } catch (err) {
     res.status(500);
     res.send(err);
   }
 };
 
-exports.changeNumBols = async (req, res) => {
+exports.updateNumBols = async (req, res) => {
   try {
+    // FIXME: should return transaction and find it + modify, not user and resto!!!!
+    // TODO: const transaction = await TransactionSchema.findOneAndUpdate
     const user = await User.findOneAndUpdate(
       { _id: req.body.userId, 'pendingTrans.transId': req.body.transId },
       { $set: { 'pendingTrans.$.numBols': req.body.numBols } }
@@ -43,7 +48,7 @@ exports.changeNumBols = async (req, res) => {
       { $set: { 'pendingTrans.$.numBols': req.body.numBols } }
     );
     res.status(200);
-    res.json({ user, resto });
+    res.json({ user, resto, /*transaction */}); //TODO: add transaction
   } catch (err) {
     res.status(500);
     res.send(err);

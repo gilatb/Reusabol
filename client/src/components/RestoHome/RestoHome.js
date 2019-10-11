@@ -9,28 +9,11 @@ import Footer from '../Footer/Footer';
 import { getNewTransaction } from '../../redux/actions/transaction';
 import socketIOClient from 'socket.io-client';
 
-
-//TODO: DELETE SQUAREBTN ONCE THE MODAL WORKS AND YOU MOVE THIS FUNCTIONALITY TO THE BUTTON IN THE FOOTER
-  import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
-  import { lightBlue } from '@material-ui/core/colors';
-
 // the socket should have its own connection
 const socket = socketIOClient('localhost:4001'); // TODO: can be also: socket.connect('localhost:4001');
 
 function RestoHome ({ getNewTransaction }) {
   console.log('getNewTransaction: ', getNewTransaction);
-
-  useEffect( () => {
-    callMe();
-   })
- 
-   function callMe() {
-     axios.get('http://localhost:8888/me', { withCredentials: true}).then(res => {
-     })
-   }
-
-  //TODO: THIS ARRAY SHOULD BE THE ARRAY OF PREVIOUS RESTO TRANSACTIONS (FROM DB)
-  // const [pendingTransactions, setPendingTransactions] = useState([1, 2, 3])
 
   socket.on('resto-receive-transaction', (data) => {
     console.log('In restaurant data:', data);
@@ -39,10 +22,6 @@ function RestoHome ({ getNewTransaction }) {
     // and send to pending transaction and more...
   });
 
-  // when componentDodMount should:
-  // useEffect(() => {
-  //   getNewTransaction()
-  // }, [])
   const pendingTransactions = [{id: 1, userId: 22, userFirstName: 'Eileen', userLastName: 'Juergens', restoName: 'Banana Palace', restoId: 34, numBols: 0, orderTime: '21:45'}, {id: 2, userId: 44, userFirstName: 'Andre', userLastName: 'DiFelice', restoName: 'LaBodegueta', restoId: 22, numBols: 0, orderTime: '23:15'}, {id: 3, userId: 55, userFirstName: 'Gilat', userLastName: 'Blumberger', restoName: 'Mensanna',restoId: 88, numBols: 0, orderTime: '18:53'} ];
 
   return (

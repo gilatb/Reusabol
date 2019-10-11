@@ -9,7 +9,7 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case 'SET_USER_NAME':
-    return {
+      return {
         ...state,
         userData: {
           ...state.userData,
@@ -17,6 +17,7 @@ export default (state = INITIAL_STATE, action) => {
           lastName: action.name.lastName,
         }
       };
+
     default:
       return state;
   }

@@ -26,10 +26,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session()); //this is creating req.user
 
-// app.listen(port, (err) => {
-//   if (err) console.log('Error connecting to the db', err);
-//   else console.log(`Server listening on port ${port}`);
-// });
+app.listen(port, (err) => {
+  if (err) console.log('Error connecting to the db', err);
+  else console.log(`Server listening on port ${port}`);
+});
 
 // our socket.io server: (we are creating a socket middleware)
 const server = require('http').createServer(app);
@@ -87,7 +87,7 @@ app.get(
     next();
   },
   passport.authenticate('google', { scope: ['profile'] }),
-  );
+);
 
 // GET /auth/google/callback
 //   Use passport.authenticate() as route middleware to authenticate the
@@ -102,7 +102,7 @@ app.get('/auth/google/callback',
     const route = {
       customer: 'UserHome',
       restaurant: 'RestoHome'
-    }
+    };
     res.redirect(`http://localhost:3000/${route[usertype]}`);
   });
 

@@ -14,9 +14,6 @@ export function UserHome ({ userData, getUserName }) {
     getUserName();
   }, []);
 
-  // should be in redux
-  const [transaction, setTransaction] = useState({})
-
   return (
     <div className="user-home">
       <Header />
