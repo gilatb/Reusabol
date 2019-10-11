@@ -5,12 +5,12 @@ import { connect } from 'react-redux';
 
 import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
 import './Map.css';
-import { userTransaction } from '../../redux/actions/transaction';
+import { userTransaction, setExchangeType } from '../../redux/actions/transaction';
 import { getRestos } from '../../redux/actions/restos';
 
 const API_KEY = process.env.REACT_APP_API_KEY
 
-function Map ({ userTransaction, getRestos, restos }) {
+function Map ({ userTransaction, getRestos, restos, setExchangeType, userData }) {
 
   const [location, setLocation] = useState({ lat: 42.076613, lng: 2.362239833 });
   const [selectedResto, setSelectedResto] = useState(null);
@@ -59,10 +59,16 @@ function Map ({ userTransaction, getRestos, restos }) {
 
 
   const transactionClickHandler = (e) => {
-    console.log('e: ', e);
-    // setExchangeType()
-    // userTransaction(e, selectedResto._id, userData._id, exchangeType)  
-    userTransaction()
+    // setExchangeType(e.target.innerHTML) //TODO: finish proccess 
+    const reqBody = {
+      // restoId: selectedResto._id, 
+      restoId: "5d9ef4850c0bdb07274aef74", //TODO: hardcoded 
+      userId: '5d9ef44a0c0bdb07274aef73',
+      // userId: userData._id, //TODO: get from userdata once we added to user in redux 
+      exchangeType: 'Take' //FIXME: change this to be 👇🏻
+      // exchangeType: exchangeType //TODO: put in redux state 
+    }
+    userTransaction(reqBody)  
   }
 
   useEffect(() => {
@@ -139,9 +145,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  userTransaction: () => dispatch(userTransaction()),
+  userTransaction: (reqBody) => dispatch(userTransaction(reqBody)),
   getRestos: () => dispatch(getRestos()),
-  // setExchangeType: () => dispatch(setExchangeType()),
+  setExchangeType: (type) => dispatch(setExchangeType(type)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Map);

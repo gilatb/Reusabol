@@ -1,10 +1,13 @@
 const INITIAL_STATE = {
-  transactionData: {
-    transactionId: '',
-    userId: '',
-    restoId: '',
-    numBols: 0,
-  },
+  transactions: {
+    id: {
+      id: '',
+      userId: '',
+      restoId: '',
+      numBols: 0,
+      exchangeType: '',
+    },
+  }
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -12,14 +15,25 @@ export default (state = INITIAL_STATE, action) => {
     case 'NEW_TRANSACTION':
       return {
         ...state,
-        transactionData: {
-          ...state.transactionData,
-          transactionId: action.transaction.transactionId,
-          userId: action.transaction.userId,
-          restoId: action.transaction.restoId,
-          numBols: action.transaction.numBols
+        transactions: {
+          ...state.transactions,
+          [action.transaction.transId]: {
+            transId: action.transaction.transId,
+            userId: action.transaction.userId,
+            restoId: action.transaction.restoId,
+            exchangeType: action.transaction.exchangeType,
+            orderTime: action.transaction.orderTime,
+          }
         }
       };
+    case 'SET_EXCHANGE_TYPE':
+      return {
+        ...state,
+        // transactions: { 
+        // ...state.transactions,
+        //  
+        // } // TODO: find the right transaction and update the exchange type
+      }
     default:
       return state;
   }

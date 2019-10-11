@@ -1,20 +1,19 @@
 import services from '../../services';
 
+export function setExchangeType (exchangeType) {
+  return {
+    type: 'SET_EXCHANGE_TYPE',
+    setExchangeType,
+  }
+}
 
-export const userTransaction = () => dispatch => {
-  // TODO: generateUserTransaction:
-  services.db.generateTransaction()
-  // console.log('hi from action: ', );
-  services.sockets.sendUserTransaction() //TODO: now should invoke a console.log
-  // .then(res => console.log(res))
-  .then((transaction) => {
-    dispatch({ type: 'NEW_TRANSACTION', transaction })
-  });
-    // .then(res => console.log('I am insidethe action: ', res))
-    // .then(name => {
-      // dispatch({ type: 'SET_USER_NAME', name });
-    //   // dispatch({type: 'SET_NUMBOLS', listName: category, list: moviesList});
-    // })
+export const userTransaction = (reqBody) => dispatch => {
+  services.db.generateTransaction(reqBody)
+  // services.sockets.sendUserTransaction() //TODO: now should invoke a console.log
+  .then(res => console.log('In userTransaction action, res: ',res))
+  // .then((transaction) => {
+  //   dispatch({ type: 'NEW_TRANSACTION', transaction })
+  // })
 }
 
 
