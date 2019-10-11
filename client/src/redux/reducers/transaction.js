@@ -12,17 +12,18 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case 'NEW_TRANSACTION':
+    case 'SAVE_NEW_TRANSACTION':
+    // console.log('action: ', action);
       return {
         ...state,
         transactions: {
-          ...state.transactions,
-          [action.transaction.transId]: {
-            transId: action.transaction.transId,
-            userId: action.transaction.userId,
-            restoId: action.transaction.restoId,
-            exchangeType: action.transaction.exchangeType,
-            orderTime: action.transaction.orderTime,
+          ...state.transaction,
+          [action.transaction.transaction.transId]: {
+            transId: action.transaction.transaction.transId,
+            userId: action.transaction.transaction.userId,
+            restoId: action.transaction.transaction.restoId,
+            exchangeType: action.transaction.transaction.exchangeType,
+            orderTime: action.transaction.transaction.orderTime,
           }
         }
       };
@@ -31,7 +32,9 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         // transactions: { 
         // ...state.transactions,
-        //  
+        // [action.transaction.transaction.transId]: {
+        // 
+        // }
         // } // TODO: find the right transaction and update the exchange type
       }
     default:

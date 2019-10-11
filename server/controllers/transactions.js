@@ -5,12 +5,10 @@ const Resto = require('../models/resto.models');
 
 const uuid = require('uuidv4').default;
 
-//TODO: send always the exchange type within the body
-
 exports.createPendTrans = async (req, res) => {
   const hours = new Date().getHours();
   const minutes = new Date().getMinutes();
-  console.log('req.body in the beckend: ', req.body); //FIXME: req.body is currently = {}
+  console.log('req.body in the beckend: ', req.body); 
   try {
     const transaction = {
       transId: uuid(),

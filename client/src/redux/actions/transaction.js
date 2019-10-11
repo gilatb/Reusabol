@@ -9,11 +9,12 @@ export function setExchangeType (exchangeType) {
 
 export const userTransaction = (reqBody) => dispatch => {
   services.db.generateTransaction(reqBody)
-  // services.sockets.sendUserTransaction() //TODO: now should invoke a console.log
+  // save transaction to redux: 👇🏻
+  .then((transaction) => {
+    dispatch({ type: 'SAVE_NEW_TRANSACTION', transaction })
+  })
+  // services.sockets.sendUserTransaction() //TODO: 
   .then(res => console.log('In userTransaction action, res: ',res))
-  // .then((transaction) => {
-  //   dispatch({ type: 'NEW_TRANSACTION', transaction })
-  // })
 }
 
 

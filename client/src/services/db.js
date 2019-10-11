@@ -28,10 +28,6 @@ const fetchRequest = (url, optionsObj) => {
   return fetch(`${BASE_URL}/${url}`, optionsObj)
   .then(res => res.status <= 400 ? res : Promise.reject(res))
   .then(result => result.json())
-  .then(res => {
-    console.log('res in frontend fetch request: ', res )
-    return res;
-  }) // TODO: whay breaks and not working? 
   .catch((err) => {
     console.log(`${err.message} while fetching /${url}`)
   });

@@ -5,17 +5,19 @@ import { connect } from 'react-redux';
 
 import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
 import './Map.css';
-import { userTransaction, setExchangeType } from '../../redux/actions/transaction';
+import { userTransaction } from '../../redux/actions/transaction';
 import { getRestos } from '../../redux/actions/restos';
 
 const API_KEY = process.env.REACT_APP_API_KEY
 
-function Map ({ userTransaction, getRestos, restos, setExchangeType, userData }) {
+function Map ({ userTransaction, getRestos, restos, userData }) {
 
   const [location, setLocation] = useState({ lat: 42.076613, lng: 2.362239833 });
   const [selectedResto, setSelectedResto] = useState(null);
   const [markerMap, setMarkerMap] = useState({});
   const [infoOpen, setInfoOpen] = useState(false);
+  const [exchangeType, setExchangeType] = useState('');
+
 
   // TODO: should come from db now
   // const restos = [
@@ -59,14 +61,12 @@ function Map ({ userTransaction, getRestos, restos, setExchangeType, userData })
 
 
   const transactionClickHandler = (e) => {
-    // setExchangeType(e.target.innerHTML) //TODO: finish proccess 
+    setExchangeType(e.target.innerHTML)
     const reqBody = {
-      // restoId: selectedResto._id, 
-      restoId: "5d9ef4850c0bdb07274aef74", //TODO: hardcoded 
+      restoId: selectedResto._id, 
       userId: '5d9dda94f1db50ee60fef118',
-      // userId: userData._id, //TODO: get from userdata once we added to user in redux 
-      exchangeType: 'Take' //FIXME: change this to be 👇🏻
-      // exchangeType: exchangeType //TODO: put in redux state 
+      exchangeType: exchangeType // hardcode: 'Take
+      // userId: userData._id, //TODO: get from userdata once we added to user in redux waiting for Linnea
     }
     userTransaction(reqBody)  
   }
@@ -147,7 +147,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   userTransaction: (reqBody) => dispatch(userTransaction(reqBody)),
   getRestos: () => dispatch(getRestos()),
-  setExchangeType: (type) => dispatch(setExchangeType(type)),
+  // setExchangeType: (type) => dispatch(setExchangeType(type)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Map);
