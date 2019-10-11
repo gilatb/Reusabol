@@ -5,7 +5,6 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case 'GET_RESTOS':
-      console.log('here should be GET_RESTOS array, action:', action);
       return {
         ...state,
         restos: [

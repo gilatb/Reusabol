@@ -58,7 +58,10 @@ function Map ({ userTransaction, getRestos, restos }) {
   }
 
 
-  const transactionClickHandler = (event) => {
+  const transactionClickHandler = (e) => {
+    console.log('e: ', e);
+    // setExchangeType()
+    // userTransaction(e, selectedResto._id, userData._id, exchangeType)  
     userTransaction()
   }
 
@@ -138,6 +141,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   userTransaction: () => dispatch(userTransaction()),
   getRestos: () => dispatch(getRestos()),
+  // setExchangeType: () => dispatch(setExchangeType()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Map);

@@ -11,7 +11,7 @@ const TransactionSchema = new Schema({
   userLastName: String,
   restoName: String,
   image: String,
-  orderTime: Number
+  orderTime: String
 });
 
 module.exports = TransactionSchema;

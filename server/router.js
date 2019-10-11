@@ -7,14 +7,14 @@ const transContr = require('./controllers/transactions');
 
 // User Endpoints
 router.get('/user/:_id', userContr.getUserDetails);
-router.get('/user/restos', restoContr.getRestos);
+router.get('/user/restos', restoContr.getRestos); //FIXME: doesn't work, we used the /admin/restos
 
 // Restaurant Endpoints
 router.get('/resto/:_id', restoContr.getRestoDetails);
 
-// Transaction Endpoints
+// Transaction Endpoints TODO: delete prevTransaction
 router.post('/pendTrans', transContr.createPendTrans);
-router.put('/pendTrans/chanNumBols', transContr.changeNumBols);
+router.put('/pendTrans/updateNumBols', transContr.updateNumBols);
 router.post('/prevTrans', transContr.createPrevTrans);
 router.put('/pendTrans/del', transContr.deletePendTrans);
 router.put('/inventory', transContr.updateInventory);

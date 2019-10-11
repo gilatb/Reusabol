@@ -7,20 +7,20 @@ export default {
   getUserName: () => {
     return fetchRequestMe();
   },
-  generateTransaction: (data) => {
-    return fetchRequest('pendTrans', {
-      method: 'POST',
-      body: JSON.stringify(data)
-    });
-  },
+  // generateTransaction: (body) => {
+  //   return fetchRequest('pendTrans', {
+  //     method: 'POST',
+  //     body: JSON.stringify(body)
+  //   });
+  // },
   // createUser: () => {} // TODO: when the user just login
   getRestos: () => {
     return fetchRequest('admin/restos')
   } 
 }
 
-//Generic fetch request for use with different endpoints FIXME: gilat added data as second arg
-const fetchRequest = (url, data) => {
+//Generic fetch request for use with different endpoints FIXME: gilat added body as second arg
+const fetchRequest = (url, body) => {
   return fetch(`${BASE_URL}/${url}`)
     .then(res => res.status <= 400 ? res : Promise.reject(res))
     .then(result => result.json())

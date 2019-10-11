@@ -29,15 +29,16 @@ exports.createPendTrans = async (req, res) => {
       { new: true }
     );
     res.status(200);
-    res.json({ user, resto }); // TODO: add transaction to res.json
+    res.json({ user, resto, transaction });
   } catch (err) {
     res.status(500);
     res.send(err);
   }
 };
 
-exports.changeNumBols = async (req, res) => {
+exports.updateNumBols = async (req, res) => {
   try {
+    // TODO: const transaction = await TransactionSchema.findOneAndUpdate
     const user = await User.findOneAndUpdate(
       { _id: req.body.userId, 'pendingTrans.transId': req.body.transId },
       { $set: { 'pendingTrans.$.numBols': req.body.numBols } }
@@ -47,7 +48,7 @@ exports.changeNumBols = async (req, res) => {
       { $set: { 'pendingTrans.$.numBols': req.body.numBols } }
     );
     res.status(200);
-    res.json({ user, resto });
+    res.json({ user, resto, /*transaction */}); //TODO: add transaction
   } catch (err) {
     res.status(500);
     res.send(err);
