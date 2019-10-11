@@ -2,6 +2,8 @@ import services from '../../services';
 
 
 export const userTransaction = () => dispatch => {
+  // TODO: generateUserTransaction:
+  services.db.generateTransaction()
   // console.log('hi from action: ', );
   services.sockets.sendUserTransaction() //TODO: now should invoke a console.log
   // .then(res => console.log(res))

@@ -20,11 +20,6 @@ export default (state = INITIAL_STATE, action) => {
           numBols: action.transaction.numBols
         }
       };
-      
-      case 'DUMMY_ACTION': 
-      console.log('im in the dummy reducer');
-        return state;
-
     default:
       return state;
   }

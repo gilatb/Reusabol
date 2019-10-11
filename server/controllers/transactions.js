@@ -8,9 +8,13 @@ const uuid = require('uuidv4').default;
 //TODO: send always the exchange type within the body
 
 exports.createPendTrans = async (req, res) => {
+  const hours = new Date().getHours();
+  const minutes = new Date().getMinutes();
+  
   try {
     const transaction = {
       transId: uuid(),
+      orderTime: `${hours}:${minutes}`,
       userId: req.body.userId,
       restoId: req.body.restoId
     };
@@ -25,7 +29,7 @@ exports.createPendTrans = async (req, res) => {
       { new: true }
     );
     res.status(200);
-    res.json({ user, resto });
+    res.json({ user, resto }); // TODO: add transaction to res.json
   } catch (err) {
     res.status(500);
     res.send(err);

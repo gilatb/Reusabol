@@ -6,36 +6,41 @@ import { connect } from 'react-redux';
 import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
 import './Map.css';
 import { userTransaction } from '../../redux/actions/transaction';
+import { getRestos } from '../../redux/actions/restos';
 
 const API_KEY = process.env.REACT_APP_API_KEY
 
-function Map ({ userTransaction }) {
+function Map ({ userTransaction, getRestos, restos }) {
 
   const [location, setLocation] = useState({ lat: 42.076613, lng: 2.362239833 });
   const [selectedResto, setSelectedResto] = useState(null);
   const [markerMap, setMarkerMap] = useState({});
   const [infoOpen, setInfoOpen] = useState(false);
 
-  const restos = [
-    {
-      id: 1,
-      name: 'Banana place',
-      address: "Carrer d'Àvila, 27, 08005 Barcelona",
-      coordinates: { lat: 41.394205, lng: 2.15400725345 }
-    },
-    {
-      id: 2,
-      name: 'Ice-cream place',
-      address: "Carrer d'Banana, 27, 08005 Barcelona",
-      coordinates: { lat: 41.378205, lng: 2.156007231 }
-    },
-    {
-      id: 3,
-      name: 'Menssana',
-      address: "Carrer d'Àvila, 27, 08005 Barcelona",
-      coordinates: { lat: 41.390765, lng: 2.121554007 }
-    }
-  ];
+  // TODO: should come from db now
+  // const restos = [
+  //   {
+  //     id: 1,
+  //     name: 'Banana place',
+  //     address: "Carrer d'Àvila, 27, 08005 Barcelona",
+  //     coordinates: { lat: 41.394205, lng: 2.15400725345 }
+  //   },
+  //   {
+  //     id: 2,
+  //     name: 'Ice-cream place',
+  //     address: "Carrer d'Banana, 27, 08005 Barcelona",
+  //     coordinates: { lat: 41.378205, lng: 2.156007231 }
+  //   },
+  //   {
+  //     id: 3,
+  //     name: 'Menssana',
+  //     address: "Carrer d'Àvila, 27, 08005 Barcelona",
+  //     coordinates: { lat: 41.390765, lng: 2.121554007 }
+  //   }
+  // ];
+  useEffect(() => {
+    getRestos()
+  }, [])
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: API_KEY
@@ -124,11 +129,15 @@ function Map ({ userTransaction }) {
 }
 
 const mapStateToProps = (state) => {
-  return { userData: state.user.userData }
+  return { 
+    userData: state.user.userData,
+    restos: state.user.restos,
+  }
 }
 
 const mapDispatchToProps = (dispatch) => ({
   userTransaction: () => dispatch(userTransaction()),
+  getRestos: () => dispatch(getRestos()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Map);
