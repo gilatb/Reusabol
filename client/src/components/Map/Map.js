@@ -63,7 +63,7 @@ function Map ({ userTransaction, getRestos, restos, setExchangeType, userData })
     const reqBody = {
       // restoId: selectedResto._id, 
       restoId: "5d9ef4850c0bdb07274aef74", //TODO: hardcoded 
-      userId: '5d9ef44a0c0bdb07274aef73',
+      userId: '5d9dda94f1db50ee60fef118',
       // userId: userData._id, //TODO: get from userdata once we added to user in redux 
       exchangeType: 'Take' //FIXME: change this to be 👇🏻
       // exchangeType: exchangeType //TODO: put in redux state 

@@ -19,18 +19,18 @@ exports.createPendTrans = async (req, res) => {
       restoId: req.body.restoId,
       exchangeType: req.body.exchangeType,
     };
-    // const user = await User.findOneAndUpdate(
-    //   { _id: req.body.userId },
-    //   { $push: { pendingTrans: transaction } },
-    //   { new: true }
-    // );
-    // const resto = await Resto.findOneAndUpdate(
-    //   { _id: req.body.restoId },
-    //   { $push: { pendingTrans: transaction } },
-    //   { new: true }
-    // );
+    const user = await User.findOneAndUpdate(
+      { _id: req.body.userId },
+      { $push: { pendingTrans: transaction } },
+      { new: true }
+    );
+    const resto = await Resto.findOneAndUpdate(
+      { _id: req.body.restoId },
+      { $push: { pendingTrans: transaction } },
+      { new: true }
+    );
     res.status(200);
-    res.json({ transaction });
+    res.json({ transaction, user, resto });
   } catch (err) {
     res.status(500);
     res.send(err);
