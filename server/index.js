@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const passport = require('./passport/config');
 
-// our 'normal' server 
+// our 'normal' server
 const router = require('./router');
 const port = 4000;
 
@@ -19,9 +19,9 @@ app.use(express.json());
 app.use(router);
 app.use(cookieParser());
 app.use(session({
-  secret: 'lolcats lollipops %%¬', 
+  secret: 'lolcats lollipops %%¬',
   resave: true,
-  saveUninitialized: true 
+  saveUninitialized: true
 }));
 app.use(passport.initialize());
 app.use(passport.session()); //this is creating req.user
@@ -43,11 +43,11 @@ io.on('connection', socket => {
   // in the userHomepage (incoming data)
   socket.on('user-ask-transaction', (data) => {
     console.log('user-ask-transaction:', data);
-    
+
     // in the restoHomepage (outgoing data)
     socket.broadcast.emit('resto-receive-transaction', {transaction: data});
     console.log('socket emitted transaction successfully');
-    
+
   });
 
   //A special namespace "disconnect" for when a client disconnects
@@ -72,7 +72,7 @@ app.get('/me', function (req, res, next) {
   //get rid of console logs after testing
   res.set('Access-Control-Allow-Credentials', 'true');
   // console.log('-----------------',req.user,);
-  
+
   let user = req.user || null;
   res.json({
     user

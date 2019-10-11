@@ -7,7 +7,7 @@ export default {
   getUserName: () => {
     return fetchRequestMe();
   },
-  generateTransaction: (reqBody) => { 
+  generateTransaction: (reqBody) => {
     return fetchRequest('pendTrans', {
       headers: {
         'Content-Type': 'application/json'
@@ -19,7 +19,7 @@ export default {
   // createUser: () => {} // TODO: when the user just login
   getRestos: () => {
     return fetchRequest('admin/restos')
-  } 
+  }
 }
 
 //Generic fetch request for use with different endpoints FIXME: gilat added body as second arg

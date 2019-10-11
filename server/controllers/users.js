@@ -17,7 +17,7 @@ exports.createUser = async (req, res) => {
   try {
     const user = await User.create(req.body);
     res.status(201);
-    res.json(user);
+    res.json(user);  //TODO: WHERE/HOW CAN I ACCESS THIS ON THE FRONT-END?
   } catch (err) {
     res.status(500);
     res.send(err);
@@ -50,3 +50,16 @@ exports.getUserDetails = async (req, res) => {
   }
 };
 
+//TODO: DELETE IF LINNEA EXPERIMENT DOESN'T WORK
+exports.getUserByEmail = async (req, res) => {
+  try {
+    const user = await User.find({
+      email: req.params.email
+    });
+    res.status(200);
+    res.json(user);
+  } catch (err) {
+    res.status(500);
+    res.send(err);
+  }
+};
