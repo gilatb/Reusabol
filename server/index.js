@@ -19,9 +19,11 @@ app.use(express.json());
 app.use(router);
 app.use(cookieParser());
 app.use(session({
-  secret: 'lolcats lollipops %%¬', 
-  resave: true,
-  saveUninitialized: true 
+  secret: 'lolcats lollipops %%¬',
+  cookie:{
+    httpOnly:false
+  }
+
 }));
 app.use(passport.initialize());
 app.use(passport.session()); //this is creating req.user
@@ -43,11 +45,11 @@ io.on('connection', socket => {
   // in the userHomepage (incoming data)
   socket.on('user-ask-transaction', (data) => {
     console.log('user-ask-transaction:', data);
-    
+
     // in the restoHomepage (outgoing data)
-    socket.broadcast.emit('resto-receive-transaction', {transaction: data});
+    socket.broadcast.emit('resto-receive-transaction', { transaction: data });
     console.log('socket emitted transaction successfully');
-    
+
   });
 
   //A special namespace "disconnect" for when a client disconnects
@@ -72,7 +74,7 @@ app.get('/me', function (req, res, next) {
   //get rid of console logs after testing
   res.set('Access-Control-Allow-Credentials', 'true');
   // console.log('-----------------',req.user,);
-  
+
   let user = req.user || null;
   res.json({
     user
@@ -87,7 +89,7 @@ app.get(
     next();
   },
   passport.authenticate('google', { scope: ['profile'] }),
-  );
+);
 
 // GET /auth/google/callback
 //   Use passport.authenticate() as route middleware to authenticate the
@@ -105,6 +107,17 @@ app.get('/auth/google/callback',
     }
     res.redirect(`http://localhost:3000/${route[usertype]}`);
   });
+
+app.get('/logout', function (req, res) {
+  console.log('lslsl');
+
+  req.logOut();
+  console.log(req.session);
+
+  delete req.session;
+
+ res.redirect('/')
+});
 
 //This may need to be changed in the api console
 app.listen(process.env.PORT || 8888, function () {
