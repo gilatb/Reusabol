@@ -1,6 +1,6 @@
 import services from '../../services';
 
-export const userTransaction = (reqBody) => dispatch => {
+export const saveNewTransaction = (reqBody) => dispatch => {
   services.db.generateTransaction(reqBody)
   // save transaction to redux: 👇🏻
   .then((transaction) => {

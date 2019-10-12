@@ -5,12 +5,12 @@ import { connect } from 'react-redux';
 
 import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
 import './Map.css';
-import { userTransaction } from '../../redux/actions/transaction';
+import { saveNewTransaction } from '../../redux/actions/transaction';
 import { getRestos } from '../../redux/actions/restos';
 
 const API_KEY = process.env.REACT_APP_API_KEY
 
-function Map ({ userTransaction, getRestos, restos, userData }) {
+function Map ({ saveNewTransaction, getRestos, restos, userData }) {
 
   const [location, setLocation] = useState({ lat: 42.076613, lng: 2.362239833 });
   const [selectedResto, setSelectedResto] = useState(null);
@@ -42,7 +42,7 @@ function Map ({ userTransaction, getRestos, restos, userData }) {
       userId: '5da02d3e25565abaa38f9914', //FIXME: make dynamic
       exchangeType: e.target.innerHTML 
     }
-    userTransaction(reqBody)  
+    saveNewTransaction(reqBody)  
   }
 
   useEffect(() => {
@@ -119,7 +119,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  userTransaction: (reqBody) => dispatch(userTransaction(reqBody)),
+  saveNewTransaction: (reqBody) => dispatch(saveNewTransaction(reqBody)),
   getRestos: () => dispatch(getRestos()),
 });
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux';
 
 
@@ -8,21 +8,24 @@ import List from '../List/List';
 import Footer from '../Footer/Footer';
 import socketIOClient from 'socket.io-client';
 import db from '../../services/db';
+import { saveNewTransaction } from '../../redux/actions/transaction';
 
 //👇🏻this is how we listen to the emit on the other side of the socket
 const socket = socketIOClient('localhost:4001'); 
 
-function RestoHome ({ userData, transaction }) {
+function RestoHome ({ userData, transaction, saveNewTransaction }) {
+  
+    const example = [{id: 1, userId: 22, userFirstName: 'Eileen', userLastName: 'Juergens', restoName: 'Banana Palace', restoId: 34, numBols: 0, orderTime: '21:45'}, {id: 3, userId: 44, userFirstName: 'Andre', userLastName: 'DiFelice', restoName: 'LaBodegueta', restoId: 22, numBols: 0, orderTime: '23:15'}, {id: 45, userId: 55, userFirstName: 'Gilat', userLastName: 'Blumberger', restoName: 'Mensanna',restoId: 88, numBols: 0, orderTime: '18:53'}];
+
+  const [pendingTransactions, setPendingTransactions] = useState(example)
 
   socket.on('resto-receive-transaction', () => {
     const restoId = '5da196445a02edd9147d4d11' // FIXME: make it dynamic
     db.getTransactions(restoId)
-    .then(res => console.log('res in RestoHome when GET the pendTrans: ', res))
-    // .then(res => ) TODO: put it into redux, transaction or new-> pending transacions 
-    // console.log('In restoHome, transaction from redux should be empty:', transaction);
+    // .then(res => console.log('res in RestoHome when GET the pendTrans: ', res))
+    .then(res => setPendingTransactions(res))
+    // .then(transactions => saveNewTransaction(transactions)) // 👈redux version
   });
-
-  const pendingTransactions = [{id: 1, userId: 22, userFirstName: 'Eileen', userLastName: 'Juergens', restoName: 'Banana Palace', restoId: 34, numBols: 0, orderTime: '21:45'}, {id: 3, userId: 44, userFirstName: 'Andre', userLastName: 'DiFelice', restoName: 'LaBodegueta', restoId: 22, numBols: 0, orderTime: '23:15'}, {id: 45, userId: 55, userFirstName: 'Gilat', userLastName: 'Blumberger', restoName: 'Mensanna',restoId: 88, numBols: 0, orderTime: '18:53'}];
 
   return (
     <div className="resto-home">
@@ -41,7 +44,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    // saveNewTransaction: (reqBody) => dispatch(saveNewTransaction(reqBody)),
+  saveNewTransaction: (transactions) => dispatch(saveNewTransaction(transactions)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RestoHome);

@@ -14,7 +14,7 @@ export default function List ({ array }) {
         return <ButtonBase className="list-item">
           <ListItem 
           key={array[el]} 
-          // key={el.id} 
+          // key={el.transId} 
           // key={el.id.toString()} 
           id={el.id}
           title={`${el.userFirstName} ${el.userLastName}`} 
