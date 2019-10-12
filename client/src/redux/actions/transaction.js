@@ -1,7 +1,5 @@
 import services from '../../services';
 
-// export const saveNewTransaction = (reqBody) => dispatch => {
-
 export function setExchangeType (exchangeType) {
   return {
     type: 'SET_EXCHANGE_TYPE',
@@ -23,13 +21,13 @@ export function updateCounter (e, val) {
   }
 }
 
-export const userTransaction = (reqBody) => dispatch => {
+export const saveNewTransaction = (reqBody) => dispatch => {
   services.db.generateTransaction(reqBody)
-  // save transaction to redux: 👇🏻
-  .then((transaction) => {
-    dispatch({ type: 'SAVE_NEW_TRANSACTION', transaction })
-  })
-  // TODO: move sendUserTransaction to cntrl (backend) (but works like this!!!)
-  .then(transaction => services.sockets.sendUserTransaction(transaction))
+    // save transaction to redux: 👇🏻
+    .then((transaction) => {
+      dispatch({ type: 'SAVE_NEW_TRANSACTION', transaction })
+    })
+    // TODO: move sendUserTransaction to cntrl (backend) (but works like this!!!)
+    .then(transaction => services.sockets.sendUserTransaction(transaction))
 }
 

@@ -20,7 +20,8 @@ export default {
     });
   },
   getTransactions: (restoId) => {
-    return fetchRequest(`resto/${restoId}/pendTrans`)
+    return fetchRequest(`resto/${restoId}/pendTrans`);
+  },
   getRestos: () => {
     return fetchRequest('admin/restos');
   },

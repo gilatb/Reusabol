@@ -20,7 +20,7 @@ function RestoHome ({ userData, transaction, saveNewTransaction }) {
   const [pendingTransactions, setPendingTransactions] = useState(example)
 
   socket.on('resto-receive-transaction', () => {
-    const restoId = '5da196445a02edd9147d4d11' // FIXME: make it dynamic
+    const restoId = '5da1908bc0f9ae0ff23f83e5' // FIXME: make it dynamic
     db.getTransactions(restoId)
     // .then(res => console.log('res in RestoHome when GET the pendTrans: ', res))
     .then(res => setPendingTransactions(res))
