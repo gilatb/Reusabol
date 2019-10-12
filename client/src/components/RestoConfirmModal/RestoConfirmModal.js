@@ -12,8 +12,9 @@ import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
 import RoundBtn from '../atomic-components/RoundBtn/RoundBtn';
 import Counter from '../atomic-components/Counter/Counter';
 import { toggleRestoConfirm } from '../../redux/actions/UI';
+import { updateCounter } from '../../redux/actions/transaction';
 
-export function RestoConfirmModal ({ UIState, data, title, pendingTransactions, currentTransaction, toggleRestoConfirm }) {
+export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransaction, toggleRestoConfirm, counter, updateCounter }) {
 
   let open = UIState.restoConfirm;
   let currTransDetails = currentTransaction && pendingTransactions.filter(el => el.id === currentTransaction);
@@ -46,17 +47,17 @@ export function RestoConfirmModal ({ UIState, data, title, pendingTransactions, 
               <Subtitle text={'Please update the number of bowls and click confirm.'} />
             </div>
             <div className="row">
-              <Counter />
+              <Counter value={counter} />
             </div>
             <div className="row">
               <div className="column">
-                <RoundBtn text={'+'} />
+                <RoundBtn text={'+'} onClick={(e) => updateCounter(e, 1)}/>
               </div>
               <div className="column">
                 <Image alt={'Bowl image'} />
               </div>
               <div className="column">
-                <RoundBtn text={'-'} />
+                <RoundBtn text={'-'} onClick={(e) => updateCounter(e, -1)}/>
               </div>
             </div>
             <div className="row">
@@ -74,12 +75,14 @@ const mapStateToProps = (state) => {
   return {
     UIState: state.UI.resto,
     currentTransaction: state.transaction.currentTransaction,
-    pendingTransactions: Object.values(state.transaction.pendingTransactions)
+    pendingTransactions: Object.values(state.transaction.pendingTransactions),
+    counter: state.transaction.counter,
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
   toggleRestoConfirm: () => dispatch(toggleRestoConfirm()),
+  updateCounter: (e, val) => dispatch(updateCounter(e, val)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RestoConfirmModal);

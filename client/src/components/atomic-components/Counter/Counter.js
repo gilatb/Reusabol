@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Counter () {
+export default function Counter ({ value }) {
   return (
     <div>
-      <span>Counter</span>
+      <span>{value}</span>
     </div>
   )
 }

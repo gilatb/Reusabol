@@ -16,6 +16,13 @@ export function setCurrentTransaction (id) {
   }
 }
 
+export function updateCounter (e, val) {
+  return {
+    type: 'UPDATE_COUNTER',
+    val,
+  }
+}
+
 export const userTransaction = (reqBody) => dispatch => {
   services.db.generateTransaction(reqBody)
   // save transaction to redux: 👇🏻
