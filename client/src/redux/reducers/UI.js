@@ -16,7 +16,7 @@ export default (state = INITIAL_STATE, action) => {
         restoHistory: !state.resto.restoHistory,
       }
     };
-    case 'OPEN_RESTO_CONFIRM':
+    case 'TOGGLE_RESTO_CONFIRM':
       return {
         ...state,
         resto: {

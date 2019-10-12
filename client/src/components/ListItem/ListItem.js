@@ -19,7 +19,7 @@ export default function ListItem ({ title, subtitle, data }) {
           <TextField text={subtitle} />
         </div>
       </div>
-      <RestoConfirmModal />
+      {/* <RestoConfirmModal /> */}
     </div>
   )
 }
