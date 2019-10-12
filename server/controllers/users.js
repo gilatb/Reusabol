@@ -51,10 +51,12 @@ exports.getUserDetails = async (req, res) => {
 };
 
 //TODO: DELETE IF LINNEA EXPERIMENT DOESN'T WORK
-exports.getUserByEmail = async (req, res) => {
+exports.getUserByGoogleId = async (req, res) => {
+  console.log('i am inside the controller');
+
   try {
     const user = await User.find({
-      email: req.params.email
+      googleId: req.params.googleId
     });
     res.status(200);
     res.json(user);
