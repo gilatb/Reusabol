@@ -36,11 +36,12 @@ function RestoHome ({ userData, transaction }) {
 const mapStateToProps = (state) => {
   return { 
     userData: state.user.userData, //TODO: this should be restoId source?
-    transaction: state.transaction.transactions.id
+    transaction: state.transaction.pendingTransactions.id
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
+    // saveNewTransaction: (reqBody) => dispatch(saveNewTransaction(reqBody)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RestoHome);

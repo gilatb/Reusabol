@@ -1,9 +1,10 @@
 'use strict';
+const uuid = require('uuidv4').default;
 
 const User = require('../models/user.models');
 const Resto = require('../models/resto.models');
+// const services = require('../../services');
 
-const uuid = require('uuidv4').default;
 
 // TODO: add emit of websocket here 🚀
 exports.createPendTrans = async (req, res) => {
@@ -30,6 +31,7 @@ exports.createPendTrans = async (req, res) => {
     );
     res.status(200);
     res.json({ transaction, user, resto });
+    // services.sockets.sendUserTransaction(transaction);
   } catch (err) {
     res.status(500);
     res.send(err);
