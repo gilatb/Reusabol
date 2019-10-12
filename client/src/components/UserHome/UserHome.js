@@ -6,8 +6,11 @@ import Header from '../Header/Header';
 import Title from '../atomic-components/Title/Title';
 import Map from '../Map/Map';
 import { getUserData } from '../../redux/actions/user';
+import { toggleUserConfirm } from '../../redux/actions/UI';
 
-export function UserHome ({ userData, getUserData, /*getUserByEmail*/ }) {
+export function UserHome ({ userData, getUserData, UIState, toggleUserConfirm }) {
+
+  //TODO: FOR GILAT: TOGGLEUSERCONFIRM WILL CHANGE UI STATE AND OPEN THE MODAL
 
   useEffect(() => {
     getUserData();
@@ -24,11 +27,15 @@ export function UserHome ({ userData, getUserData, /*getUserByEmail*/ }) {
 }
 
 const mapStateToProps = (state) => {
-  return { userData: state.user.userData, }
+  return {
+    userData: state.user.userData,
+    UIState: state.UI.user,
+  }
 }
 
 const mapDispatchToProps = (dispatch) => ({
   getUserData: () => dispatch(getUserData()),
+  toggleUserConfirm: () => dispatch(toggleUserConfirm()),
   // getUserByEmail: (email) => dispatch(actions.user.getUserByEmail(email)),
 });
 
