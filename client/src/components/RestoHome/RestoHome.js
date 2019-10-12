@@ -11,10 +11,10 @@ import db from '../../services/db';
 import { saveNewTransaction } from '../../redux/actions/transaction';
 
 //👇🏻this is how we listen to the emit on the other side of the socket
-const socket = socketIOClient('localhost:4001'); 
+const socket = socketIOClient('localhost:4001');
 
 function RestoHome ({ userData, transaction, saveNewTransaction }) {
-  
+
     const example = [{id: 1, userId: 22, userFirstName: 'Eileen', userLastName: 'Juergens', restoName: 'Banana Palace', restoId: 34, numBols: 0, orderTime: '21:45'}, {id: 3, userId: 44, userFirstName: 'Andre', userLastName: 'DiFelice', restoName: 'LaBodegueta', restoId: 22, numBols: 0, orderTime: '23:15'}, {id: 45, userId: 55, userFirstName: 'Gilat', userLastName: 'Blumberger', restoName: 'Mensanna',restoId: 88, numBols: 0, orderTime: '18:53'}];
 
   const [pendingTransactions, setPendingTransactions] = useState(example)
@@ -37,9 +37,10 @@ function RestoHome ({ userData, transaction, saveNewTransaction }) {
 }
 
 const mapStateToProps = (state) => {
-  return { 
-    userData: state.user.userData, //TODO: this should be restoId source?
-    transaction: state.transaction.pendingTransactions.id
+  return {
+    userData: state.user.userData,
+    // transaction: state.transaction.pendingTransactions.id,
+    pendingTransactions: Object.values(state.transaction.pendingTransactions)
   }
 }
 

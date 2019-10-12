@@ -37,21 +37,13 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
   }
 
   const transactionClickHandler = (e) => {
+    setExchangeType(e.target.innerHTML);
     const reqBody = {
-<<<<<<< HEAD
       restoId: selectedResto._id,
       userId: '5da02d3e25565abaa38f9914', //FIXME: make dynamic
       exchangeType: e.target.innerHTML
     }
     saveNewTransaction(reqBody)
-=======
-      restoId: selectedResto._id,
-      userId: '5d9dda94f1db50ee60fef118',
-      exchangeType: exchangeType // hardcode: 'Take
-      // userId: userData._id, //TODO: get from userdata once we added to user in redux waiting for Linnea
-    }
-    userTransaction(reqBody)
->>>>>>> feat(redux): get user by googleId (in progress)
   }
 
   useEffect(() => {

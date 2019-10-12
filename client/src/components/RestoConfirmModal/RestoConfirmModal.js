@@ -11,17 +11,28 @@ import Subtitle from '../atomic-components/Subtitle/Subtitle';
 import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
 import RoundBtn from '../atomic-components/RoundBtn/RoundBtn';
 import Counter from '../atomic-components/Counter/Counter';
-import { toggleRestoConfirm } from '../../redux/actions/UI';
+import { openRestoConfirm } from '../../redux/actions/UI';
 
-export function RestoConfirmModal ({ UIState, toggleRestoConfirm }) {
+export function RestoConfirmModal ({ UIState, data, title, pendingTransactions, currentTransaction }) {
 
   let open = UIState.restoConfirm;
+  let currTransDetails = currentTransaction && pendingTransactions.filter(el => el.id === currentTransaction);
+
+  let name = currTransDetails && `${currTransDetails[0].userFirstName} ${currTransDetails[0].userLastName}`;
+  console.log('currTransDetails: ', currTransDetails);
+  console.log('name: ', name);
 
   //TODO: IMPORT THE USER FIRSTNAME AND LASTNAME FROM REDUX
-  const userName = 'Eileen Juergens'
+  // const userName = data.userName;
+
+
+  //FIXME: THIS IS CURRENTLY A WORKAROUND NOT USING REDUX STATE
+  const closeModal = () => {
+    open = false;
+  }
 
   return (
-   <div>
+    <div>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -35,8 +46,8 @@ export function RestoConfirmModal ({ UIState, toggleRestoConfirm }) {
       >
         <Fade in={open}>
           <div className="paper">
-            <RoundBtn text={'close'} onClick={toggleRestoConfirm}/>
-            <Title id="transition-modal-title" text={'THIS IS A MODAL SUCCESS'} />
+            <RoundBtn text={'close'} onClick={closeModal} />
+            <Title id="transition-modal-title" text={name} />
             <p id="transition-modal-description">Hooray, you did a thing!</p>
           </div>
         </Fade>
@@ -80,11 +91,15 @@ export function RestoConfirmModal ({ UIState, toggleRestoConfirm }) {
 }
 
 const mapStateToProps = (state) => {
-  return { UIState: state.UI.resto }
+  return {
+    UIState: state.UI.resto,
+    currentTransaction: state.transaction.currentTransaction,
+    pendingTransactions: Object.values(state.transaction.pendingTransactions)
+  }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleRestoConfirm: () => dispatch(toggleRestoConfirm()),
+  openRestoConfirm: () => dispatch(openRestoConfirm()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RestoConfirmModal);

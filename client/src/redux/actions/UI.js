@@ -4,8 +4,8 @@ export function toggleOpenHistory () {
   }
 }
 
-export function toggleRestoConfirm () {
+export function openRestoConfirm () {
   return {
-    type: 'TOGGLE_RESTO_CONFIRM',
+    type: 'OPEN_RESTO_CONFIRM',
   }
 }

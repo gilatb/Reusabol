@@ -7,13 +7,14 @@ const INITIAL_STATE = {
       numBols: 0,
       exchangeType: '',
     },
-  }
+  },
+  currentTransaction: '',
+  pendingTransactions: {1: {id: 1, userId: 22, userFirstName: 'Eileen', userLastName: 'Juergens', restoName: 'Banana Palace', restoId: 34, numBols: 0, orderTime: '21:45'}, 2: {id: 2, userId: 44, userFirstName: 'Andre', userLastName: 'DiFelice', restoName: 'LaBodegueta', restoId: 22, numBols: 0, orderTime: '23:15'}, 3: {id: 3, userId: 55, userFirstName: 'Gilat', userLastName: 'Blumberger', restoName: 'Mensanna',restoId: 88, numBols: 0, orderTime: '18:53'}}
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case 'SAVE_NEW_TRANSACTION':
-    // console.log('action: ', action);
       return {
         ...state,
         pendingTransactions: {
@@ -27,6 +28,21 @@ export default (state = INITIAL_STATE, action) => {
           }
         }
       };
+    case 'SET_CURRENT_TRANSACTION':
+      return {
+        ...state,
+        currentTransaction: action.id,
+      };
+    case 'SET_EXCHANGE_TYPE':
+      return {
+        ...state,
+        // transactions: {
+        // ...state.transactions,
+        // [action.transaction.transaction.transId]: {
+        //
+        // }
+        // } // TODO: find the right transaction and update the exchange type
+      }
     default:
       return state;
   }
