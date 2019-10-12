@@ -5,7 +5,7 @@ import Image from '../atomic-components/Image/Image';
 import Subtitle from '../atomic-components/Subtitle/Subtitle';
 import TextField from '../atomic-components/TextField/TextField';
 
-export default function ListItem ({ title, subtitle, id }) {
+export default function ListItem ({ title, subtitle, key, el }) {
 
   return (
     <div className="list-item" key={id}>
@@ -18,6 +18,7 @@ export default function ListItem ({ title, subtitle, id }) {
           <TextField text={subtitle} />
         </div>
       </div>
+
     </div>
   )
 }

@@ -2,6 +2,7 @@ const INITIAL_STATE = {
   user: {},
   resto: {
     restoHistory: false,
+    restoConfirm: false,
   }
 };
 
@@ -15,6 +16,14 @@ export default (state = INITIAL_STATE, action) => {
         restoHistory: !state.resto.restoHistory,
       }
     };
+    case 'TOGGLE_RESTO_CONFIRM':
+      return {
+        ...state,
+        resto: {
+          ...state.resto,
+          restoConfirm: !state.resto.restoConfirm,
+        }
+      };
     default:
       return state;
   }
