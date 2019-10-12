@@ -5,13 +5,10 @@ const socket = socketIOClient('localhost:4001'); // TODO: make it '/transaction'
 
 
 export default {
-  // in map (user)👇🏻
-  sendUserTransaction, 
+  sendUserTransaction,
 }
 
 // TODO: called in Map, onclick of the Buttons in the popup:
-function sendUserTransaction (data) {
-  socket.emit('user-ask-transaction', "data");
-  const str = 'Saying hi from getNewTransaction -> actions.transaction -> transactionClickHandler onClick -> sendUserTransaction'
-  return Promise.resolve(str);
+function sendUserTransaction (transaction) {
+  socket.emit('user-ask-transaction', `here is the transaction: ${transaction}`);
 }

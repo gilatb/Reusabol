@@ -5,10 +5,10 @@ import Image from '../atomic-components/Image/Image';
 import Subtitle from '../atomic-components/Subtitle/Subtitle';
 import TextField from '../atomic-components/TextField/TextField';
 
-export default function ListItem ({ title, subtitle }) {
+export default function ListItem ({ title, subtitle, id }) {
 
   return (
-    <div className="list-item">
+    <div className="list-item" key={id}>
       <div className="row">
         <div className="column">
           <Image alt={'image'} />

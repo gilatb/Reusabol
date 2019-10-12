@@ -1,5 +1,5 @@
 const INITIAL_STATE = {
-  transactions: {
+  pendingTransactions: {
     id: {
       id: '',
       userId: '',
@@ -16,7 +16,7 @@ export default (state = INITIAL_STATE, action) => {
     // console.log('action: ', action);
       return {
         ...state,
-        transactions: {
+        pendingTransactions: {
           ...state.transaction,
           [action.transaction.transaction.transId]: {
             transId: action.transaction.transaction.transId,
@@ -27,16 +27,6 @@ export default (state = INITIAL_STATE, action) => {
           }
         }
       };
-    case 'SET_EXCHANGE_TYPE':
-      return {
-        ...state,
-        // transactions: { 
-        // ...state.transactions,
-        // [action.transaction.transaction.transId]: {
-        // 
-        // }
-        // } // TODO: find the right transaction and update the exchange type
-      }
     default:
       return state;
   }

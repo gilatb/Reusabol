@@ -39,9 +39,8 @@ exports.deleteResto = async (req, res) => {
 
 exports.getRestoDetails = async (req, res) => {
   try {
-    const resto = await Resto.findById({
-      _id: req.body.id
-    });
+    const { restaurantId } = req.params;
+    const resto = await Resto.findById(restaurantId);
     res.status(200);
     res.json(resto);
   } catch (err) {
@@ -49,3 +48,17 @@ exports.getRestoDetails = async (req, res) => {
     res.send(err);
   }
 };
+
+// TODO: add listener of websocket here 🚀
+exports.getRestoPendTrans = async (req, res) => {
+  try {
+    const { restaurantId } = req.params;
+    const resto = await Resto.findById(restaurantId);
+    res.status(200);
+    res.json(resto.pendingTrans);
+  } catch (err) {
+    res.status(500);
+    res.send(err);
+  }
+};
+

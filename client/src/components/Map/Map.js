@@ -5,41 +5,18 @@ import { connect } from 'react-redux';
 
 import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
 import './Map.css';
-import { userTransaction } from '../../redux/actions/transaction';
+import { saveNewTransaction } from '../../redux/actions/transaction';
 import { getRestos } from '../../redux/actions/restos';
 
 const API_KEY = process.env.REACT_APP_API_KEY
 
-function Map ({ userTransaction, getRestos, restos, userData }) {
+function Map ({ saveNewTransaction, getRestos, restos, userData }) {
 
   const [location, setLocation] = useState({ lat: 42.076613, lng: 2.362239833 });
   const [selectedResto, setSelectedResto] = useState(null);
   const [markerMap, setMarkerMap] = useState({});
   const [infoOpen, setInfoOpen] = useState(false);
-  const [exchangeType, setExchangeType] = useState('');
 
-
-  // TODO: should come from db now
-  // const restos = [
-  //   {
-  //     id: 1,
-  //     name: 'Banana place',
-  //     address: "Carrer d'Àvila, 27, 08005 Barcelona",
-  //     coordinates: { lat: 41.394205, lng: 2.15400725345 }
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'Ice-cream place',
-  //     address: "Carrer d'Banana, 27, 08005 Barcelona",
-  //     coordinates: { lat: 41.378205, lng: 2.156007231 }
-  //   },
-  //   {
-  //     id: 3,
-  //     name: 'Menssana',
-  //     address: "Carrer d'Àvila, 27, 08005 Barcelona",
-  //     coordinates: { lat: 41.390765, lng: 2.121554007 }
-  //   }
-  // ];
   useEffect(() => {
     getRestos()
   }, [])
@@ -59,16 +36,13 @@ function Map ({ userTransaction, getRestos, restos, userData }) {
     infoOpen ? setInfoOpen(false) : setInfoOpen(true);
   }
 
-
   const transactionClickHandler = (e) => {
-    setExchangeType(e.target.innerHTML)
     const reqBody = {
       restoId: selectedResto._id, 
-      userId: '5d9dda94f1db50ee60fef118',
-      exchangeType: exchangeType // hardcode: 'Take
-      // userId: userData._id, //TODO: get from userdata once we added to user in redux waiting for Linnea
+      userId: '5da02d3e25565abaa38f9914', //FIXME: make dynamic
+      exchangeType: e.target.innerHTML 
     }
-    userTransaction(reqBody)  
+    saveNewTransaction(reqBody)  
   }
 
   useEffect(() => {
@@ -145,9 +119,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  userTransaction: (reqBody) => dispatch(userTransaction(reqBody)),
+  saveNewTransaction: (reqBody) => dispatch(saveNewTransaction(reqBody)),
   getRestos: () => dispatch(getRestos()),
-  // setExchangeType: (type) => dispatch(setExchangeType(type)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Map);

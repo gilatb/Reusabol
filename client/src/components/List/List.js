@@ -12,7 +12,13 @@ export default function List ({ array }) {
     <div className="list">
       {array.map(el => {
         return <ButtonBase className="list-item">
-          <ListItem key={array[el]} title={`${el.userFirstName} ${el.userLastName}`} subtitle={`Order placed at ${el.orderTime}`} />
+          <ListItem 
+          key={array[el]} 
+          // key={el.transId} 
+          // key={el.id.toString()} 
+          id={el.id}
+          title={`${el.userFirstName} ${el.userLastName}`} 
+          subtitle={`Order placed at ${el.orderTime}`} />
         </ButtonBase>
       })}
     </div>
