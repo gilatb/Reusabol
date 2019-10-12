@@ -10,7 +10,7 @@ export default {
   getRestos: () => {
     return fetchRequest('admin/restos')
   },
-  generateTransaction: (reqBody) => { 
+  generateTransaction: (reqBody) => {
     return fetchRequest('pendTrans', {
       headers: {
         'Content-Type': 'application/json'
@@ -20,13 +20,20 @@ export default {
     });
   },
   getTransactions: (restoId) => {
-    return fetchRequest(`resto/${restoId}/pendTrans`) 
+    return fetchRequest(`resto/${restoId}/pendTrans`)
+  getRestos: () => {
+    return fetchRequest('admin/restos');
+  },
+  getUserData: (googleId) => {
+    return fetchRequest(`user/${googleId}`);
+  },
+  getUserGoogleId: () => {
+    return fetchRequestMe();
   },
 }
 
 //Generic fetch request for use with different endpoints
 const fetchRequest = (url, optionsObj) => {
-  console.log('optionsObj: ', optionsObj);
   return fetch(`${BASE_URL}/${url}`, optionsObj)
   .then(res => res.status <= 400 ? res : Promise.reject(res))
   .then(result => result.json())
@@ -38,9 +45,8 @@ const fetchRequest = (url, optionsObj) => {
 //Fetch request to the /me endpoint
 const fetchRequestMe = (url) => {
   return axios.get('http://localhost:8888/me', {withCredentials: true})
-  // .then(res => console.log('I am inside the service', res))
     .then(res => res.status <= 400 ? res : Promise.reject(res))
-    .then(res => Promise.resolve({firstName: res.data.user.name.givenName, lastName: res.data.user.name.familyName}))
+    .then(res => Promise.resolve({googleId: res.data.user.id}))
     .catch((err) => {
       console.log(`${err.message} while fetching /${url}`)
     });

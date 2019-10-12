@@ -11,11 +11,14 @@ router.get('/user/:_id', userContr.getUserDetails);
 router.delete('/user', userContr.deleteUser);
 // router.get('/user/restos', restoContr.getRestos); //FIXME: doesn't work, we used the /admin/restos
 
+router.get('/user/restos', restoContr.getRestos); //FIXME: doesn't work, we used the /admin/restos
+// router.get('/user/:_googleId', userContr.getUserByGoogleId);
+router.get('/user/:googleId', () => console.log('i am in the router'));
 
 // Restaurant Endpoints
 router.post('/resto', restoContr.createResto);
 router.get('/resto/:restaurantId', restoContr.getRestoDetails);
-router.get('/resto/:restaurantId/pendTrans', restoContr.getRestoPendTrans); 
+router.get('/resto/:restaurantId/pendTrans', restoContr.getRestoPendTrans);
 router.delete('/resto', restoContr.deleteResto);
 
 // Transaction Endpoints TODO: delete prevTransaction

@@ -10,11 +10,11 @@ exports.getRestos = async (req, res) => {
   } catch (err) {
     res.status(500);
     res.send(err);
-  } 
+  }
 };
 
 exports.createResto = async (req, res) => {
-  try {  
+  try {
     const resto = await Resto.create(req.body);
     res.status(201);
     res.json(resto);
@@ -26,8 +26,8 @@ exports.createResto = async (req, res) => {
 
 exports.deleteResto = async (req, res) => {
   try {
-    const resto = await Resto.deleteOne({ 
-      _id: req.body.id  
+    const resto = await Resto.deleteOne({
+      _id: req.body.id
     });
     res.status(204);
     res.json(resto);

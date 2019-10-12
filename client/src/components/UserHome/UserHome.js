@@ -5,13 +5,13 @@ import './UserHome.css';
 import Header from '../Header/Header';
 import Title from '../atomic-components/Title/Title';
 import Map from '../Map/Map';
-import actions from '../../redux/actions';
+import { getUserData } from '../../redux/actions/user';
 
-export function UserHome ({ userData, getUserName, getUserByEmail }) {
+export function UserHome ({ userData, getUserData, /*getUserByEmail*/ }) {
 
   useEffect(() => {
-    getUserName();
-    getUserByEmail('linnea.m.andersson@gmail.com');
+    getUserData();
+    // getUserByEmail('linnea.m.andersson@gmail.com');
   }, []);
 
   return (
@@ -28,8 +28,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  getUserName: () => dispatch(actions.user.getUserName()),
-  getUserByEmail: (email) => dispatch(actions.user.getUserByEmail(email)),
+  getUserData: () => dispatch(getUserData()),
+  // getUserByEmail: (email) => dispatch(actions.user.getUserByEmail(email)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserHome);
