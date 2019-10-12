@@ -7,7 +7,7 @@ import TextField from '../atomic-components/TextField/TextField';
 import RestoConfirmModal from '../RestoConfirmModal/RestoConfirmModal';
 
 export default function ListItem ({ title, subtitle, data }) {
-
+  // console.log('title: ', title);
   return (
     <div className="list-item" >
       <div className="row">

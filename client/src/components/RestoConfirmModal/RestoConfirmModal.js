@@ -16,7 +16,7 @@ import { updateCounter } from '../../redux/actions/transaction';
 
 export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransaction, toggleRestoConfirm, counter, updateCounter }) {
 
-  let open = UIState.restoConfirm;
+  let open = UIState.restoConfirmModal;
   let currTransDetails = currentTransaction && pendingTransactions.filter(el => el.id === currentTransaction);
   let name = currTransDetails && `${currTransDetails[0].userFirstName} ${currTransDetails[0].userLastName}`;
 

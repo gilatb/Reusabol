@@ -17,13 +17,22 @@ export function List ({ array, UIState, toggleRestoConfirm, setCurrentTransactio
     setCurrentTransaction(el.id);
   }
 
+  //THIS GETS AN ARRAY OF THE USER IDS
+  // let res = [];
+  // if (array) {
+  //   for (let i = 0; i < array.length; i++) {
+  //     res.push(array[i].userId)
+  //   }
+  // }
+  // console.log('res: ', res);
+
   return (
     <div className="list">
-      {array.map(el => {
+      {array && array.map(el => {
         return <div><ButtonBase className="list-item" type="button" onClick={(e) => clickHandler(e, el)}>
-          <ListItem key={array[el]} title={`${el.userFirstName} ${el.userLastName}`} subtitle={`Order placed at ${el.orderTime}`} data={el} />
+          <ListItem key={array[el]} title={`Order by ${el.userFirstName} ${el.userLastName}`} subtitle={`Order placed at ${el.orderTime}`} data={el} />
         </ButtonBase>
-        <RestoConfirmModal />
+          <RestoConfirmModal />
         </div>
       })}
     </div>
