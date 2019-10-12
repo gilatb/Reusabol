@@ -5,6 +5,7 @@ const Resto = require('../models/resto.models');
 
 const uuid = require('uuidv4').default;
 
+// TODO: add emit of websocket here 🚀
 exports.createPendTrans = async (req, res) => {
   const hours = new Date().getHours();
   const minutes = new Date().getMinutes();
