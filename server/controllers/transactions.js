@@ -42,8 +42,6 @@ exports.createPendTrans = async (req, res) => {
 
 exports.updateNumBols = async (req, res) => {
   try {
-    // FIXME: should return transaction and find it + modify, not user and resto!!!!
-    // TODO: const transaction = await TransactionSchema.findOneAndUpdate
     const user = await User.findOneAndUpdate(
       { _id: req.body.userId, 'pendingTrans.transId': req.body.transId },
       { $set: { 'pendingTrans.$.numBols': req.body.numBols } }
@@ -53,7 +51,7 @@ exports.updateNumBols = async (req, res) => {
       { $set: { 'pendingTrans.$.numBols': req.body.numBols } }
     );
     res.status(200);
-    res.json({ user, resto, /*transaction */}); //TODO: add transaction
+    res.json({ user, resto }); // change to: user.pendingTrans and resto.pendingTrans
   } catch (err) {
     res.status(500);
     res.send(err);

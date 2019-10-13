@@ -21,10 +21,13 @@ function RestoHome ({ userData, transaction, saveNewTransaction, getRestoData })
   //   getRestoData();
   // }, []);
 
-  const [pendingTransactions, setPendingTransactions] = useState(null);
+    // const example = [{id: 1, userId: 22, userFirstName: 'Eileen', userLastName: 'Juergens', restoName: 'Banana Palace', restoId: 34, numBols: 0, orderTime: '21:45'}, {id: 3, userId: 44, userFirstName: 'Andre', userLastName: 'DiFelice', restoName: 'LaBodegueta', restoId: 22, numBols: 0, orderTime: '23:15'}, {id: 45, userId: 55, userFirstName: 'Gilat', userLastName: 'Blumberger', restoName: 'Mensanna',restoId: 88, numBols: 0, orderTime: '18:53'}];
+
+  const [pendingTransactions, setPendingTransactions] = useState(null)
 
   socket.on('resto-receive-transaction', () => {
-    const restoId = '5da1908bc0f9ae0ff23f83e5' // FIXME: make it dynamic
+    // const restoId = '5da1908bc0f9ae0ff23f83e5' (works for Linnea)
+    const restoId = '5da02d8325565abaa38f9916' // FIXME: make it dynamic
     db.getTransactions(restoId)
     // .then(res => console.log('res in RestoHome when GET the pendTrans: ', res))
     .then(res => setPendingTransactions(res))

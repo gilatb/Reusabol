@@ -13,12 +13,24 @@ import RoundBtn from '../atomic-components/RoundBtn/RoundBtn';
 import Counter from '../atomic-components/Counter/Counter';
 import { toggleRestoConfirm } from '../../redux/actions/UI';
 import { updateCounter } from '../../redux/actions/transaction';
+import services from '../../services';
 
 export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransaction, toggleRestoConfirm, counter, updateCounter }) {
 
   let open = UIState.restoConfirmModal;
   let currTransDetails = currentTransaction && pendingTransactions.filter(el => el.id === currentTransaction);
   let name = currTransDetails && `${currTransDetails[0].userFirstName} ${currTransDetails[0].userLastName}`;
+
+  const confirmClickHandler = (e) => {
+    console.log(`You've just confirmed you want ${counter} bols!`);
+    const reqBody = {
+      numBols: counter, 
+      transId: /*pendingTransactions.id.id, */ "a1511a9e-5cea-4e3b-ba8d-24364b526dc5", //FIXME: get error of cannot access id od undefined 
+      userId: /*pendingTransactions.id.userId, */ "5d9ef44a0c0bdb07274aef73",
+      restoId: /*pendingTransactions.id.restoId */ "5d9ef4850c0bdb07274aef74"
+    }
+    services.db.updateTransaction(reqBody);
+  }
 
   return (
     <div className="resto-confirm-modal">
@@ -61,7 +73,7 @@ export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransa
               </div>
             </div>
             <div className="row">
-              <SquareBtn text={'CONFIRM'} />
+              <SquareBtn text={'CONFIRM'} onClick={confirmClickHandler} />
               <SquareBtn text={'CANCEL'} onClick={toggleRestoConfirm} />
             </div>
           </div>
