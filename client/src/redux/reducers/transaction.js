@@ -1,11 +1,14 @@
 const INITIAL_STATE = {
   pendingTransactions: {
     id: {
-      id: '',
+      transId: '',
       userId: '',
       restoId: '',
       numBols: 0,
       exchangeType: '',
+      orderTime: 0,
+      userFirstName: '',
+      userLastName: '',
     },
   },
   currentTransaction: '',
@@ -26,6 +29,8 @@ export default (state = INITIAL_STATE, action) => {
             restoId: action.transaction.transaction.restoId,
             exchangeType: action.transaction.transaction.exchangeType,
             orderTime: action.transaction.transaction.orderTime,
+            userFirstName: action.transaction.transaction.userFirstName,
+            userLastName: action.transaction.transaction.userLastName,
           }
         }
       };

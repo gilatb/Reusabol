@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
 
 
@@ -9,11 +9,17 @@ import Footer from '../Footer/Footer';
 import socketIOClient from 'socket.io-client';
 import db from '../../services/db';
 import { saveNewTransaction } from '../../redux/actions/transaction';
+import { getRestoData } from '../../redux/actions/restos';
 
 //👇🏻this is how we listen to the emit on the other side of the socket
 const socket = socketIOClient('localhost:4001');
 
-function RestoHome ({ userData, transaction, saveNewTransaction }) {
+function RestoHome ({ userData, transaction, saveNewTransaction, getRestoData }) {
+
+  //FIXME: IT SEEMS THAT CURRENTLY WE ARE NOT BEING SAVED AS RESTOS WHEN WE LOG IN AS RESTOS USING GOOGLE?
+  // useEffect(() => {
+  //   getRestoData();
+  // }, []);
 
   const [pendingTransactions, setPendingTransactions] = useState(null);
 
@@ -44,6 +50,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   saveNewTransaction: (transactions) => dispatch(saveNewTransaction(transactions)),
+  getRestoData: () => dispatch(getRestoData()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RestoHome);

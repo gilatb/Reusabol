@@ -10,6 +10,9 @@ export default {
   getRestos: () => {
     return fetchRequest('admin/restos')
   },
+  getRestoData: (googleId) => {
+    return fetchRequest(`admin/restos/${googleId}`)
+  },
   generateTransaction: (reqBody) => {
     return fetchRequest('pendTrans', {
       headers: {
@@ -47,6 +50,7 @@ const fetchRequest = (url, optionsObj) => {
 const fetchRequestMe = (url) => {
   return axios.get('http://localhost:8888/me', {withCredentials: true})
     .then(res => res.status <= 400 ? res : Promise.reject(res))
+    // .then(res=>console.log(res))
     .then(res => Promise.resolve({googleId: res.data.user.id}))
     .catch((err) => {
       console.log(`${err.message} while fetching /${url}`)

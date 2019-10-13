@@ -6,13 +6,13 @@ import Subtitle from '../atomic-components/Subtitle/Subtitle';
 import TextField from '../atomic-components/TextField/TextField';
 import RestoConfirmModal from '../RestoConfirmModal/RestoConfirmModal';
 
-export default function ListItem ({ title, subtitle, data }) {
-  // console.log('title: ', title);
+export default function ListItem ({ title, subtitle, image }) {
+
   return (
     <div className="list-item" >
       <div className="row">
         <div className="column">
-          <Image alt={'image'} />
+          <Image alt={'image'} src={image} />
         </div>
         <div className="column">
           <Subtitle text={title} />
