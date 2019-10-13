@@ -31,6 +31,8 @@ function RestoHome ({ userData, transaction, saveNewTransaction, getRestoData })
     // .then(transactions => saveNewTransaction(transactions)) // 👈redux version
   });
 
+  console.log('i am in restohome ', pendingTransactions)
+
   return (
     <div className="resto-home">
       <Header />

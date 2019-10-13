@@ -9,6 +9,7 @@ const INITIAL_STATE = {
       orderTime: 0,
       userFirstName: '',
       userLastName: '',
+      googleImage: '',
     },
   },
   currentTransaction: '',
@@ -31,6 +32,7 @@ export default (state = INITIAL_STATE, action) => {
             orderTime: action.transaction.transaction.orderTime,
             userFirstName: action.transaction.transaction.userFirstName,
             userLastName: action.transaction.transaction.userLastName,
+            googleImage: action.transaction.transaction.googleImage,
           }
         }
       };

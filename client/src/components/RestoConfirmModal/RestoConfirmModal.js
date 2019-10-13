@@ -5,7 +5,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 
 import './RestoConfirmModal.css';
-import Image from '../atomic-components/Image/Image';
+import ImageComp from '../atomic-components/Image/ImageComp';
 import Title from '../atomic-components/Title/Title';
 import Subtitle from '../atomic-components/Subtitle/Subtitle';
 import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
@@ -37,7 +37,7 @@ export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransa
           <div className="paper">
             <div className="row">
               <div className="column">
-                <Image alt={'User image'} />
+                <ImageComp alt={'User image'} />
               </div>
               <div className="column">
                 <Title text={`Order by ${name}!`} />
@@ -54,7 +54,7 @@ export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransa
                 <RoundBtn text={'+'} onClick={(e) => updateCounter(e, 1)}/>
               </div>
               <div className="column">
-                <Image alt={'Bowl image'} />
+                <ImageComp alt={'Bowl image'} />
               </div>
               <div className="column">
                 <RoundBtn text={'-'} onClick={(e) => updateCounter(e, -1)}/>

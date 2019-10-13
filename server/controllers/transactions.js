@@ -10,7 +10,6 @@ const Resto = require('../models/resto.models');
 exports.createPendTrans = async (req, res) => {
   const hours = new Date().getHours();
   const minutes = new Date().getMinutes();
-  console.log('req.body in the beckend: ', req.body);
   try {
     const transaction = {
       transId: uuid(),
@@ -20,6 +19,7 @@ exports.createPendTrans = async (req, res) => {
       exchangeType: req.body.exchangeType,
       userFirstName: req.body.userFirstName,
       userLastName: req.body.userLastName,
+      googleImage: req.body.googleImage,
     };
     const user = await User.findOneAndUpdate(
       { _id: req.body.userId },

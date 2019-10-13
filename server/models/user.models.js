@@ -17,6 +17,7 @@ const UserSchema = new Schema({
   notifications: NotificationSchema,
   googleId: {type: String, required: true},
   createdAt: {type: Date, default: new Date()},
+  googleImage: String,
 });
 
 const User = mongoose.model('User', UserSchema);

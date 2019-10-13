@@ -30,6 +30,7 @@ export function List ({ array, UIState, toggleRestoConfirm, setCurrentTransactio
     <div className="list">
       {console.log(array)}
       {array && array.map(el => {
+        {console.log('wtf', el)}
         return <div><ButtonBase className="list-item" type="button" onClick={(e) => clickHandler(e, el)}>
           <ListItem key={array[el]} title={`Order by ${el.userFirstName} ${el.userLastName}`} subtitle={`Order placed at ${el.orderTime}`} image={el.googleImage} />
         </ButtonBase>
