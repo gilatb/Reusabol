@@ -12,7 +12,7 @@ router.delete('/user', userContr.deleteUser);
 // router.get('/user/restos', restoContr.getRestos); //FIXME: doesn't work, we used the /admin/restos
 
 router.get('/user/restos', restoContr.getRestos); //FIXME: doesn't work, we used the /admin/restos
-// router.get('/user/:_googleId', userContr.getUserByGoogleId);
+// router.get('/user/google/:googleId', userContr.getUserByGoogleId);
 router.get('/user/:googleId', () => console.log('i am in the router'));
 
 // Restaurant Endpoints

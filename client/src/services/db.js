@@ -26,6 +26,7 @@ export default {
     return fetchRequest('admin/restos');
   },
   getUserData: (googleId) => {
+    // console.log('I am here googleId: ', googleId);
     return fetchRequest(`user/${googleId}`);
   },
   getUserGoogleId: () => {
