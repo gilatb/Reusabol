@@ -2,14 +2,15 @@ import services from '../../services';
 
 export const getUserData = () => dispatch => {
   services.db.getUserGoogleId()
-  // .then(res=>console.log(res.googleId));
-  .then(res => services.db.getUserData(res.googleId))
-  // .then(res => console.log('how am i here, dont get it', res))
-    //TODO: once you have the googleId from /me, get the other user data from the db
-    // .then(name => {
-    //   dispatch({ type: 'SET_USER_NAME', name });
-    // })
+    .then(res => services.db.getUserData(res.googleId))
+    .then(res => Promise.resolve({ firstName: res[0].firstName, lastName: res[0].lastName }))
+    .then(name => {
+      dispatch({ type: 'SET_USER_NAME', name });
+    })
 }
+
+
+
 
 // export const getUserByEmail = (email) => dispatch => {
 //   services.db.getUserByEmail()
