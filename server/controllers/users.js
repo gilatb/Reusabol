@@ -50,10 +50,7 @@ exports.getUserDetails = async (req, res) => {
   }
 };
 
-//TODO: DELETE IF LINNEA EXPERIMENT DOESN'T WORK
 exports.getUserByGoogleId = async (req, res) => {
-  console.log('i am inside the controller, req.params', req.params);
-
   try {
     const user = await User.find({
       googleId: req.params.googleId
