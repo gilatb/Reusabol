@@ -45,7 +45,7 @@ io.on('connection', socket => {
     console.log('user-ask-transaction:', data);
 
     // in the restoHomepage (outgoing data)
-    socket.broadcast.emit('resto-receive-transaction', {transaction: data});
+    socket.broadcast.emit('resto-receive-transaction', { transaction: data });
     console.log('socket emitted transaction successfully');
 
   });
@@ -105,6 +105,11 @@ app.get('/auth/google/callback',
     };
     res.redirect(`http://localhost:3000/${route[usertype]}`);
   });
+
+app.get('/logout', function (req, res) {
+  req.logout();
+  res.redirect('http://localhost:3000');
+});
 
 //This may need to be changed in the api console
 app.listen(process.env.PORT || 8888, function () {
