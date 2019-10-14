@@ -30,6 +30,7 @@ router.get('/admin/users', userContr.getUsers);
 router.get('/admin/restos', restoContr.getRestos);
 router.get('/admin/users/:googleId', userContr.getUserByGoogleId);
 router.get('/admin/restos/:googleId', restoContr.getRestoByGoogleId);
+router.put('/resto/:restoId', restoContr.updateRestoDetails);
 // router.post('/admin/user', userContr.createUser);
 // router.post('/admin/resto', restoContr.createResto);
 // router.delete('/admin/user', userContr.deleteUser);

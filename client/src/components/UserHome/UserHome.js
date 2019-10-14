@@ -10,6 +10,7 @@ import { toggleUserConfirm } from '../../redux/actions/UI';
 import db from '../../services/db';
 
 // const socket = socketIOClient('localhost:4001');
+import UserConfirmModal from '../UserConfirmModal/UserConfirmModal';
 
 export function UserHome ({ userData, getUserData, UIState, toggleUserConfirm }) {
 
@@ -21,12 +22,12 @@ export function UserHome ({ userData, getUserData, UIState, toggleUserConfirm })
   }, []);
 
   // socket.on('resto-receive-transaction', () => {
-    setInterval(() => {
-      const userId = userData.userId // '5d9dda94f1db50ee60fef118' // "5da02d3e25565abaa38f9914" //'5d9dda94f1db50ee60fef118' // FIXME: make dynamic!!
-      db.getConfirmation(userId)
-      .then(res => console.log('res in UserHome when GET the pendTrans: ', res))
-      .then(toggleUserConfirm())
-    }, 60000)
+    // setInterval(() => {
+    //   const userId = userData.userId // '5d9dda94f1db50ee60fef118' // "d3e25565abaa38f9914" //'5d9dda94f1db50ee60fef118' // FIXME: make dynamic!!
+    //   db.getConfirmation(userId)
+    //   .then(res => console.log('res in UserHome when GET the pendTrans: ', res))
+    //   .then(toggleUserConfirm())
+    // }, 60000)
   // });
 
   return (
@@ -34,6 +35,7 @@ export function UserHome ({ userData, getUserData, UIState, toggleUserConfirm })
       <Header />
       {userData && <Title text={`Hi ${userData.firstName}!`} />}
       <Map />
+      <UserConfirmModal />
     </div>
   )
 }

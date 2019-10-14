@@ -7,7 +7,8 @@ export default function Header() {
   return (
     <div className="header">
       <ImageComp alt={'Logo image'} />
-      <ImageComp alt={'Burger image'} />
+      <a href='http://localhost:4000/logout'>Logout</a>
+      {/* <ImageComp alt={'Burger image'} /> */}
     </div>
   )
 }
