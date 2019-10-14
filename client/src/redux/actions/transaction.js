@@ -28,13 +28,13 @@ export const saveNewTransaction = (reqBody) => dispatch => {
     })
     // TODO: move sendUserTransaction to cntrl (backend) (but works like this!!!)
     //FIXME: THE TRANSACTION HERE IS UNDEFINED....WHAT IS GOING ON?
-    .then(transaction => services.sockets.sendUserTransaction(transaction))
+    .then(transaction => services.sockets.sendUserTransaction(transaction)) // does this:   socket.emit('user-ask-transaction', `here is the transaction: ${transaction}`);
 }
 
 export const saveUpdatedTransaction = (transaction)  => {
   return { 
     type: 'SAVE_UPDATED_TRANSACTION', 
-    transaction 
+    transaction
   }
 }
 

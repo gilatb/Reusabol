@@ -25,14 +25,16 @@ export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransa
   const confirmClickHandler = (e) => {
     console.log('currentTransDetails: ', currentTransDetails);
     const reqBody = {
-      numBols: counter, // FIXME: all these should be in currentTransactionDetails!!!
-      transId: "9e8535e3-5b02-487a-ae14-7866cc7e301e", ///*pendingTransactions.id.id, */ "a1511a9e-5cea-4e3b-ba8d-24364b526dc5", //FIXME: get error of cannot access id od undefined 
-      userId: /*pendingTransactions.id.userId, 5da02d3e25565abaa38f9914 */ "5d9ef44a0c0bdb07274aef73",
-      restoId: "5da4496cb7c099f6d8125054",///*pendingTransactions.id.restoId "5d9ef4850c0bdb07274aef74" */ '5da02d3e25565abaa38f9914', // the ice cream place 
+      numBols: counter, 
+      // FIXME: all these should be in currentTransactionDetails!!!
+      transId: '5da4b2577a66863763cd4673', // local db: "9e8535e3-5b02-487a-ae14-7866cc7e301e pendingTransactions.id.id, 
+      userId: '5da4b1deb34632f2e3cd437c', //'5da4b381b34632f2e3cdc8ec',// local db: "5d9ef44a0c0bdb07274aef73", pendingTransactions.id.userId,
+      restoId: '5da4a94bb34632f2e3ca344d', // local db: "5da4496cb7c099f6d8125054 pendingTransactions.id.restoId
     }
     services.db.updateTransaction(reqBody)
-      // .then(res => console.log('res: ', res.resto.pendingTrans))
-      .then(res => saveUpdatedTransaction(res.resto.pendingTrans))
+    // .then(res => console.log('res in RestoConfirmModal: ', res))
+    // .then(res => saveUpdatedTransaction(res.resto.pendingTrans)) // FIXME: probably should just be res
+    .then(res => saveUpdatedTransaction(res.resto.pendingTrans))
     toggleRestoConfirm();
   }
 

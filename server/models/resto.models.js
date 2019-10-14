@@ -1,12 +1,14 @@
 const mongoose = require('../db');
 const Schema = mongoose.Schema;
 const TransactionSchema = require('./transaction.models');
-const CoordinatesSchema = require('./coordinates.models');
+// const CoordinatesSchema = require('./coordinates.models');
 
 const RestoSchema = new Schema({
   name: String,
   address: String,
-  coordinates: CoordinatesSchema,
+  lat: Number,
+  lng: Number,
+  // coordinates: CoordinatesSchema,
   phoneNumber: String,
   contactPerson: String,
   email: String,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import './UserHome.css';
@@ -14,9 +14,6 @@ import UserConfirmModal from '../UserConfirmModal/UserConfirmModal';
 
 export function UserHome ({ userData, getUserData, UIState, toggleUserConfirm }) {
 
-  //TODO: FOR GILAT: TOGGLEUSERCONFIRM WILL CHANGE UI STATE AND OPEN THE MODAL
-  // You ROCK Linnea! 😎
-
   useEffect(() => {
     getUserData();
   }, []);
@@ -24,7 +21,7 @@ export function UserHome ({ userData, getUserData, UIState, toggleUserConfirm })
   // TODO: bring this back to life! 
   // socket.on('resto-receive-transaction', () => {
     // setInterval(() => {
-      // const userId = userData.userId // '5d9dda94f1db50ee60fef118' // "5da02d3e25565abaa38f9914" //'5d9dda94f1db50ee60fef118' // FIXME: make dynamic!!
+      // const userId = "5da4d1feb34632f2e3d82499"// userData.userId // '5d9dda94f1db50ee60fef118' // "5da02d3e25565abaa38f9914" //'5d9dda94f1db50ee60fef118' // FIXME: make dynamic!!
       // db.getConfirmation(userId)
       // .then(res => console.log('res in UserHome when GET the pendTrans: ', res))
       // .then(toggleUserConfirm())

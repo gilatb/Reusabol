@@ -1,9 +1,9 @@
-const mongoose = require('../db');
-const Schema = mongoose.Schema;
+// const mongoose = require('../db');
+// const Schema = mongoose.Schema;
 
-const CoordinatesSchema = new Schema({
-  lat: Number,
-  lng: Number
-});
+// const CoordinatesSchema = new Schema({
+//   lat: Number,
+//   lng: Number
+// });
 
-module.exports = CoordinatesSchema;
+// module.exports = CoordinatesSchema;

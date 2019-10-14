@@ -54,10 +54,8 @@ exports.updateNumBols = async (req, res) => {
       { $set: { 'pendingTrans.$.numBols': req.body.numBols } },
       { new: true }
     );
-    // const pendTrans = resto.pendingTransactions;
     res.status(200);
-    res.json({ user, resto }); // change to: user.pendingTrans and resto.pendingTrans
-    // res.json({ pendTrans }); // change to: user.pendingTrans and resto.pendingTrans
+    res.json({ user, resto }); 
   } catch (err) {
     res.status(500);
     res.send(err);
