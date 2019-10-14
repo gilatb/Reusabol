@@ -1,12 +1,18 @@
 import React from 'react';
 
+import './Login.css';
+import logo from '../../assets/logo+slogan.png';
+
+
+
 export default function Login () {
   return (
     <div>
-      <h3>Login page</h3>
-      <a href="http://localhost:8888/auth/google?usertype=customer">User</a>
-      <br />
-      <a href="http://localhost:8888/auth/google?usertype=restaurant">Restaurant</a>
+      <img src={logo} alt="Logo" className="login-logo"/>
+      <div className="login-btn-container">
+        <a className="login-btn" href="http://localhost:8888/auth/google?usertype=customer">CUSTOMER</a>
+        <a className="login-btn" href="http://localhost:8888/auth/google?usertype=restaurant">RESTAURANT</a>
+      </div>
     </div>
   )
 };

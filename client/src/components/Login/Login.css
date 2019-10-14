@@ -1,0 +1,31 @@
+.login-logo {
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10vh 10vh;
+}
+
+.login-btn-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-btn {
+  background: linear-gradient(135deg,#C9DA88,#3DB6A6);
+  color: #253C2B;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40vh;
+  height: 5vh;    
+  margin: 3vh;
+  padding: 1vh;
+  font-size: 2.5vh;
+  font-weight: 700;
+  border-radius: 5vh;
+  text-decoration: none;
+}
+
