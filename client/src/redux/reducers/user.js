@@ -4,6 +4,7 @@ const INITIAL_STATE = {
     lastName: '',
     googleImage: '',
     numBols: 0,
+    userId: '',
   },
 };
 
@@ -17,6 +18,7 @@ export default (state = INITIAL_STATE, action) => {
           firstName: action.name.firstName,
           lastName: action.name.lastName,
           googleImage: action.name.googleImage,
+          userId: action.name.userId,
         }
       };
 
