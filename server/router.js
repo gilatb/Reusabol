@@ -7,7 +7,8 @@ const transContr = require('./controllers/transactions');
 
 // User Endpoints
 router.post('/user', userContr.createUser);
-router.get('/user/:_id', userContr.getUserDetails);
+router.get('/user/:id', userContr.getUserDetails);
+router.get('/user/:id/pendTrans', userContr.getUserPendTrans);
 router.delete('/user', userContr.deleteUser);
 // router.get('/user/restos', restoContr.getRestos); //FIXME: doesn't work, we used the /admin/restos
 

@@ -34,6 +34,18 @@ export default {
   getUserGoogleId: () => {
     return fetchRequestMe();
   },
+  updateTransaction: (reqBody) => {
+    return fetchRequest('pendTrans/updateNumBols',{
+      method: 'PUT',
+      body: JSON.stringify(reqBody),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+  },
+  getConfirmation: (userId) => {
+    return fetchRequest(`user/${userId}/pendTrans`)
+  },
 }
 
 //Generic fetch request for use with different endpoints
