@@ -26,7 +26,7 @@ export function UserHome ({ userData, getUserData, UIState, toggleUserConfirm })
       db.getConfirmation(userId)
       .then(res => console.log('res in UserHome when GET the pendTrans: ', res))
       .then(toggleUserConfirm())
-    }, 20000)
+    }, 60000)
   // });
 
   return (

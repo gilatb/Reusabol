@@ -29,7 +29,8 @@ export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransa
       userId: /*pendingTransactions.id.userId, 5da02d3e25565abaa38f9914 */ "5d9ef44a0c0bdb07274aef73",
       restoId: /*pendingTransactions.id.restoId "5d9ef4850c0bdb07274aef74" */ '5da02d3e25565abaa38f9914', // the ice cream place 
     }
-    services.db.updateTransaction(reqBody);
+    services.db.updateTransaction(reqBody)
+    .then(() => console.log('you just sent this reqBody to the server: ', reqBody))
     toggleRestoConfirm(); 
   }
 
