@@ -10,6 +10,7 @@ import { toggleUserConfirm } from '../../redux/actions/UI';
 import db from '../../services/db';
 
 // const socket = socketIOClient('localhost:4001');
+import UserConfirmModal from '../UserConfirmModal/UserConfirmModal';
 
 export function UserHome ({ userData, getUserData, UIState, toggleUserConfirm }) {
 
@@ -34,6 +35,7 @@ export function UserHome ({ userData, getUserData, UIState, toggleUserConfirm })
       <Header />
       {userData && <Title text={`Hi ${userData.firstName}!`} />}
       <Map />
+      <UserConfirmModal />
     </div>
   )
 }
