@@ -12,6 +12,7 @@ import { toggleUserConfirm } from '../../redux/actions/UI';
 export function UserConfirmModal ({ UIState, toggleUserConfirm }) {
 
   let open = UIState.userConfirmModal;
+  console.log('open in USERCONFIRMMODAL: ', open);
 
   //TODO: IMPORT THE RESTO NAME AND NUMBOLS FROM REDUX
   const restoName = 'La Bodegueta';
