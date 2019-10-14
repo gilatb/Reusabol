@@ -18,8 +18,8 @@ import services from '../../services';
 export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransaction, toggleRestoConfirm, counter, updateCounter }) {
 
   let open = UIState.restoConfirmModal;
-  let currTransDetails = currentTransaction && pendingTransactions.filter(el => el.id === currentTransaction);
-  let name = currTransDetails && `${currTransDetails[0].userFirstName} ${currTransDetails[0].userLastName}`;
+  let currentTransDetails = currentTransaction && pendingTransactions.filter(el => el.id === currentTransaction);
+  let name = currentTransDetails && `${currentTransDetails[0].userFirstName} ${currentTransDetails[0].userLastName}`;
 
   const confirmClickHandler = (e) => {
     console.log(`You've just confirmed you want ${counter} bols!`);
