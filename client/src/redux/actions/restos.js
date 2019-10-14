@@ -10,9 +10,8 @@ export const getRestos = () => dispatch => {
 export const getRestoData = () => dispatch => {
   services.db.getUserGoogleId()
     .then(res => services.db.getRestoData(res.googleId))
-    // .then(res=> console.log(res))
-    // .then(res => Promise.resolve({ firstName: res[0].firstName, lastName: res[0].lastName }))
-    // .then(name => {
-    //   dispatch({ type: 'SET_USER_NAME', name });
-    // })
+    .then(res => Promise.resolve({ name: res[0].name, restoId: res[0]._id, googleImage: res[0].googleImage }))
+    .then(restoDetails => {
+      dispatch({ type: 'SET_RESTO_DETAILS', restoDetails });
+    })
 }
