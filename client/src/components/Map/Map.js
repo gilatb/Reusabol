@@ -39,11 +39,16 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
   const transactionClickHandler = (e) => {
     const reqBody = {
       restoId: selectedResto._id,
+<<<<<<< HEAD
       userId: '5da02d3e25565abaa38f9914', //FIXME: make dynamic
       exchangeType: e.target.innerHTML,
       userFirstName: userData.firstName,
       userLastName: userData.lastName,
       googleImage: userData.googleImage,
+=======
+      userId: '5d9dda94f1db50ee60fef118', //'5da02d3e25565abaa38f9914', //FIXME: make dynamic
+      exchangeType: e.target.innerHTML
+>>>>>>> feat(transaction): add the GET request for the user to receive the confirmation
     }
     saveNewTransaction(reqBody)
   }

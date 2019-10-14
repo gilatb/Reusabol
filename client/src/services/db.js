@@ -35,7 +35,6 @@ export default {
     return fetchRequestMe();
   },
   updateTransaction: (reqBody) => {
-    // // console.log('reqBody: ', reqBody); // 👈 looks good! 
     return fetchRequest('pendTrans/updateNumBols',{
       method: 'PUT',
       body: JSON.stringify(reqBody),
@@ -43,6 +42,9 @@ export default {
         'Content-Type': 'application/json'
       },
     })
+  },
+  getConfirmation: (userId) => {
+    return fetchRequest(`user/${userId}/pendTrans`)
   },
 }
 

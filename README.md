@@ -2,13 +2,22 @@
 Circular food packaging service 
 
 TODO: 
-[ ] close the resto confirmation modal after clicking on confirm (like what's happening on cancel)
+[V] close the resto confirmation modal after clicking on confirm (like what's happening on cancel)
+[ ] make reqBody dynamic in RestoComfirmModal
 
-Later -> move the websocket to a middleware 
 
 Later: 
 [V] fetch with PUT request to pendTrans to update numBols in both user and resto. 
-[ ] fetch with GET request to the user with a socket connection  
+[ ] fix -> PUT request doesn't work (only frontend, works with postman) -> probably becasue we have to use 
+    pendingTransaction redux state 
+[ ] finish the cycle of the order:
+    [ ] **GET** request to the user with a socket connection, of the pendingTrans array that was updated 
+    [ ] **DELETE** the pending transaction from user and resto 
+    [ ] **POST** request to the user and resto prevtransactions
+    [ ] toggle UI modal
+[ ] make all way dynamic with flag of the type (*Take*/*Return*)
+[ ] handle cancel request in both ends (user and resto)
+[ ] move the websocket to a middleware
 
 
 Hard coded restos db:

@@ -40,7 +40,7 @@ exports.deleteUser = async (req, res) => {
 exports.getUserDetails = async (req, res) => {
   try {
     const user = await User.findById({
-      _id: req.params._id
+      _id: req.params.id
     });
     res.status(200);
     res.json(user);
@@ -50,6 +50,20 @@ exports.getUserDetails = async (req, res) => {
   }
 };
 
+exports.getUserPendTrans = async (req, res) => {
+  try {
+    const user = await User.findById({
+      _id: req.params.id
+    });
+    res.status(200);
+    res.json(user.pendingTrans);
+  } catch (err) {
+    res.status(500);
+    res.send(err);
+  }
+};
+
+//TODO: DELETE IF LINNEA EXPERIMENT DOESN'T WORK
 exports.getUserByGoogleId = async (req, res) => {
   try {
     const user = await User.find({

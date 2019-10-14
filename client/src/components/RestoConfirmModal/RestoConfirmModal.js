@@ -26,10 +26,11 @@ export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransa
     const reqBody = {
       numBols: counter, 
       transId: /*pendingTransactions.id.id, */ "a1511a9e-5cea-4e3b-ba8d-24364b526dc5", //FIXME: get error of cannot access id od undefined 
-      userId: /*pendingTransactions.id.userId, */ "5d9ef44a0c0bdb07274aef73",
-      restoId: /*pendingTransactions.id.restoId */ "5d9ef4850c0bdb07274aef74"
+      userId: /*pendingTransactions.id.userId, 5da02d3e25565abaa38f9914 */ "5d9ef44a0c0bdb07274aef73",
+      restoId: /*pendingTransactions.id.restoId "5d9ef4850c0bdb07274aef74" */ '5da02d3e25565abaa38f9914', // the ice cream place 
     }
     services.db.updateTransaction(reqBody);
+    toggleRestoConfirm(); 
   }
 
   return (

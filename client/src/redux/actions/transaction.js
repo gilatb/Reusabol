@@ -32,3 +32,8 @@ export const saveNewTransaction = (reqBody) => dispatch => {
     .then(transaction => services.sockets.sendUserTransaction(transaction))
 }
 
+export const saveUpdatedTransaction = (pendingTransactions) => dispatch => {
+  // save transaction to redux: 👇🏻
+  return () => dispatch({ type: 'SAVE_UPDATED_TRANSACTION', pendingTransactions })
+}
+
