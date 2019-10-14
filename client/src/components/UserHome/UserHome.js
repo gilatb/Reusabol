@@ -37,9 +37,13 @@ export function UserHome ({ userData, getUserData, UIState, toggleUserConfirm, s
   return (
     <div className="user-home">
       <Header />
-      {userData && <Title text={`Hi ${userData.firstName}!`} />}
-      <Map />
-      <UserConfirmModal />
+      <div className="user-instruction">
+        <div className="user-name">
+          {userData && <Title text={`Hi ${userData.firstName}!`} />}
+        </div>
+        <span>Select a restaurant on the map to take or return a bowl.</span>
+      </div>
+      <Map className="user-map"/>
     </div>
   )
 }
