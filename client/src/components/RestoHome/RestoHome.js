@@ -26,7 +26,7 @@ function RestoHome ({ userData, transaction, saveUpdatedTransaction/*, pendingTr
     const restoId = '5da196445a02edd9147d4d11' // FIXME: make it dynamic
     db.getTransactions(restoId)
     // .then(res => saveUpdatedTransaction(res)) // 👈redux version
-    .then(res => console.log('res: ', res))
+    // .then(res => console.log('res: ', res))
     .then(res => (setPendingTransactions(res)))
   });
 
