@@ -13,24 +13,26 @@ import RoundBtn from '../atomic-components/RoundBtn/RoundBtn';
 import Counter from '../atomic-components/Counter/Counter';
 import { toggleRestoConfirm } from '../../redux/actions/UI';
 import { updateCounter } from '../../redux/actions/transaction';
+import { saveUpdatedTransaction } from '../../redux/actions/transaction';
 import services from '../../services';
 
-export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransaction, toggleRestoConfirm, counter, updateCounter }) {
+export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransaction, toggleRestoConfirm, counter, updateCounter, saveUpdatedTransaction }) {
 
   let open = UIState.restoConfirmModal;
   let currentTransDetails = currentTransaction && pendingTransactions.filter(el => el.id === currentTransaction);
-  let name = currentTransDetails && `${currentTransDetails[0].userFirstName} ${currentTransDetails[0].userLastName}`;
+  let name = currentTransDetails && `${currentTransDetails.userFirstName} ${currentTransDetails.userLastName}`;
 
   const confirmClickHandler = (e) => {
-    console.log(`You've just confirmed you want ${counter} bols!`);
+    console.log('currentTransDetails: ', currentTransDetails);
     const reqBody = {
-      numBols: counter,
-      transId: /*pendingTransactions.id.id, */ "a1511a9e-5cea-4e3b-ba8d-24364b526dc5", //FIXME: get error of cannot access id od undefined
+      numBols: counter, // FIXME: all these should be in currentTransactionDetails!!!
+      transId: "9e8535e3-5b02-487a-ae14-7866cc7e301e", ///*pendingTransactions.id.id, */ "a1511a9e-5cea-4e3b-ba8d-24364b526dc5", //FIXME: get error of cannot access id od undefined 
       userId: /*pendingTransactions.id.userId, 5da02d3e25565abaa38f9914 */ "5d9ef44a0c0bdb07274aef73",
-      restoId: /*pendingTransactions.id.restoId "5d9ef4850c0bdb07274aef74" */ '5da1916fc0f9ae0ff23f83ec', // the ice cream place
+      restoId: "5da4496cb7c099f6d8125054",///*pendingTransactions.id.restoId "5d9ef4850c0bdb07274aef74" */ '5da02d3e25565abaa38f9914', // the ice cream place 
     }
     services.db.updateTransaction(reqBody)
-    .then(() => console.log('you just sent this reqBody to the server: ', reqBody))
+      // .then(res => console.log('res: ', res.resto.pendingTrans))
+      .then(res => saveUpdatedTransaction(res.resto.pendingTrans))
     toggleRestoConfirm();
   }
 
@@ -65,13 +67,13 @@ export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransa
             </div>
             <div className="row">
               <div className="column">
-                <RoundBtn text={'+'} onClick={(e) => updateCounter(e, 1)}/>
+                <RoundBtn text={'+'} onClick={(e) => updateCounter(e, 1)} />
               </div>
               <div className="column">
                 <ImageComp alt={'Bowl image'} />
               </div>
               <div className="column">
-                <RoundBtn text={'-'} onClick={(e) => updateCounter(e, -1)}/>
+                <RoundBtn text={'-'} onClick={(e) => updateCounter(e, -1)} />
               </div>
             </div>
             <div className="row">
@@ -97,6 +99,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   toggleRestoConfirm: () => dispatch(toggleRestoConfirm()),
   updateCounter: (e, val) => dispatch(updateCounter(e, val)),
+  saveUpdatedTransaction: (transactions) => dispatch(saveUpdatedTransaction(transactions)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RestoConfirmModal);

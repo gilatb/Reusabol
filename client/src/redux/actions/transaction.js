@@ -23,7 +23,6 @@ export function updateCounter (e, val) {
 
 export const saveNewTransaction = (reqBody) => dispatch => {
   services.db.generateTransaction(reqBody)
-    // save transaction to redux: 👇🏻
     .then((transaction) => {Promise.resolve(
       dispatch({ type: 'SAVE_NEW_TRANSACTION', transaction }))
     })
@@ -32,8 +31,10 @@ export const saveNewTransaction = (reqBody) => dispatch => {
     .then(transaction => services.sockets.sendUserTransaction(transaction))
 }
 
-export const saveUpdatedTransaction = (pendingTransactions) => dispatch => {
-  // save transaction to redux: 👇🏻
-  return () => dispatch({ type: 'SAVE_UPDATED_TRANSACTION', pendingTransactions })
+export const saveUpdatedTransaction = (transaction)  => {
+  return { 
+    type: 'SAVE_UPDATED_TRANSACTION', 
+    transaction 
+  }
 }
 

@@ -39,7 +39,7 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
   const transactionClickHandler = (e) => {
     const reqBody = {
       restoId: selectedResto._id,
-      userId: '5da1916fc0f9ae0ff23f83ec', //FIXME: make dynamic
+      userId: userData.userId,
       exchangeType: e.target.innerHTML,
       userFirstName: userData.firstName,
       userLastName: userData.lastName,

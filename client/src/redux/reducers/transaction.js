@@ -1,4 +1,5 @@
 const INITIAL_STATE = {
+  // pendingTransactions: {},
   pendingTransactions: [],
   currentTransaction: '',
   counter: 0,
@@ -51,18 +52,24 @@ export default (state = INITIAL_STATE, action) => {
       };
 
     case 'SAVE_UPDATED_TRANSACTION':
+    console.log('action in transaction reducer: ', action);
+      // return state;
       return {
         ...state,
-        pendingTransactions: {
-          ...state.transaction,
-          [action.transaction.transaction.transId]: {
-            transId: action.transaction.transaction.transId,
-            userId: action.transaction.transaction.userId,
-            restoId: action.transaction.transaction.restoId,
-            exchangeType: action.transaction.transaction.exchangeType,
-            orderTime: action.transaction.transaction.orderTime,
-          }
-        }
+        pendingTransactions : [...action.transaction] // FIXME: doesn't update the numBols, only in the next call
+        // pendingTransactions : [...action.transaction.map(el => el.numBols = state.counter)]
+        // pendingTransactions: {
+        //   [action.transaction.transId]: {
+        //   // numBols: state.transaction.counter, //FIXME: says it's undefined
+        //   numBols: state.counter,
+        //   exchangeType: action.transaction.exchangeType,
+        //   orderTime: action.transaction.orderTime,
+        //   restoId: action.transaction.restoId,
+        //   transId: action.transaction.transId,
+        //   userId: action.transaction.userId,
+        //   userFirstName: action.transaction.userFirstName,
+        //   userLastName: action.transaction.userLastName,
+        // }}
       };
     default:
       return state;
