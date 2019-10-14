@@ -1,7 +1,15 @@
 .header {
-  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-bottom: 1rem;
+  background:#93CA99;
+  color: #253C2B;
+  height: 7vh;
+  margin: 0;
+  padding: 1vh;
+}
+
+.logout-btn {
+  height: 6vh;
+  width: 6vh;
 }
