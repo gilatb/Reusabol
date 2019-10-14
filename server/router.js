@@ -11,10 +11,6 @@ router.get('/user/:_id', userContr.getUserDetails);
 router.delete('/user', userContr.deleteUser);
 // router.get('/user/restos', restoContr.getRestos); //FIXME: doesn't work, we used the /admin/restos
 
-router.get('/user/restos', restoContr.getRestos); //FIXME: doesn't work, we used the /admin/restos
-// router.get('/user/:_googleId', userContr.getUserByGoogleId);
-router.get('/user/:googleId', () => console.log('i am in the router'));
-
 // Restaurant Endpoints
 router.post('/resto', restoContr.createResto);
 router.get('/resto/:restaurantId', restoContr.getRestoDetails);
@@ -31,6 +27,8 @@ router.put('/inventory', transContr.updateInventory);
 // Admin Endpoints
 router.get('/admin/users', userContr.getUsers);
 router.get('/admin/restos', restoContr.getRestos);
+router.get('/admin/users/:googleId', userContr.getUserByGoogleId);
+router.get('/admin/restos/:googleId', restoContr.getRestoByGoogleId);
 // router.post('/admin/user', userContr.createUser);
 // router.post('/admin/resto', restoContr.createResto);
 // router.delete('/admin/user', userContr.deleteUser);

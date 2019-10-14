@@ -1,16 +1,20 @@
 const INITIAL_STATE = {
   pendingTransactions: {
     id: {
-      id: '',
+      transId: '',
       userId: '',
       restoId: '',
       numBols: 0,
       exchangeType: '',
+      orderTime: 0,
+      userFirstName: '',
+      userLastName: '',
+      googleImage: '',
     },
   },
   currentTransaction: '',
   counter: 0,
-  pendingTransactions: { 1: { id: 1, userId: 22, userFirstName: 'Eileen', userLastName: 'Juergens', restoName: 'Banana Palace', restoId: 34, numBols: 0, orderTime: '21:45' }, 2: { id: 2, userId: 44, userFirstName: 'Andre', userLastName: 'DiFelice', restoName: 'LaBodegueta', restoId: 22, numBols: 0, orderTime: '23:15' }, 3: { id: 3, userId: 55, userFirstName: 'Gilat', userLastName: 'Blumberger', restoName: 'Mensanna', restoId: 88, numBols: 0, orderTime: '18:53' } }
+  pendingTransactions: [],
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -19,13 +23,16 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         pendingTransactions: {
-          ...state.transaction,
+          ...state.pendingTransactions,
           [action.transaction.transaction.transId]: {
             transId: action.transaction.transaction.transId,
             userId: action.transaction.transaction.userId,
             restoId: action.transaction.transaction.restoId,
             exchangeType: action.transaction.transaction.exchangeType,
             orderTime: action.transaction.transaction.orderTime,
+            userFirstName: action.transaction.transaction.userFirstName,
+            userLastName: action.transaction.transaction.userLastName,
+            googleImage: action.transaction.transaction.googleImage,
           }
         }
       };

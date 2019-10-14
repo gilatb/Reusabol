@@ -62,3 +62,16 @@ exports.getRestoPendTrans = async (req, res) => {
   }
 };
 
+exports.getRestoByGoogleId = async (req, res) => {
+  try {
+    const user = await Resto.find({
+      googleId: req.params.googleId
+    });
+    res.status(200);
+    res.json(user);
+  } catch (err) {
+    res.status(500);
+    res.send(err);
+  }
+};
+

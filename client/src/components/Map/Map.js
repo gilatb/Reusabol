@@ -40,7 +40,10 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
     const reqBody = {
       restoId: selectedResto._id,
       userId: '5da02d3e25565abaa38f9914', //FIXME: make dynamic
-      exchangeType: e.target.innerHTML
+      exchangeType: e.target.innerHTML,
+      userFirstName: userData.firstName,
+      userLastName: userData.lastName,
+      googleImage: userData.googleImage,
     }
     saveNewTransaction(reqBody)
   }

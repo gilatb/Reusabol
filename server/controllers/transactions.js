@@ -10,7 +10,6 @@ const Resto = require('../models/resto.models');
 exports.createPendTrans = async (req, res) => {
   const hours = new Date().getHours();
   const minutes = new Date().getMinutes();
-  console.log('req.body in the beckend: ', req.body); 
   try {
     const transaction = {
       transId: uuid(),
@@ -18,6 +17,9 @@ exports.createPendTrans = async (req, res) => {
       userId: req.body.userId,
       restoId: req.body.restoId,
       exchangeType: req.body.exchangeType,
+      userFirstName: req.body.userFirstName,
+      userLastName: req.body.userLastName,
+      googleImage: req.body.googleImage,
     };
     const user = await User.findOneAndUpdate(
       { _id: req.body.userId },
@@ -108,7 +110,7 @@ exports.updateInventory = async (req, res) => {
   try {
     //TODO: update inventory based on exchange type
     res.status(200);
-    res.json({ user, resto }); 
+    res.json({ user, resto });
   } catch (err) {
     res.status(500);
     res.send(err);

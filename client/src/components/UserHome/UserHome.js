@@ -14,7 +14,6 @@ export function UserHome ({ userData, getUserData, UIState, toggleUserConfirm })
 
   useEffect(() => {
     getUserData();
-    // getUserByEmail('linnea.m.andersson@gmail.com');
   }, []);
 
   return (
@@ -36,7 +35,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   getUserData: () => dispatch(getUserData()),
   toggleUserConfirm: () => dispatch(toggleUserConfirm()),
-  // getUserByEmail: (email) => dispatch(actions.user.getUserByEmail(email)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserHome);

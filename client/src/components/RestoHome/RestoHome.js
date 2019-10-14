@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
 
 
@@ -9,15 +9,19 @@ import Footer from '../Footer/Footer';
 import socketIOClient from 'socket.io-client';
 import db from '../../services/db';
 import { saveNewTransaction } from '../../redux/actions/transaction';
+import { getRestoData } from '../../redux/actions/restos';
 
 //👇🏻this is how we listen to the emit on the other side of the socket
 const socket = socketIOClient('localhost:4001');
 
-function RestoHome ({ userData, transaction, saveNewTransaction }) {
+function RestoHome ({ userData, transaction, saveNewTransaction, getRestoData }) {
 
-    const example = [{id: 1, userId: 22, userFirstName: 'Eileen', userLastName: 'Juergens', restoName: 'Banana Palace', restoId: 34, numBols: 0, orderTime: '21:45'}, {id: 3, userId: 44, userFirstName: 'Andre', userLastName: 'DiFelice', restoName: 'LaBodegueta', restoId: 22, numBols: 0, orderTime: '23:15'}, {id: 45, userId: 55, userFirstName: 'Gilat', userLastName: 'Blumberger', restoName: 'Mensanna',restoId: 88, numBols: 0, orderTime: '18:53'}];
+  //FIXME: IT SEEMS THAT CURRENTLY WE ARE NOT BEING SAVED AS RESTOS WHEN WE LOG IN AS RESTOS USING GOOGLE?
+  // useEffect(() => {
+  //   getRestoData();
+  // }, []);
 
-  const [pendingTransactions, setPendingTransactions] = useState(example)
+  const [pendingTransactions, setPendingTransactions] = useState(null);
 
   socket.on('resto-receive-transaction', () => {
     const restoId = '5da1908bc0f9ae0ff23f83e5' // FIXME: make it dynamic
@@ -46,6 +50,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   saveNewTransaction: (transactions) => dispatch(saveNewTransaction(transactions)),
+  getRestoData: () => dispatch(getRestoData()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RestoHome);
