@@ -13,7 +13,11 @@ const RestoSchema = new Schema({
   hashPassword: String,
   inventory: {type: Number, default: 0},
   pendingTrans: [TransactionSchema],
-  previousTrans: [TransactionSchema]
+  previousTrans: [TransactionSchema],
+  googleId: String,
+  firstName: String,
+  lastName: String,
+  googleImage: String,
 });
 
 const Resto = mongoose.model('Restaurant', RestoSchema);
