@@ -23,7 +23,7 @@ function RestoHome ({ userData, transaction, saveUpdatedTransaction/*, pendingTr
 
   socket.on('resto-receive-transaction', () => {
     // const restoId = '5da1908bc0f9ae0ff23f83e5' (works for Linnea)
-    const restoId = '5da196445a02edd9147d4d11' // FIXME: make it dynamic
+    const restoId = '5da1916fc0f9ae0ff23f83ec' // FIXME: make it dynamic
     db.getTransactions(restoId)
     // .then(res => saveUpdatedTransaction(res)) // 👈redux version
     // .then(res => console.log('res: ', res))

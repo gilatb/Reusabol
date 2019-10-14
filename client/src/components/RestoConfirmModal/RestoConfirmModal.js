@@ -24,14 +24,14 @@ export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransa
   const confirmClickHandler = (e) => {
     console.log(`You've just confirmed you want ${counter} bols!`);
     const reqBody = {
-      numBols: counter, 
-      transId: /*pendingTransactions.id.id, */ "a1511a9e-5cea-4e3b-ba8d-24364b526dc5", //FIXME: get error of cannot access id od undefined 
+      numBols: counter,
+      transId: /*pendingTransactions.id.id, */ "a1511a9e-5cea-4e3b-ba8d-24364b526dc5", //FIXME: get error of cannot access id od undefined
       userId: /*pendingTransactions.id.userId, 5da02d3e25565abaa38f9914 */ "5d9ef44a0c0bdb07274aef73",
-      restoId: /*pendingTransactions.id.restoId "5d9ef4850c0bdb07274aef74" */ '5da02d3e25565abaa38f9914', // the ice cream place 
+      restoId: /*pendingTransactions.id.restoId "5d9ef4850c0bdb07274aef74" */ '5da1916fc0f9ae0ff23f83ec', // the ice cream place
     }
     services.db.updateTransaction(reqBody)
     .then(() => console.log('you just sent this reqBody to the server: ', reqBody))
-    toggleRestoConfirm(); 
+    toggleRestoConfirm();
   }
 
   return (
