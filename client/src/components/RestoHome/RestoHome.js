@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
 
-
 import './RestoHome.css';
 import Header from '../Header/Header';
 import List from '../List/List';
