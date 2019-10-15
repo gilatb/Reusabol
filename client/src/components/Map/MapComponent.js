@@ -124,7 +124,9 @@ function MapComponent ({ saveNewTransaction, getRestos, restos, userData }) {
                 </div>
                 <div>
                   <SquareBtn
-                    className="Return" text="Return"
+                    className="Return" 
+                    text="Return"
+                    onClick={transactionClickHandler}
                   />
                 </div>
               </div>
