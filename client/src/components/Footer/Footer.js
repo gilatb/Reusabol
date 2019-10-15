@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import './Footer.css';
-import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
+// import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
 import RestoHistoryModal from '../RestoHistoryModal/RestoHistoryModal';
 import actions from '../../redux/actions';
 
@@ -10,7 +10,11 @@ export function Footer ({ toggleOpenHistory }) {
 
   return (
     <div className="footer">
-      <SquareBtn text={'PREVIOUS TRANSACTIONS'} onClick={toggleOpenHistory} />
+      <button
+        className="footer-btn"
+        onClick={toggleOpen('restoHistory')}
+        >PREVIOUS TRANSACTIONS</button>
+      {/* <SquareBtn text={'PREVIOUS TRANSACTIONS'} onClick={toggleOpen('restoHistory')} /> */}
       <RestoHistoryModal/>
     </div>
   )

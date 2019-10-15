@@ -2,6 +2,24 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  padding-top: 1rem;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: #93ca99;
+  height: 9vh;
+}
+
+.footer-btn {
+  background: #93ca99;
+  color: white;
+  height: 7vh;
+  width: 88%;
+  border-color: white;
+  font-size: 2vh;
+  outline: none;
+  font-weight: 700;
+  font-size: 2.5vh;
 }
