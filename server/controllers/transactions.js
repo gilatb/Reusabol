@@ -42,21 +42,44 @@ exports.createPendTrans = async (req, res) => {
 
 exports.updateNumBols = async (req, res) => {
   try {
+    console.log(req.body.numBols);
+    
     const user = await User.findOneAndUpdate(
       { _id: req.body.userId, 'pendingTrans.transId': req.body.transId },
-      { $set: { 'pendingTrans.$.numBols': req.body.numBols } }
+      { $set: { 'pendingTrans.$.numBols': req.body.numBols } },
+      { new: true }
     );
     const resto = await Resto.findOneAndUpdate(
       { _id: req.body.restoId, 'pendingTrans.transId': req.body.transId },
-      { $set: { 'pendingTrans.$.numBols': req.body.numBols } }
+      { $set: { 'pendingTrans.$.numBols': req.body.numBols } },
+      { new: true }
     );
     res.status(200);
-    res.json({ user, resto }); // change to: user.pendingTrans and resto.pendingTrans
+    res.json({ user, resto }); 
   } catch (err) {
     res.status(500);
     res.send(err);
   }
 };
+// exports.updateNumBols = async (req, res) => {
+//   try {
+//     const user = await User.findOneAndUpdate(
+//       { _id: req.body.userId, 'pendingTrans.transId': req.body.transId },
+//       { $set: { 'pendingTrans.$.numBols': req.body.numBols } }
+//     );
+//     const resto = await Resto.findOneAndUpdate(
+//       { _id: req.body.restoId, 'pendingTrans.transId': req.body.transId },
+//       { $set: { 'pendingTrans.$.numBols': req.body.numBols } }
+//     );
+//     // const pendTrans = resto.pendingTransactions;
+//     res.status(200);
+//     res.json({ user, resto }); // change to: user.pendingTrans and resto.pendingTrans
+//     // res.json({ pendTrans }); // change to: user.pendingTrans and resto.pendingTrans
+//   } catch (err) {
+//     res.status(500);
+//     res.send(err);
+//   }
+// };
 
 exports.createPrevTrans = async (req, res) => {
   try {

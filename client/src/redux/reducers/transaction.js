@@ -51,18 +51,10 @@ export default (state = INITIAL_STATE, action) => {
       };
 
     case 'SAVE_UPDATED_TRANSACTION':
+    console.log('action: ', action);
       return {
         ...state,
-        pendingTransactions: {
-          ...state.transaction,
-          [action.transaction.transaction.transId]: {
-            transId: action.transaction.transaction.transId,
-            userId: action.transaction.transaction.userId,
-            restoId: action.transaction.transaction.restoId,
-            exchangeType: action.transaction.transaction.exchangeType,
-            orderTime: action.transaction.transaction.orderTime,
-          }
-        }
+        pendingTransactions : [...action.transaction] 
       };
     default:
       return state;

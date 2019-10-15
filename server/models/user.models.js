@@ -1,13 +1,15 @@
 const mongoose = require('../db');
 const Schema = mongoose.Schema;
 const TransactionSchema = require('./transaction.models');
-const CoordinatesSchema = require('./coordinates.models');
+// const CoordinatesSchema = require('./coordinates.models');
 const NotificationSchema = require('./notification.models');
 
 const UserSchema = new Schema({
   firstName: String,
   lastName: String,
-  coordinates: CoordinatesSchema,
+  lat: Number,
+  lng: Number,
+  // coordinates: CoordinatesSchema,
   phoneNumber: String,
   email: String,
   hashPassword: String,

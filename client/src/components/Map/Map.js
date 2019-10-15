@@ -11,6 +11,7 @@ import { getRestos } from '../../redux/actions/restos';
 const API_KEY = process.env.REACT_APP_API_KEY
 
 function Map ({ saveNewTransaction, getRestos, restos, userData }) {
+  console.log('restos: ', restos);
 
   const [location, setLocation] = useState({ lat: 42.076613, lng: 2.362239833 });
   const [selectedResto, setSelectedResto] = useState(null);
@@ -33,13 +34,14 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
 
   const markerClickHandler = (event, resto) => {
     setSelectedResto(resto);
+    console.log('selectedResto: ', selectedResto);
     infoOpen ? setInfoOpen(false) : setInfoOpen(true);
   }
 
   const transactionClickHandler = (e) => {
     const reqBody = {
       restoId: selectedResto._id,
-      userId: '5da1916fc0f9ae0ff23f83ec', //FIXME: make dynamic
+      userId: userData.userId,
       exchangeType: e.target.innerHTML,
       userFirstName: userData.firstName,
       userLastName: userData.lastName,
@@ -62,7 +64,12 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
     // eslint-disable-next-line
   }, [])
 
+  
   const renderMap = () => {
+    // const coordsObj = { 
+      // lat: resto.lat, 
+      // lng: resto.lng
+    // }
     return (
       <GoogleMap
         id="google-map"
@@ -76,7 +83,8 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
         {restos.map(resto => (
           <Marker
             key={resto.id}
-            position={resto.coordinates}
+            // position={resto.coordinates} // FIXME: 
+            position={{lat: parseFloat(resto.lat), lng: parseFloat(resto.lng)}} // FIXME: 
             onLoad={marker => markerLoadHandler(marker, resto)}
             onClick={event => markerClickHandler(event, resto)}
           />

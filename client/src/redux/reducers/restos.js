@@ -4,7 +4,7 @@ const INITIAL_STATE = {
     name: '',
     lastName: '',
     googleImage: '',
-    userId: '',
+    userId: null,
   }
 }
 

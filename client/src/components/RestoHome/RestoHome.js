@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
 
 
@@ -14,25 +14,25 @@ import { saveUpdatedTransaction } from '../../redux/actions/transaction';
 //👇🏻this is how we listen to the emit on the other side of the socket
 const socket = socketIOClient('localhost:4001');
 
-function RestoHome ({ getRestoData, userData, transaction, saveUpdatedTransaction/*, pendingTransactions */}) {
+
+function RestoHome ({ getRestoData, userData, restoData, transaction, saveUpdatedTransaction, pendingTransactions }) {
 
   useEffect(() => {
-    getRestoData();
+    getRestoData()
+    // eslint-disable-next-line
   }, []);
 
     // const example = [{id: 1, userId: 22, userFirstName: 'Eileen', userLastName: 'Juergens', restoName: 'Banana Palace', restoId: 34, numBols: 0, orderTime: '21:45'}, {id: 3, userId: 44, userFirstName: 'Andre', userLastName: 'DiFelice', restoName: 'LaBodegueta', restoId: 22, numBols: 0, orderTime: '23:15'}, {id: 45, userId: 55, userFirstName: 'Gilat', userLastName: 'Blumberger', restoName: 'Mensanna',restoId: 88, numBols: 0, orderTime: '18:53'}];
+    
+    const restoId = restoData && restoData.restoId; // TODO: make sure works! '5da4a94bb34632f2e3ca344d'; // local db: "5da4496cb7c099f6d8125054";//'5da196445a02edd9147d4d11' 
 
-  const [pendingTransactions, setPendingTransactions] = useState(null)
-  // console.log('pendingTransactions: ', pendingTransactions);
-
-  socket.on('resto-receive-transaction', () => {
-    // const restoId = '5da1908bc0f9ae0ff23f83e5' (works for Linnea)
-    const restoId = '5da1916fc0f9ae0ff23f83ec' // FIXME: make it dynamic
-    db.getTransactions(restoId)
-    // .then(res => saveUpdatedTransaction(res)) // 👈redux version
-    // .then(res => console.log('res: ', res))
-    .then(res => (setPendingTransactions(res)))
-  });
+    // setTimeout(() => {
+      socket.on('resto-receive-transaction', () => {
+        restoId && db.getTransactions(restoId)
+        // .then(res => res && console.log('res in RestoHome: ', res))
+        .then(res => res && saveUpdatedTransaction(res)) // saves to redux
+      });
+    // }, 10000)
 
   // setTimeout(() => console.log('res in RestoHome when GET the pendTrans: ', pendingTransactions), 10000)
 
@@ -49,7 +49,8 @@ const mapStateToProps = (state) => {
   return {
     userData: state.user.userData,
     // transaction: state.transaction.pendingTransactions.id,
-    pendingTransactions: Object.values(state.transaction.pendingTransactions)
+    pendingTransactions: Object.values(state.transaction.pendingTransactions),
+    restoData: state.restos.restoData
   }
 }
 
