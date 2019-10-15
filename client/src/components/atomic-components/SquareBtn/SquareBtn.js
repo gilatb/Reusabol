@@ -6,6 +6,7 @@ export default function SquareBtn ({ text, onClick }) {
   return (
     <div>
       <Button
+        className="sqr-btn"
         variant="contained"
         size="small"
         children={text}
