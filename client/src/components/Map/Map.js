@@ -71,7 +71,7 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
       <GoogleMap
         id="google-map"
         mapContainerStyle={{
-          height: "70vh",
+          height: "73vh",
           width: "100%"
         }}
         center={location}
