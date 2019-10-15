@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import socketIOClient from 'socket.io-client';
 
@@ -15,17 +15,28 @@ const socket = socketIOClient('localhost:4001');
 
 export function UserHome ({ userData, getUserData, UIState, toggleUserConfirm, saveConfirmedTransaction, currentTransaction }) {
 
+  const [pendTrans, setPendTrans] = useState([])
+
   useEffect(() => {
     getUserData();
     socket.on('user-receive-transaction', (transactions) => {
-      // saveConfirmedTransaction(transaction)
-      // console.log('transactions.filter(el => el.transId === "bd445fe6-97eb-4677-a31f-b87addaf2967"): ', transactions.find(el => el.transId === "bd445fe6-97eb-4677-a31f-b87addaf2967"));
-      currentTransaction && console.log('currentTransaction: ', currentTransaction);
-      saveConfirmedTransaction(transactions.find(el => el.transId === currentTransaction))
+      setPendTrans(transactions);
       toggleUserConfirm();
     });
   }, [])
 
+  useEffect(()=> {
+    getCurrentTrans()
+  }, [UIState.userConfirmModal])
+
+  const getCurrentTrans = () => {
+    const found = pendTrans.find(el => el.transId === currentTransaction);
+    saveConfirmedTransaction(found)
+  } 
+
+
+
+  console.log('O', currentTransaction)
   return (
     <div className="user-home">
       <Header />
