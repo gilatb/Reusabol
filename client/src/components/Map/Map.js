@@ -7,13 +7,14 @@ import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
 import './Map.css';
 import { saveNewTransaction } from '../../redux/actions/transaction';
 import { getRestos } from '../../redux/actions/restos';
-
 const API_KEY = process.env.REACT_APP_API_KEY
 
 function Map ({ saveNewTransaction, getRestos, restos, userData }) {
-  console.log('restos: ', restos);
 
-  const [location, setLocation] = useState({ lat: 42.076613, lng: 2.362239833 });
+  const [location, setLocation] = useState({ 
+    lat: 42.076613,
+    lng: 2.362239833 
+  });
   const [selectedResto, setSelectedResto] = useState(null);
   const [markerMap, setMarkerMap] = useState({});
   const [infoOpen, setInfoOpen] = useState(false);
@@ -66,10 +67,6 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
 
   
   const renderMap = () => {
-    // const coordsObj = { 
-      // lat: resto.lat, 
-      // lng: resto.lng
-    // }
     return (
       <GoogleMap
         id="google-map"
@@ -83,8 +80,7 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
         {restos.map(resto => (
           <Marker
             key={resto.id}
-            // position={resto.coordinates} // FIXME: 
-            position={{lat: parseFloat(resto.lat), lng: parseFloat(resto.lng)}} // FIXME: 
+            position={{lat: parseFloat(resto.lat), lng: parseFloat(resto.lng)}} 
             onLoad={marker => markerLoadHandler(marker, resto)}
             onClick={event => markerClickHandler(event, resto)}
           />

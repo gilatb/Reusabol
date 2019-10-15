@@ -49,18 +49,18 @@ exports.getRestoDetails = async (req, res) => {
   }
 };
 
-// TODO: add listener of websocket here 🚀
-exports.getRestoPendTrans = async (req, res) => {
-  try {
-    const { restaurantId } = req.params;
-    const resto = await Resto.findById(restaurantId);
-    res.status(200);
-    res.json(resto.pendingTrans);
-  } catch (err) {
-    res.status(500);
-    res.send(err);
-  }
-};
+// we don't need this when using the websocket
+// exports.getRestoPendTrans = async (req, res) => {
+//   try {
+//     const { restaurantId } = req.params;
+//     const resto = await Resto.findById(restaurantId);
+//     res.status(200);
+//     res.json(resto.pendingTrans);
+//   } catch (err) {
+//     res.status(500);
+//     res.send(err);
+//   }
+// };
 
 exports.getRestoByGoogleId = async (req, res) => {
   try {

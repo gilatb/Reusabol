@@ -50,18 +50,19 @@ exports.getUserDetails = async (req, res) => {
   }
 };
 
-exports.getUserPendTrans = async (req, res) => {
-  try {
-    const user = await User.findById({
-      _id: req.params.id
-    });
-    res.status(200);
-    res.json(user.pendingTrans);
-  } catch (err) {
-    res.status(500);
-    res.send(err);
-  }
-};
+// we don't need this when using the websocket
+// exports.getUserPendTrans = async (req, res) => {
+//   try {
+//     const user = await User.findById({
+//       _id: req.params.id
+//     });
+//     res.status(200);
+//     res.json(user.pendingTrans);
+//   } catch (err) {
+//     res.status(500);
+//     res.send(err);
+//   }
+// };
 
 //TODO: DELETE IF LINNEA EXPERIMENT DOESN'T WORK
 exports.getUserByGoogleId = async (req, res) => {

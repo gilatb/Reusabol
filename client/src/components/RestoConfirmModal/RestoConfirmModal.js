@@ -13,28 +13,24 @@ import RoundBtn from '../atomic-components/RoundBtn/RoundBtn';
 import Counter from '../atomic-components/Counter/Counter';
 import { toggleRestoConfirm } from '../../redux/actions/UI';
 import { updateCounter } from '../../redux/actions/transaction';
-import { saveUpdatedTransaction } from '../../redux/actions/transaction';
+import { saveConfirmedTransaction } from '../../redux/actions/transaction';
 import services from '../../services';
 
-export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransaction, toggleRestoConfirm, counter, updateCounter, saveUpdatedTransaction }) {
+export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransaction, toggleRestoConfirm, counter, updateCounter, saveConfirmedTransaction }) {
 
   let open = UIState.restoConfirmModal;
-  // let currentTransDetails = currentTransaction && pendingTransactions.filter(el => el.transId === currentTransaction);
   let currentTransDetails = currentTransaction && pendingTransactions.find(el => el.transId === currentTransaction);
   let name = currentTransDetails && `${currentTransDetails.userFirstName} ${currentTransDetails.userLastName}`;
 
   const confirmClickHandler = (e) => {
-    console.log('currentTransDetails: ', currentTransDetails);
-    console.log('currentTransaction: ', currentTransaction);
     const reqBody = {
       numBols: counter, 
-      transId: currentTransDetails.transId, //'5da4b2577a66863763cd4673', // local db: "9e8535e3-5b02-487a-ae14-7866cc7e301e 
-      userId: currentTransDetails.userId, // '5da4b1deb34632f2e3cd437c', local db: "5d9ef44a0c0bdb07274aef73", 
-      restoId: currentTransDetails.restoId, // '5da4a94bb34632f2e3ca344d', // local db: "5da4496cb7c099f6d8125054 
+      transId: currentTransDetails.transId, 
+      userId: currentTransDetails.userId, 
+      restoId: currentTransDetails.restoId, 
     }
     services.db.updateTransaction(reqBody)
-    // .then(res => console.log('res in RestoConfirmModal: ', res))
-    .then(res => saveUpdatedTransaction(res.resto.pendingTrans))
+      .then(res => saveConfirmedTransaction(res.resto.pendingTrans.find(el => el.transId === currentTransaction)))
     toggleRestoConfirm();
   }
 
@@ -101,7 +97,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   toggleRestoConfirm: () => dispatch(toggleRestoConfirm()),
   updateCounter: (e, val) => dispatch(updateCounter(e, val)),
-  saveUpdatedTransaction: (transactions) => dispatch(saveUpdatedTransaction(transactions)),
+  saveConfirmedTransaction: (transaction) => dispatch(saveConfirmedTransaction(transaction)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RestoConfirmModal);

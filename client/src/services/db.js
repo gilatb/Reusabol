@@ -14,6 +14,8 @@ export default {
     return fetchRequest(`admin/restos/${googleId}`)
   },
   generateTransaction: (reqBody) => {
+    console.log(reqBody);
+    
     return fetchRequest('pendTrans', {
       headers: {
         'Content-Type': 'application/json'

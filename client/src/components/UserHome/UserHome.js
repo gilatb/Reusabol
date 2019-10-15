@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import socketIOClient from 'socket.io-client';
 
 import './UserHome.css';
 import Header from '../Header/Header';
@@ -7,28 +8,23 @@ import Title from '../atomic-components/Title/Title';
 import Map from '../Map/Map';
 import { getUserData } from '../../redux/actions/user';
 import { toggleUserConfirm } from '../../redux/actions/UI';
-import db from '../../services/db';
-
-// const socket = socketIOClient('localhost:4001');
 import UserConfirmModal from '../UserConfirmModal/UserConfirmModal';
+import { saveConfirmedTransaction } from '../../redux/actions/transaction';
 
-export function UserHome ({ userData, getUserData, UIState, toggleUserConfirm }) {
+const socket = socketIOClient('localhost:4001');
+
+export function UserHome ({ userData, getUserData, UIState, toggleUserConfirm, saveConfirmedTransaction, currentTransaction }) {
 
   useEffect(() => {
     getUserData();
-  }, []);
-
-  console.warn('userData: ', userData);
-  // TODO: bring this back to life! 
-  // socket.on('resto-receive-transaction', () => {
-    // setInterval(() => {
-      setTimeout(() => {
-      const userId = userData.userId // "5da4d1feb34632f2e3d82499"//
-      db.getConfirmation(userId)
-      .then(res => console.log('res in UserHome when GET the pendTrans: ', res))
-      .then(toggleUserConfirm())
-    }, 60000)
-  // });
+    socket.on('user-receive-transaction', (transactions) => {
+      // saveConfirmedTransaction(transaction)
+      // console.log('transactions.filter(el => el.transId === "bd445fe6-97eb-4677-a31f-b87addaf2967"): ', transactions.find(el => el.transId === "bd445fe6-97eb-4677-a31f-b87addaf2967"));
+      currentTransaction && console.log('currentTransaction: ', currentTransaction);
+      saveConfirmedTransaction(transactions.find(el => el.transId === currentTransaction))
+      toggleUserConfirm();
+    });
+  }, [])
 
   return (
     <div className="user-home">
@@ -44,12 +40,14 @@ const mapStateToProps = (state) => {
   return {
     userData: state.user.userData,
     UIState: state.UI.user,
+    currentTransaction: state.transaction.currentTransaction,
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
   getUserData: () => dispatch(getUserData()),
   toggleUserConfirm: () => dispatch(toggleUserConfirm()),
+  saveConfirmedTransaction: (transaction) => dispatch(saveConfirmedTransaction(transaction))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserHome);
