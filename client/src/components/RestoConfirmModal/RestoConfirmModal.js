@@ -15,16 +15,12 @@ import { updateCounter, clearCounter } from '../../redux/actions/transaction';
 import { saveConfirmedTransaction } from '../../redux/actions/transaction';
 import services from '../../services';
 
-<<<<<<< HEAD
-export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransaction, toggleRestoConfirm, counter, updateCounter, saveConfirmedTransaction, title, clearCounter }) {
-=======
 import giveBowlLeft from '../../assets/give-full-bowl-left.png';
 import giveBowlRight from '../../assets/give-full-bowl-right.png';
 import bwBowl from '../../assets/bw-bowl.png';
-import RemoveIcon from '@material-ui/icons/Remove';
+
 
 export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransaction, toggleRestoConfirm, counter, updateCounter, saveUpdatedTransaction }) {
->>>>>>> feat(restoConf): modify styling
 
   let open = UIState.restoConfirmModal;
   let currentTransDetails = currentTransaction && pendingTransactions.find(el => el.transId === currentTransaction);
