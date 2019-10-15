@@ -5,7 +5,6 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 
 import './RestoConfirmModal.css';
-import ImageComp from '../atomic-components/Image/ImageComp';
 import Title from '../atomic-components/Title/Title';
 import Subtitle from '../atomic-components/Subtitle/Subtitle';
 import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
@@ -16,7 +15,12 @@ import { updateCounter, clearCounter } from '../../redux/actions/transaction';
 import { saveConfirmedTransaction } from '../../redux/actions/transaction';
 import services from '../../services';
 
-export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransaction, toggleRestoConfirm, counter, updateCounter, saveConfirmedTransaction, title, clearCounter }) {
+import giveBowlLeft from '../../assets/give-full-bowl-left.png';
+import giveBowlRight from '../../assets/give-full-bowl-right.png';
+import bwBowl from '../../assets/bw-bowl.png';
+
+
+export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransaction, toggleRestoConfirm, counter, updateCounter, saveUpdatedTransaction }) {
 
   let open = UIState.restoConfirmModal;
   let currentTransDetails = currentTransaction && pendingTransactions.find(el => el.transId === currentTransaction);
@@ -54,34 +58,44 @@ export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransa
       >
         <Fade in={open}>
           <div className="paper">
-            <div className="row">
-              <div className="column">
-                <ImageComp alt={'User image'} src={''}/>
+            <div className="text-container">
+              <div className="row">
+                {/* <div className="column">
+                  <Image alt={'User image'} />
+                </div> */}
+                {/* <div className="column">
+                </div> */}
+                <Title text={`Order by ${name}!`} />
               </div>
-              <div className="column">
-                <Title text={`Order by ${name}`} />
+              <div className="row">
+                <Subtitle text={'Please update the number of bowls and click to confirm.'} />
               </div>
-            </div>
-            <div className="row">
-              <Subtitle text={'Please update the number of bowls and click confirm.'} />
-            </div>
-            <div className="row">
-              <Counter value={counter} />
-            </div>
-            <div className="row">
-              <div className="column">
-                <RoundBtn text={'+'} onClick={(e) => updateCounter(e, 1)} />
+              <div className="row counter">
+                <Counter value={counter} />
               </div>
-              <div className="column">
-                <ImageComp alt={'Bowl image'} src={''} />
+              <div className="row-with-bowl">
+                <div className="column">
+                  <RoundBtn text={'-'} onClick={(e) => updateCounter(e, -1)} />
+                </div>
+                <div className="column">
+                  <img src={bwBowl} alt="bwBowl" className="bwBowl-logo"/>
+                </div>
+                <div className="column">
+                  <RoundBtn text={'+'} onClick={(e) => updateCounter(e, 1)} />
+                </div>
               </div>
-              <div className="column">
-                <RoundBtn text={'-'} onClick={(e) => updateCounter(e, -1)} />
+              <div className="row-with-buttons">
+                <div className="cancel-conf-btn" >
+                  <SquareBtn text={'CANCEL'} onClick={toggleRestoConfirm} />
+                </div>
+                <div className="cancel-conf-btn" >
+                  <SquareBtn text={'CONFIRM'} onClick={confirmClickHandler} />
+                </div>
               </div>
-            </div>
-            <div className="row">
-              <SquareBtn text={'CONFIRM'} onClick={confirmClickHandler} />
-              <SquareBtn text={'CANCEL'} onClick={cancelClickHandler} />
+              </div>
+            <div className="image-container">
+              <img src={giveBowlLeft} alt="giveBowl" className="giveBowl-logo"/>
+              <img src={giveBowlRight} alt="giveBowl" className="giveBowl-logo"/>
             </div>
           </div>
         </Fade>

@@ -71,7 +71,7 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
       <GoogleMap
         id="google-map"
         mapContainerStyle={{
-          height: "70vh",
+          height: "73vh",
           width: "100%"
         }}
         center={location}
@@ -96,15 +96,19 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
             <div className="InfoWindow">
               <h3>{selectedResto.name}</h3>
               <p>{selectedResto.address}</p>
-              <div className="Buttons">
-                <SquareBtn
-                  className="Take"
-                  text="Take"
-                  onClick={transactionClickHandler}
-                />
-                <SquareBtn
-                  className="Return" text="Return"
-                />
+              <div className="map-buttons">
+                <div>
+                  <SquareBtn
+                    className="Take"
+                    text="Take"
+                    onClick={transactionClickHandler}
+                  />
+                </div>
+                <div>
+                  <SquareBtn
+                    className="Return" text="Return"
+                  />
+                </div>
               </div>
             </div>
           </InfoWindow>

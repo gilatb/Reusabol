@@ -1,8 +1,10 @@
-import React from 'react'
+import React from 'react';
+import './TextField.css';
+
 
 export default function ({ text }) {
   return (
-    <div>
+    <div className="text-field">
       <span>{text}</span>
     </div>
   )

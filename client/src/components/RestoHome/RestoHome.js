@@ -33,7 +33,7 @@ function RestoHome ({ getRestoData, userData, restoData, transaction, saveUpdate
     <div className="resto-home">
       <Header />
       <List array={pendingTransactions} />
-      <Footer />
+      <Footer className="footer" />
     </div>
   )
 }

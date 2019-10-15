@@ -1,8 +1,21 @@
+.InfoWindow {
+  /* background-color: grey; */
 
-.Buttons {
+}
+
+.gm-style-iw-d {
+  padding: 2vh;
+}
+
+.gm-style-iw.gm-style-iw-c {
+  padding: 0;
+  margin: 1vh;
+}
+
+.map-buttons {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-top: 15px;
   margin-bottom: 10px;
 }

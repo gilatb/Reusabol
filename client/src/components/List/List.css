@@ -1,10 +1,9 @@
 .list {
   display: flex;
   flex-direction: column;
-  padding-top: 1rem;
-}
-
-.list-item {
-  display: flex;
-  width: 100%;
+  width: 50vh;
+  margin: 3vh;
+  padding: 8vh 0px;
+  /* overflow: scroll; */
+  /* overflow-y:scroll; */
 }

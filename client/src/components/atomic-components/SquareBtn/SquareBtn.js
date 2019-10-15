@@ -1,15 +1,15 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
+import './SquareBtn.css';
 
-export default function SquareBtn ({ text, onClick, disabled }) {
+export default function SquareBtn ({ text, onClick }) {
   return (
     <div>
       <Button
+        className="sqr-btn"
         variant="contained"
-        color="default"
         size="small"
         children={text}
-        disabled={disabled}
         onClick={onClick}
     />
     </div>
