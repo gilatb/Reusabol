@@ -9,16 +9,14 @@ import RestoConfirmModal from '../RestoConfirmModal/RestoConfirmModal';
 export default function ListItem ({ title, subtitle, image }) {
 
   return (
-    <div className="list-item" >
       <div className="row">
-        <div className="column">
-          <ImageComp alt={'Google profile picture'} src={image} />
+        <div className="column-img">
+          <ImageComp alt={'image'} src={image} />
         </div>
-        <div className="column">
+        <div className="column-text">
           <Subtitle text={title} />
           <TextField text={subtitle} />
         </div>
       </div>
-    </div>
   )
 }

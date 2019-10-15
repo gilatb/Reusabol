@@ -1,6 +1,20 @@
 .list-item {
+  width: 100%;
   display: flex;
-  padding-bottom: 1rem;
+  padding: 1vh;
+  /* border-color: #253C2B; */
+  /* border-style: solid; */
+  border-radius: 3vh;
+  margin-bottom: 2vh;
+}
+
+.MuiButtonBase-root.list-item {
+  box-shadow: 0 0 6px 4px #3333; 
+  border-radius: 3vh; 
+  margin-bottom: 2.5vh; 
+  width: 100%; 
+  display: flex; 
+  overflow: hidden;
 }
 
 .row {
@@ -10,9 +24,19 @@
   width: 100%;
 }
 
-.column {
+.column-img {
+  display: flex;
+  flex-direction: column;
+  padding: 2vw 2vh;
+  flex: 1;
+  background: #93CA99;
+}
+
+.column-text {
   display: flex;
   flex-direction: column;
   flex-basis: 100%;
-  flex: 1;
+  flex: 3;
+  padding: 2vw 2vh;
+  align-items: flex-start;
 }
