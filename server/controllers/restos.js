@@ -80,7 +80,7 @@ exports.updateRestoDetails = async (req, res) => {
   try {
     const resto = await Resto.findOneAndUpdate(
       { _id: req.params.restoId },
-      { $set: { 'name': 'Aguaribay', 'address': 'Carrer de Taulat, 95, 08005 Barcelona', 'coordinates': { 'lat': 41.241489, 'lng': 2.126093 } } }
+      { $set: { name: 'Eileen\'s Magic Palace' } }
     );
     res.status(200);
     res.json({ resto });
@@ -89,4 +89,3 @@ exports.updateRestoDetails = async (req, res) => {
     res.send(err);
   }
 };
-

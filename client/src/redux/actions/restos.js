@@ -10,8 +10,12 @@ export const getRestos = () => dispatch => {
 export const getRestoData = () => dispatch => {
   services.db.getUserGoogleId()
     .then(res => services.db.getRestoData(res.googleId))
-    .then(res => Promise.resolve({ name: res[0].name, restoId: res[0]._id, googleImage: res[0].googleImage }))
+    .then(res => Promise.resolve({ name: res[0].name, restoId: res[0]._id, googleImage: res[0].googleImage, pendingTrans: res[0].pendingTrans }))
     .then(restoDetails => {
-      dispatch({ type: 'SET_RESTO_DETAILS', restoDetails });
+      dispatch({ type: 'SET_RESTO_DETAILS', restoDetails })
+      dispatch({ type: 'SET_PENDING_TRANS', restoDetails });
     })
+    // .then(restoDetails => {
+    //   dispatch({ type: 'SET_PENDING_', restoDetails });
+    // })
 }

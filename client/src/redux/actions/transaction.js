@@ -21,6 +21,12 @@ export function updateCounter (e, val) {
   }
 }
 
+export function clearCounter () {
+  return {
+    type: 'CLEAR_COUNTER',
+  }
+}
+
 export const saveNewTransaction = (reqBody) => dispatch => {
   services.db.generateTransaction(reqBody)
     .then((transactions) => {
@@ -29,10 +35,10 @@ export const saveNewTransaction = (reqBody) => dispatch => {
         transactions
       })
       dispatch({
-        type: 'UPDATE_CURRENT_TRANSACTION', //FIXME: 
+        type: 'UPDATE_CURRENT_TRANSACTION', //FIXME:
         transactions
       })
-      
+
     })
 }
 
@@ -49,4 +55,5 @@ export const saveConfirmedTransaction = (transaction) => {
     transaction
   }
 }
+
 

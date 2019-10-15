@@ -44,15 +44,24 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         counter: updatedValue,
       };
+      case 'CLEAR_COUNTER':
+        return {
+          ...state,
+          counter: 0,
+        };
     case 'SET_EXCHANGE_TYPE':
       return {
         ...state,
       };
-
+    case 'SET_PENDING_TRANS':
+      return {
+        ...state,
+        pendingTransactions: action.restoDetails.pendingTrans,
+      };
     case 'SAVE_UPDATED_TRANSACTION':
       return {
         ...state,
-        pendingTransactions : [...action.transaction] 
+        pendingTransactions: [...action.transaction]
       };
     case 'SAVE_CONFIRMED_TRANSACTION':
       return {

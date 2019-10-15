@@ -5,6 +5,7 @@ const INITIAL_STATE = {
     lastName: '',
     googleImage: '',
     userId: null,
+    pendingTrans: [],
   }
 }
 

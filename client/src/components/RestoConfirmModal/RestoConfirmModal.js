@@ -12,11 +12,11 @@ import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
 import RoundBtn from '../atomic-components/RoundBtn/RoundBtn';
 import Counter from '../atomic-components/Counter/Counter';
 import { toggleRestoConfirm } from '../../redux/actions/UI';
-import { updateCounter } from '../../redux/actions/transaction';
+import { updateCounter, clearCounter } from '../../redux/actions/transaction';
 import { saveConfirmedTransaction } from '../../redux/actions/transaction';
 import services from '../../services';
 
-export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransaction, toggleRestoConfirm, counter, updateCounter, saveConfirmedTransaction }) {
+export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransaction, toggleRestoConfirm, counter, updateCounter, saveConfirmedTransaction, title, clearCounter }) {
 
   let open = UIState.restoConfirmModal;
   let currentTransDetails = currentTransaction && pendingTransactions.find(el => el.transId === currentTransaction);
@@ -24,13 +24,18 @@ export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransa
 
   const confirmClickHandler = (e) => {
     const reqBody = {
-      numBols: counter, 
-      transId: currentTransDetails.transId, 
-      userId: currentTransDetails.userId, 
-      restoId: currentTransDetails.restoId, 
+      numBols: counter,
+      transId: currentTransDetails.transId,
+      userId: currentTransDetails.userId,
+      restoId: currentTransDetails.restoId,
     }
     services.db.updateTransaction(reqBody)
       .then(res => saveConfirmedTransaction(res.resto.pendingTrans.find(el => el.transId === currentTransaction)))
+    toggleRestoConfirm();
+  }
+
+  const cancelClickHandler = (e) => {
+    clearCounter();
     toggleRestoConfirm();
   }
 
@@ -51,10 +56,10 @@ export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransa
           <div className="paper">
             <div className="row">
               <div className="column">
-                <ImageComp alt={'User image'} />
+                <ImageComp alt={'User image'} src={''}/>
               </div>
               <div className="column">
-                <Title text={`Order by ${name}!`} />
+                <Title text={`Order by ${name}`} />
               </div>
             </div>
             <div className="row">
@@ -68,7 +73,7 @@ export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransa
                 <RoundBtn text={'+'} onClick={(e) => updateCounter(e, 1)} />
               </div>
               <div className="column">
-                <ImageComp alt={'Bowl image'} />
+                <ImageComp alt={'Bowl image'} src={''} />
               </div>
               <div className="column">
                 <RoundBtn text={'-'} onClick={(e) => updateCounter(e, -1)} />
@@ -76,7 +81,7 @@ export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransa
             </div>
             <div className="row">
               <SquareBtn text={'CONFIRM'} onClick={confirmClickHandler} />
-              <SquareBtn text={'CANCEL'} onClick={toggleRestoConfirm} />
+              <SquareBtn text={'CANCEL'} onClick={cancelClickHandler} />
             </div>
           </div>
         </Fade>
@@ -97,7 +102,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   toggleRestoConfirm: () => dispatch(toggleRestoConfirm()),
   updateCounter: (e, val) => dispatch(updateCounter(e, val)),
-  saveConfirmedTransaction: (transaction) => dispatch(saveConfirmedTransaction(transaction)),
+  clearCounter: () => dispatch(clearCounter()),
+  saveConfirmedTransaction: (transactions) => dispatch(saveConfirmedTransaction(transactions)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RestoConfirmModal);

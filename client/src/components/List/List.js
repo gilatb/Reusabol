@@ -8,11 +8,14 @@ import RestoConfirmModal from '../RestoConfirmModal/RestoConfirmModal';
 import { toggleRestoConfirm } from '../../redux/actions/UI';
 import { setCurrentTransaction } from '../../redux/actions/transaction';
 
-export function List ({ array, UIState, toggleRestoConfirm, setCurrentTransaction }) {
+export function List ({ array, UIState, toggleRestoConfirm, setCurrentTransaction, currentTransaction, pendingTransactions }) {
+
+  let currentTransDetails = currentTransaction && pendingTransactions.filter(el => el._id === currentTransaction);
+  let name = currentTransDetails && `${currentTransDetails.userFirstName} ${currentTransDetails.userLastName}`;
+
 
   const clickHandler = (e, el) => {
     toggleRestoConfirm();
-    console.log('el in List: ', el);
     setCurrentTransaction(el.transId);
   }
 
@@ -20,13 +23,13 @@ export function List ({ array, UIState, toggleRestoConfirm, setCurrentTransactio
     <div className="list">
       {array && array.map(el => {
         return <div><ButtonBase className="list-item" type="button" onClick={(e) => clickHandler(e, el)}>
-          <ListItem 
-            key={array[el]} 
-            title={`Order by ${el.userFirstName} ${el.userLastName}`} subtitle={`Order placed at ${el.orderTime}`} 
-            image={el.googleImage} 
+          <ListItem
+            key={array[el]}
+            title={`Order by ${el.userFirstName} ${el.userLastName}`} subtitle={`Order placed at ${el.orderTime}`}
+            image={el.googleImage}
           />
         </ButtonBase>
-          <RestoConfirmModal />
+          <RestoConfirmModal title={el.userFirstName} />
         </div>
       })}
     </div>
@@ -34,7 +37,11 @@ export function List ({ array, UIState, toggleRestoConfirm, setCurrentTransactio
 }
 
 const mapStateToProps = (state) => {
-  return { UIState: state.UI.UIState, }
+  return {
+    UIState: state.UI.UIState,
+    currentTransaction: state.transaction.currentTransaction,
+    pendingTransactions: Object.values(state.transaction.pendingTransactions),
+  }
 }
 
 const mapDispatchToProps = (dispatch) => ({

@@ -8,6 +8,7 @@ const Resto = require('../models/resto.models');
 exports.createPendTrans = async (req, res) => {
   const hours = new Date().getHours();
   const minutes = new Date().getMinutes();
+
   try {
     const transaction = {
       transId: uuid(),
@@ -57,7 +58,7 @@ exports.updateNumBols = async (req, res) => {
     // the UserHome will listen to this event emmiter. replacing getConfirmation (route: user/userId/pendTrans)
     socket.broadcast.emit('user-receive-transaction', user.pendingTrans);
     res.status(200);
-    res.json({ user, resto }); 
+    res.json({ user, resto });
   } catch (err) {
     res.status(500);
     res.send(err);
