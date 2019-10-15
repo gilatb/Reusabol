@@ -44,6 +44,7 @@ export function UserHome ({ userData, getUserData, UIState, toggleUserConfirm, s
         <span>Select a restaurant on the map to take or return a bowl.</span>
       </div>
       <Map className="user-map"/>
+      <UserConfirmModal />
     </div>
   )
 }
