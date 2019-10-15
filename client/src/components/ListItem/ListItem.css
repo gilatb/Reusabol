@@ -15,7 +15,7 @@
   overflow: hidden;
 }
 
-.row {
+.list-item-row {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

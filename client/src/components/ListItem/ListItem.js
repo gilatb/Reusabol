@@ -10,7 +10,7 @@ import RestoConfirmModal from '../RestoConfirmModal/RestoConfirmModal';
 export default function ListItem ({ title, subtitle, image }) {
 
   return (
-      <div className="row">
+      <div className="list-item-row">
         <div className="column-img">
           <img src={bowl} alt="bowl" className="bowl-logo"/>
           {/* <Image alt={'image'} /> */}
