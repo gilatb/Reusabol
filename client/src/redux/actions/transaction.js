@@ -23,7 +23,7 @@ export function updateCounter (e, val) {
 
 export function clearCounter () {
   return {
-    type: 'UPDATE_COUNTER',
+    type: 'CLEAR_COUNTER',
   }
 }
 

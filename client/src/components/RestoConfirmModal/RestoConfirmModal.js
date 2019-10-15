@@ -13,10 +13,10 @@ import RoundBtn from '../atomic-components/RoundBtn/RoundBtn';
 import Counter from '../atomic-components/Counter/Counter';
 import { toggleRestoConfirm } from '../../redux/actions/UI';
 import { updateCounter, clearCounter } from '../../redux/actions/transaction';
-import { saveUpdatedTransaction } from '../../redux/actions/transaction';
+import { saveConfirmedTransaction } from '../../redux/actions/transaction';
 import services from '../../services';
 
-export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransaction, toggleRestoConfirm, counter, updateCounter, saveUpdatedTransaction, title, clearCounter }) {
+export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransaction, toggleRestoConfirm, counter, updateCounter, saveConfirmedTransaction, title, clearCounter }) {
 
   let open = UIState.restoConfirmModal;
   let currentTransDetails = currentTransaction && pendingTransactions.find(el => el.transId === currentTransaction);
@@ -59,7 +59,7 @@ export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransa
                 <ImageComp alt={'User image'} src={''}/>
               </div>
               <div className="column">
-                <Title text={title} />
+                <Title text={`Order by ${name}`} />
               </div>
             </div>
             <div className="row">
@@ -102,12 +102,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   toggleRestoConfirm: () => dispatch(toggleRestoConfirm()),
   updateCounter: (e, val) => dispatch(updateCounter(e, val)),
-<<<<<<< HEAD
-  saveConfirmedTransaction: (transaction) => dispatch(saveConfirmedTransaction(transaction)),
-=======
   clearCounter: () => dispatch(clearCounter()),
-  saveUpdatedTransaction: (transactions) => dispatch(saveUpdatedTransaction(transactions)),
->>>>>>> fix(list): clear counter on cancel
+  saveConfirmedTransaction: (transactions) => dispatch(saveConfirmedTransaction(transactions)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RestoConfirmModal);

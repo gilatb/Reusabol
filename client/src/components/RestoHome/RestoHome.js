@@ -15,9 +15,6 @@ const socket = socketIOClient('localhost:4001');
 
 function RestoHome ({ getRestoData, userData, restoData, transaction, saveUpdatedTransaction, pendingTransactions}) {
 
-  const restoId = restoData && restoData.restoId; // TODO: make sure works! '5da4a94bb34632f2e3ca344d'; // local db: "5da4496cb7c099f6d8125054";//'5da196445a02edd9147d4d11'
-  // restoId && console.log(restoId, 'outside');
-
   useEffect(() => {
     getRestoData()
     socket.on('resto-receive-transaction', (res) => {
