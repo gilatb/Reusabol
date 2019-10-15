@@ -2,8 +2,6 @@
   width: 100%;
   display: flex;
   padding: 1vh;
-  /* border-color: #253C2B; */
-  /* border-style: solid; */
   border-radius: 3vh;
   margin-bottom: 2vh;
 }
@@ -27,9 +25,15 @@
 .column-img {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 2vw 2vh;
   flex: 1;
   background: #93CA99;
+}
+
+.bowl-logo {
+  width: 6vh;
 }
 
 .column-text {
