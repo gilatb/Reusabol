@@ -13,3 +13,7 @@
   font-size: 3vh;
   margin-bottom: 2vh;
 }
+
+.user-map {
+  align-self: flex-end;
+}
