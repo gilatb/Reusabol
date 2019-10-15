@@ -22,8 +22,8 @@ export default {
       body: JSON.stringify(reqBody)
     });
   },
-  getTransactions: (restoId) => {
-    return fetchRequest(`resto/${restoId}/pendTrans`);
+  getPendingTransactions: (restoId) => {
+    return fetchRequest(`resto/${restoId}/pendTrans`)
   },
   getRestos: () => {
     return fetchRequest('admin/restos');

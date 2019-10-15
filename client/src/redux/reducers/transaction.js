@@ -48,11 +48,15 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
       };
-
+    case 'SET_PENDING_TRANS':
+      return {
+        ...state,
+        pendingTransactions: action.restoDetails.pendingTrans,
+      };
     case 'SAVE_UPDATED_TRANSACTION':
       return {
         ...state,
-        pendingTransactions : [...action.transaction] 
+        pendingTransactions: [...action.transaction]
       };
     case 'SAVE_CONFIRMED_TRANSACTION':
       return {
