@@ -19,3 +19,10 @@ export const getRestoData = () => dispatch => {
     //   dispatch({ type: 'SET_PENDING_', restoDetails });
     // })
 }
+
+export function setSelectedResto (resto) {
+  return {
+    type: 'SET_SELECTED_RESTO',
+    resto,
+  }
+}

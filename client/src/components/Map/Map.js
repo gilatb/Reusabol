@@ -5,20 +5,20 @@ import { connect } from 'react-redux';
 import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
 import './Map.css';
 import { saveNewTransaction } from '../../redux/actions/transaction';
-import { getRestos } from '../../redux/actions/restos';
+import { getRestos, setSelectedResto } from '../../redux/actions/restos';
 import Lottie from 'react-lottie';
 import animationDataDino from '../../assets/dino.json';
 import animationDataSpinner from '../../assets/spinner.json';
 
 const API_KEY = process.env.REACT_APP_API_KEY
 
-function Map ({ saveNewTransaction, getRestos, restos, userData }) {
+function Map ({ saveNewTransaction, getRestos, restos, userData, setSelectedResto }) {
 
   const [location, setLocation] = useState({
     lat: 42.076613,
     lng: 2.362239833
   });
-  const [selectedResto, setSelectedResto] = useState(null);
+  // const [selectedResto, setSelectedResto] = useState('');
   const [markerMap, setMarkerMap] = useState({});
   const [infoOpen, setInfoOpen] = useState(false);
 
@@ -70,14 +70,14 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
 
   const defaultOptionsDino = {
     loop: true,
-    autoplay: true, 
+    autoplay: true,
     path: 'dino.json',
     animationData: animationDataDino,
   };
 
   const defaultOptionsSpinner = {
     loop: true,
-    autoplay: true, 
+    autoplay: true,
     path: 'spinner.json',
     animationData: animationDataSpinner,
   };
@@ -151,6 +151,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   saveNewTransaction: (reqBody) => dispatch(saveNewTransaction(reqBody)),
   getRestos: () => dispatch(getRestos()),
+  setSelectedResto: (resto) => dispatch(setSelectedResto(resto)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Map);
