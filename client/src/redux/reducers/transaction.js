@@ -44,6 +44,11 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         counter: updatedValue,
       };
+      case 'CLEAR_COUNTER':
+        return {
+          ...state,
+          counter: 0,
+        };
     case 'SET_EXCHANGE_TYPE':
       return {
         ...state,
