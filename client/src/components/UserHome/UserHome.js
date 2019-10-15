@@ -34,9 +34,6 @@ export function UserHome ({ userData, getUserData, UIState, toggleUserConfirm, s
     saveConfirmedTransaction(found)
   } 
 
-
-
-  console.log('O', currentTransaction)
   return (
     <div className="user-home">
       <Header />
