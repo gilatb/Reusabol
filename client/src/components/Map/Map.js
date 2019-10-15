@@ -82,7 +82,7 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
           <Marker
             key={resto.id}
             // position={resto.coordinates} // FIXME:
-            position={{lat: parseFloat(resto.lat), lng: parseFloat(resto.lng)}} // FIXME:
+            position={{ lat: parseFloat(resto.lat), lng: parseFloat(resto.lng) }} // FIXME:
             onLoad={marker => markerLoadHandler(marker, resto)}
             onClick={event => markerClickHandler(event, resto)}
           />

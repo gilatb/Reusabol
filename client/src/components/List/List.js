@@ -8,7 +8,11 @@ import RestoConfirmModal from '../RestoConfirmModal/RestoConfirmModal';
 import { toggleRestoConfirm } from '../../redux/actions/UI';
 import { setCurrentTransaction } from '../../redux/actions/transaction';
 
-export function List ({ array, UIState, toggleRestoConfirm, setCurrentTransaction }) {
+export function List ({ array, UIState, toggleRestoConfirm, setCurrentTransaction, currentTransaction, pendingTransactions }) {
+
+  let currentTransDetails = currentTransaction && pendingTransactions.filter(el => el._id === currentTransaction);
+  let name = currentTransDetails && `${currentTransDetails.userFirstName} ${currentTransDetails.userLastName}`;
+
 
   const clickHandler = (e, el) => {
     toggleRestoConfirm();
@@ -25,7 +29,7 @@ export function List ({ array, UIState, toggleRestoConfirm, setCurrentTransactio
             image={el.googleImage}
           />
         </ButtonBase>
-          <RestoConfirmModal />
+          <RestoConfirmModal title={el.userFirstName} />
         </div>
       })}
     </div>
@@ -33,7 +37,11 @@ export function List ({ array, UIState, toggleRestoConfirm, setCurrentTransactio
 }
 
 const mapStateToProps = (state) => {
-  return { UIState: state.UI.UIState, }
+  return {
+    UIState: state.UI.UIState,
+    currentTransaction: state.transaction.currentTransaction,
+    pendingTransactions: Object.values(state.transaction.pendingTransactions),
+  }
 }
 
 const mapDispatchToProps = (dispatch) => ({
