@@ -39,16 +39,7 @@ const socketPort = process.env.IO_PORT || 4001;
 //Setting up a socket with the namespace "connection" for new sockets
 io.on('connection', socket => {
   console.log('New client connected');
-
-  // in the userHomepage (incoming data)
-  socket.on('user-ask-transaction', (data) => {
-    console.log('user-ask-transaction:', data);
-
-    // in the restoHomepage (outgoing data)
-    socket.broadcast.emit('resto-receive-transaction', { transaction: data });
-    console.log('socket emitted transaction successfully');
-
-  });
+  global.socket = socket;
 
   //A special namespace "disconnect" for when a client disconnects
   socket.on('disconnect', () => {
@@ -117,6 +108,5 @@ app.listen(process.env.PORT || 8888, function () {
 });
 
 module.exports = app;
-
 
 

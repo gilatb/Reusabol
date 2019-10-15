@@ -9,16 +9,14 @@ import Title from '../atomic-components/Title/Title';
 import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
 import { toggleUserConfirm } from '../../redux/actions/UI';
 
-export function UserConfirmModal ({ UIState, toggleUserConfirm }) {
+export function UserConfirmModal ({ UIState, toggleUserConfirm, updatedCurrentTransaction }) {
 
   let open = UIState.userConfirmModal;
 
-  //TODO: IMPORT THE RESTO NAME AND NUMBOLS FROM REDUX
-  const restoName = 'La Bodegueta';
-  const numBols = 2;
-
+  const restoName = updatedCurrentTransaction && updatedCurrentTransaction.restoId;
+  const numBols = updatedCurrentTransaction && updatedCurrentTransaction.numBols;
+  
   return (
-
     <div className="user-confirm-modal">
       <Modal
         aria-labelledby="transition-modal-title"
@@ -50,15 +48,12 @@ export function UserConfirmModal ({ UIState, toggleUserConfirm }) {
 const mapStateToProps = (state) => {
   return {
     UIState: state.UI.user,
-    // currentTransaction: state.transaction.currentTransaction,
-    // pendingTransactions: Object.values(state.transaction.pendingTransactions),
-    // counter: state.transaction.counter,
+    updatedCurrentTransaction: state.transaction.updatedCurrentTransaction,
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
   toggleUserConfirm: () => dispatch(toggleUserConfirm()),
-  // updateCounter: (e, val) => dispatch(updateCounter(e, val)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserConfirmModal);

@@ -23,17 +23,29 @@ export function updateCounter (e, val) {
 
 export const saveNewTransaction = (reqBody) => dispatch => {
   services.db.generateTransaction(reqBody)
-    .then((transaction) => {Promise.resolve(
-      dispatch({ type: 'SAVE_NEW_TRANSACTION', transaction }))
+    .then((transactions) => {
+      dispatch({
+        type: 'SAVE_NEW_TRANSACTION',
+        transactions
+      })
+      dispatch({
+        type: 'UPDATE_CURRENT_TRANSACTION', //FIXME: 
+        transactions
+      })
+      
     })
-    // TODO: move sendUserTransaction to cntrl (backend) (but works like this!!!)
-    //FIXME: THE TRANSACTION HERE IS UNDEFINED....WHAT IS GOING ON?
-    .then(transaction => services.sockets.sendUserTransaction(transaction)) // does this:   socket.emit('user-ask-transaction', `here is the transaction: ${transaction}`);
 }
 
-export const saveUpdatedTransaction = (transaction)  => {
-  return { 
-    type: 'SAVE_UPDATED_TRANSACTION', 
+export const saveUpdatedTransaction = (transaction) => {
+  return {
+    type: 'SAVE_UPDATED_TRANSACTION',
+    transaction
+  }
+}
+
+export const saveConfirmedTransaction = (transaction) => {
+  return {
+    type: 'SAVE_CONFIRMED_TRANSACTION',
     transaction
   }
 }
