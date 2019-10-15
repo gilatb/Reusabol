@@ -24,10 +24,10 @@ export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransa
 
   const confirmClickHandler = (e) => {
     const reqBody = {
-      numBols: counter, 
-      transId: currentTransDetails.transId, 
-      userId: currentTransDetails.userId, 
-      restoId: currentTransDetails.restoId, 
+      numBols: counter,
+      transId: currentTransDetails.transId,
+      userId: currentTransDetails.userId,
+      restoId: currentTransDetails.restoId,
     }
     services.db.updateTransaction(reqBody)
       .then(res => saveConfirmedTransaction(res.resto.pendingTrans.find(el => el.transId === currentTransaction)))

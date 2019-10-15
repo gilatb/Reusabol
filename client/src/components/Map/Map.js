@@ -35,7 +35,7 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
 
   const markerClickHandler = (event, resto) => {
     setSelectedResto(resto);
-    console.log('selectedResto: ', selectedResto);
+    // console.log('selectedResto: ', selectedResto);
     infoOpen ? setInfoOpen(false) : setInfoOpen(true);
   }
 
@@ -90,7 +90,7 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
 
         {infoOpen && selectedResto && (
           <InfoWindow
-            anchor={markerMap[selectedResto.id]}
+            anchor={markerMap[selectedResto._id]}
             onCloseClick={() => setInfoOpen(false)}
           >
             <div className="InfoWindow">
