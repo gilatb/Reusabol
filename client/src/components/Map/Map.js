@@ -11,9 +11,9 @@ const API_KEY = process.env.REACT_APP_API_KEY
 
 function Map ({ saveNewTransaction, getRestos, restos, userData }) {
 
-  const [location, setLocation] = useState({ 
+  const [location, setLocation] = useState({
     lat: 42.076613,
-    lng: 2.362239833 
+    lng: 2.362239833
   });
   const [selectedResto, setSelectedResto] = useState(null);
   const [markerMap, setMarkerMap] = useState({});
@@ -29,7 +29,7 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
 
   const markerLoadHandler = (marker, resto) => {
     return setMarkerMap(prevState => {
-      return { ...prevState, [resto.id]: marker };
+      return { ...prevState, [resto._id]: marker };
     });
   }
 
@@ -65,7 +65,7 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
     // eslint-disable-next-line
   }, [])
 
-  
+
   const renderMap = () => {
     return (
       <GoogleMap
@@ -78,9 +78,11 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
         zoom={12}
       >
         {restos.map(resto => (
+          /* console.log('resto: ', resto) */
           <Marker
             key={resto.id}
-            position={{lat: parseFloat(resto.lat), lng: parseFloat(resto.lng)}} 
+            // position={resto.coordinates} // FIXME:
+            position={{lat: parseFloat(resto.lat), lng: parseFloat(resto.lng)}} // FIXME:
             onLoad={marker => markerLoadHandler(marker, resto)}
             onClick={event => markerClickHandler(event, resto)}
           />

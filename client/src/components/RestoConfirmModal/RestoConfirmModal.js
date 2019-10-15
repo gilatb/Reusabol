@@ -51,7 +51,7 @@ export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransa
           <div className="paper">
             <div className="row">
               <div className="column">
-                <ImageComp alt={'User image'} />
+                <ImageComp alt={'User image'} src={''}/>
               </div>
               <div className="column">
                 <Title text={`Order by ${name}!`} />
@@ -68,7 +68,7 @@ export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransa
                 <RoundBtn text={'+'} onClick={(e) => updateCounter(e, 1)} />
               </div>
               <div className="column">
-                <ImageComp alt={'Bowl image'} />
+                <ImageComp alt={'Bowl image'} src={''} />
               </div>
               <div className="column">
                 <RoundBtn text={'-'} onClick={(e) => updateCounter(e, -1)} />
