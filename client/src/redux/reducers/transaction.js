@@ -26,10 +26,15 @@ export default (state = INITIAL_STATE, action) => {
       };
 
     case 'SET_CURRENT_TRANSACTION':
-    console.log('action: ', action);
       return {
         ...state,
         currentTransaction: action.id, // TODO: shouldn't be action.transId?
+      };
+
+    case 'UPDATE_CURRENT_TRANSACTION':
+      return {
+        ...state,
+        currentTransaction: action.transactions.transaction.transId
       };
 
     case 'UPDATE_COUNTER':
@@ -55,11 +60,7 @@ export default (state = INITIAL_STATE, action) => {
         updatedCurrentTransaction: action.transaction
       };
 
-    case 'SAVE_NEW_TRANS_ID_TO_REDUX':
-      return {
-        ...state,
-        currentTransaction: action.transactions.transaction.transId
-      };
+
     default:
       return state;
   }

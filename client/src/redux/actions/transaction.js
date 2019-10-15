@@ -29,7 +29,7 @@ export const saveNewTransaction = (reqBody) => dispatch => {
         transactions
       })
       dispatch({
-        type: 'SAVE_NEW_TRANS_ID_TO_REDUX', //FIXME: 
+        type: 'UPDATE_CURRENT_TRANSACTION', //FIXME: 
         transactions
       })
       
