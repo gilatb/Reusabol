@@ -3,4 +3,7 @@
   flex-direction: column;
   width: 50vh;
   margin: 3vh;
+  padding: 8vh 0px;
+  /* overflow: scroll; */
+  /* overflow-y:scroll; */
 }
