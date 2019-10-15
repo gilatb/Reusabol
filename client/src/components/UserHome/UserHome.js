@@ -18,14 +18,16 @@ export function UserHome ({ userData, getUserData, UIState, toggleUserConfirm })
     getUserData();
   }, []);
 
+  console.warn('userData: ', userData);
   // TODO: bring this back to life! 
   // socket.on('resto-receive-transaction', () => {
     // setInterval(() => {
-      // const userId = "5da4d1feb34632f2e3d82499"// userData.userId // '5d9dda94f1db50ee60fef118' // "5da02d3e25565abaa38f9914" //'5d9dda94f1db50ee60fef118' // FIXME: make dynamic!!
-      // db.getConfirmation(userId)
-      // .then(res => console.log('res in UserHome when GET the pendTrans: ', res))
-      // .then(toggleUserConfirm())
-    // }, 60000)
+      setTimeout(() => {
+      const userId = userData.userId // "5da4d1feb34632f2e3d82499"//
+      db.getConfirmation(userId)
+      .then(res => console.log('res in UserHome when GET the pendTrans: ', res))
+      .then(toggleUserConfirm())
+    }, 60000)
   // });
 
   return (

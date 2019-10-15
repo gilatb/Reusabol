@@ -15,7 +15,8 @@ export function List ({ array, UIState, toggleRestoConfirm, setCurrentTransactio
   const clickHandler = (e, el) => {
     toggleRestoConfirm();
     console.log('el in List: ', el);
-    setCurrentTransaction(el._id);
+    // setCurrentTransaction(el._id);
+    setCurrentTransaction(el.transId);
   }
 
   //THIS GETS AN ARRAY OF THE USER IDS
