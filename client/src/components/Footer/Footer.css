@@ -15,11 +15,12 @@
 .footer-btn {
   background: #93ca99;
   color: white;
-  height: 7vh;
+  height: 6vh;
   width: 88%;
   border-color: white;
   font-size: 2vh;
   outline: none;
   font-weight: 700;
   font-size: 2.5vh;
+  border-radius: 2vh;
 }

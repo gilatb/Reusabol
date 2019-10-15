@@ -12,7 +12,7 @@ export function Footer ({ toggleOpenHistory }) {
     <div className="footer">
       <button
         className="footer-btn"
-        onClick={toggleOpen('restoHistory')}
+        onClick={toggleOpenHistory}
         >PREVIOUS TRANSACTIONS</button>
       {/* <SquareBtn text={'PREVIOUS TRANSACTIONS'} onClick={toggleOpen('restoHistory')} /> */}
       <RestoHistoryModal/>
