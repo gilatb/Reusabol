@@ -38,7 +38,6 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
 
   const markerClickHandler = (event, resto) => {
     setSelectedResto(resto);
-    // console.log('selectedResto: ', selectedResto);
     infoOpen ? setInfoOpen(false) : setInfoOpen(true);
   }
 
@@ -123,7 +122,9 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
                 </div>
                 <div>
                   <SquareBtn
-                    className="Return" text="Return"
+                    className="Return" 
+                    text="Return"
+                    onClick={transactionClickHandler}
                   />
                 </div>
               </div>
