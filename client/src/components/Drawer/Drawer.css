@@ -1,11 +1,11 @@
 .menu-btn {
-  height: 6vh;
+  height: 9vh;
   width: 6vh;
   padding: 1.5vh 0vh;
   color: white;
 }
 
-.MuiListItemText-root.list-item-text {
-  color: black;
-  text-decoration: none;
+.list-item-text a {
+  color: black !important;
+  text-decoration: none !important;
 }
