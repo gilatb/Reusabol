@@ -29,17 +29,6 @@ export default (state = INITIAL_STATE, action) => {
           restoId: action.restoDetails.restoId,
         }
       };
-    case 'SET_SELECTED_RESTO':
-      return {
-        ...state,
-        restoData: {
-          ...state.restoDetails,
-          name: action.resto.name,
-          googleImage: action.resto.googleImage,
-          restoId: action.resto._id,
-          address: action.address,
-        }
-      };
     default:
       return state;
   }

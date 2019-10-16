@@ -12,7 +12,7 @@ import animationDataSpinner from '../../assets/spinner.json';
 
 const API_KEY = process.env.REACT_APP_API_KEY
 
-function MapComponent ({ saveNewTransaction, getRestos, restos, userData, /*setSelectedResto*/ }) {
+function MapComponent ({ saveNewTransaction, getRestos, restos, userData }) {
 
   const [location, setLocation] = useState({
     lat: 42.076613,
@@ -27,8 +27,6 @@ function MapComponent ({ saveNewTransaction, getRestos, restos, userData, /*setS
     getRestos()
   }, [])
 
-  // let selectedResto = restos.restoData;
-
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: API_KEY
   })
@@ -38,11 +36,9 @@ function MapComponent ({ saveNewTransaction, getRestos, restos, userData, /*setS
       return { ...prevState, [resto._id]: marker };
     });
   }
-  // console.log('infoOpen Outside: ', infoOpen);
 
   const markerClickHandler = (event, resto) => {
     setSelectedResto(resto);
-    // console.log('infoOpen before: ', infoOpen);
     infoOpen ? setInfoOpen(false) : setInfoOpen(true);
   }
 
@@ -54,7 +50,7 @@ function MapComponent ({ saveNewTransaction, getRestos, restos, userData, /*setS
       userFirstName: userData.firstName,
       userLastName: userData.lastName,
       googleImage: userData.googleImage,
-      // name: selectedResto.name
+      name: selectedResto.name
     }
     saveNewTransaction(reqBody)
   }

@@ -21,6 +21,7 @@ export default (state = INITIAL_STATE, action) => {
             userFirstName: action.transactions.transaction.userFirstName,
             userLastName: action.transactions.transaction.userLastName,
             googleImage: action.transactions.transaction.googleImage,
+            name: action.transactions.transaction.name,
           }
         }
       };

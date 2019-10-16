@@ -19,6 +19,7 @@ exports.createPendTrans = async (req, res) => {
       userFirstName: req.body.userFirstName,
       userLastName: req.body.userLastName,
       googleImage: req.body.googleImage,
+      name: req.body.name,
     };
     const user = await User.findOneAndUpdate(
       { _id: req.body.userId },

@@ -15,14 +15,5 @@ export const getRestoData = () => dispatch => {
       dispatch({ type: 'SET_RESTO_DETAILS', restoDetails })
       dispatch({ type: 'SET_PENDING_TRANS', restoDetails });
     })
-    // .then(restoDetails => {
-    //   dispatch({ type: 'SET_PENDING_', restoDetails });
-    // })
 }
 
-export function setSelectedResto (resto) {
-  return {
-    type: 'SET_SELECTED_RESTO',
-    resto,
-  }
-}

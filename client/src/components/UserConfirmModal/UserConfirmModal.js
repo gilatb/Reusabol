@@ -15,13 +15,13 @@ import animationData from '../../assets/checkmark.json';
 export function UserConfirmModal ({ UIState, toggleUserConfirm, updatedCurrentTransaction }) {
 
   let open = UIState.userConfirmModal;
-
-  const restoName = updatedCurrentTransaction && updatedCurrentTransaction.restoId;
+  console.log('updatedCurrentTransaction: ', updatedCurrentTransaction);
+  const restoName = updatedCurrentTransaction && updatedCurrentTransaction.name;
   const numBols = updatedCurrentTransaction && updatedCurrentTransaction.numBols;
-  
+
   const defaultOptions = {
     loop: false,
-    autoplay: true, 
+    autoplay: true,
     path: 'checkmark.json',
     animationData: animationData,
   };
