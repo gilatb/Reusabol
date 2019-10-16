@@ -7,7 +7,6 @@ import ListItem from '../ListItem/ListItem';
 import RestoConfirmModal from '../RestoConfirmModal/RestoConfirmModal';
 import { toggleRestoConfirm } from '../../redux/actions/UI';
 import { setCurrentTransaction, setExchangeType } from '../../redux/actions/transaction';
-import { request } from 'http';
 
 export function List ({ array, UIState, toggleRestoConfirm, setCurrentTransaction, currentTransaction, pendingTransactions, setExchangeType }) {
 
@@ -15,20 +14,25 @@ export function List ({ array, UIState, toggleRestoConfirm, setCurrentTransactio
   // let requestType = currentTransaction && currentTransDetails.exchangeType;
   // requestType && setExchangeType(requestType);
 
-  let requestType = currentTransaction.exchangeType.toUpperCase();
+  // let requestType = currentTransaction.exchangeType.toUpperCase();
 
   const clickHandler = (e, el) => {
     toggleRestoConfirm();
     setCurrentTransaction(el);
   }
+  // let color =
+
+  // = #C9DA88
 
   return (
     <div className="list">
       {array && array.map(el => {
+
         return <div><ButtonBase className="list-item" type="button" onClick={(e) => clickHandler(e, el)}>
           <ListItem
             key={array[el]}
-            requestTypeText={`${requestType}-A-BOL`}
+            style={el.exchangeType === 'Take' ? '#93CA99' : '#C9DA88'}
+            requestTypeText={`${el.exchangeType.toUpperCase()}-A-BOL`}
             name={`${el.userFirstName} ${el.userLastName}`}
             subtitle={`Order placed at ${el.orderTime}`}
             // image={el.googleImage}
