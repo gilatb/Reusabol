@@ -4,7 +4,6 @@ const uuid = require('uuidv4').default;
 const User = require('../models/user.models');
 const Resto = require('../models/resto.models');
 
-// TODO: add emit of websocket here 🚀
 exports.createPendTrans = async (req, res) => {
   const hours = new Date().getHours();
   let minutes = new Date().getMinutes();
@@ -56,7 +55,7 @@ exports.updateNumBols = async (req, res) => {
       { new: true }
     );
     const socket = global.socket;
-    // the UserHome will listen to this event emmiter. replacing getConfirmation (route: user/userId/pendTrans)
+    // the UserHome will listen to this event emmiter. 
     socket.broadcast.emit('user-receive-transaction', user.pendingTrans);
     res.status(200);
     res.json({ user, resto });
@@ -112,9 +111,17 @@ exports.deletePendTrans = async (req, res) => {
   }
 };
 
-exports.updateInventory = async (req, res) => {
+//TODO: add minimum inventory 0 in Resto and User models
+exports.updateInventoryTake = async (req, res) => {
   try {
-    //TODO: update inventory based on exchange type
+    const user = await User.findOneAndUpdate(
+      { _id: req.body.userId },
+      { $inc: { inventory: req.body.numBols } }
+    );
+    const resto = await Resto.findByIdAndUpdate(
+      { _id: req.body.restoId },
+      { $inc: { inventory: -req.body.numBols } }
+    );
     res.status(200);
     res.json({ user, resto });
   } catch (err) {
@@ -122,3 +129,23 @@ exports.updateInventory = async (req, res) => {
     res.send(err);
   }
 };
+
+exports.updateInventoryReturn = async (req, res) => {
+  try {
+    const user = await User.findOneAndUpdate(
+      { _id: req.body.userId },
+      { $inc: { inventory: -req.body.numBols } }
+    );
+    const resto = await Resto.findByIdAndUpdate(
+      { _id: req.body.restoId },
+      { $inc: { inventory: req.body.numBols } }
+    );
+    res.status(200);
+    res.json({ user, resto });
+  } catch (err) {
+    res.status(500);
+    res.send(err);
+  }
+};
+
+
