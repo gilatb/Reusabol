@@ -1,5 +1,7 @@
 'use strict';
 
+// TODO: add controller to set initial inventory
+
 const Resto = require('../models/resto.models');
 
 exports.getRestos = async (req, res) => {
