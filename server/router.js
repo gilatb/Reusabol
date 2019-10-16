@@ -22,7 +22,8 @@ router.post('/pendTrans', transContr.createPendTrans);
 router.put('/pendTrans/updateNumBols', transContr.updateNumBols);
 router.post('/prevTrans', transContr.createPrevTrans);
 router.put('/pendTrans/del', transContr.deletePendTrans);
-router.put('/inventory', transContr.updateInventory);
+router.put('/inventory/take', transContr.updateInventoryTake);
+router.put('/inventory/return', transContr.updateInventoryReturn);
 
 // Admin Endpoints
 router.get('/admin/users', userContr.getUsers);
