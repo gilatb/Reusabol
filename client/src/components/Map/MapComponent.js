@@ -23,7 +23,7 @@ function MapComponent ({ saveNewTransaction, getRestos, restos, userData, toggle
   const [selectedResto, setSelectedResto] = useState(null);
   const [markerMap, setMarkerMap] = useState({});
   const [infoOpen, setInfoOpen] = useState(false);
-  // const [pendTransAnimation, setPendTransAnimation] = useState(false) //TODO: add to redux so will toggle when the pop up comes 
+  // const [pendTransAnimation, setPendTransAnimation] = useState(false) //TODO: add to redux so will toggle when the pop up comes
 
   useEffect(() => {
     getRestos()
