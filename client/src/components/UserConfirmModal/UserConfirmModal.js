@@ -62,7 +62,7 @@ export function UserConfirmModal ({ UIState, toggleUserConfirm, updatedCurrentTr
               <Title text={`${restoName} has provided ${numBols} bowl(s).`} />
             </div>
             <div className="checkmark">
-              <Lottie options={defaultOptions} height={150} width={150}/>
+              <Lottie options={defaultOptions} height={110} width={110}/>
             </div>
             <div className="row">
               <SquareBtn text={'CONFIRM'} onClick={confirmClickHandler} />

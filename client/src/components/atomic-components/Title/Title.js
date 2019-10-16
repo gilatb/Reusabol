@@ -1,9 +1,10 @@
 import React from 'react'
+import './Title.css';
 
 export default function Title ({ text, id }) {
   return (
     <div id={id}>
-      <span>{text}</span>
+      <span className="text-before-checkmark" >{text}</span>
     </div>
   )
 }
