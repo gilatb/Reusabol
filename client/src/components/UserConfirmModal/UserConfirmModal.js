@@ -11,7 +11,6 @@ import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
 import { toggleUserConfirm } from '../../redux/actions/UI';
 import animationData from '../../assets/checkmark.json';
 import services from '../../services';
-import Dinosuccess from '../../assets/dino-success-transparent.png';
 
 export function UserConfirmModal ({ UIState, toggleUserConfirm, updatedCurrentTransaction }) {
 
@@ -60,10 +59,10 @@ export function UserConfirmModal ({ UIState, toggleUserConfirm, updatedCurrentTr
         <Fade in={open}>
           <div className="paper-user-confirm">
             <div className="row-user-confirm-text">
-              <Title text={updatedCurrentTransaction && updatedCurrentTransaction.exchangeType === 'Take' ? `${restoName} has provided ${numBols} bowls.` : `You have returned ${numBols} bowls.`} />
+              <Title text={updatedCurrentTransaction && updatedCurrentTransaction.exchangeType === 'Take' ? `${restoName} has provided ${numBols} ${numBols > 1 ? 'bowls' : 'bowl'}.` : `You have returned ${numBols} ${numBols > 1 ? 'bowls' : 'bowl'}.`} />
             </div>
             <div className="checkmark">
-              <Lottie options={defaultOptions} height={110} width={110} />
+              <Lottie options={defaultOptions} height={110} width={110}/>
             </div>
             <div className="row">
               <SquareBtn text={'CONFIRM'} onClick={confirmClickHandler} />

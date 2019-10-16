@@ -115,8 +115,8 @@ function MapComponent ({ saveNewTransaction, getRestos, restos, userData, toggle
           >
             <div className="InfoWindow">
               <div>
-              <h3>{!UIState ? selectedResto.name : 'What do you call a dinosaur with an extensive vocabulary?'}</h3>
-              <p>{!UIState ? selectedResto.address : ''}</p>
+              <h3>{selectedResto.name}</h3>
+              <p>{selectedResto.address}</p>
               </div>
               {/* {pendTransAnimation -> local state*/}
               {UIState
