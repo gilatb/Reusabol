@@ -6,3 +6,11 @@
   padding-bottom: 1rem;
   justify-content: space-around;
 }
+
+.MuiBackdrop-root {
+  background-color: rgba(0, 0, 0, 0.025) !important;
+}
+
+.checkmark {
+  margin: 3vh;
+}

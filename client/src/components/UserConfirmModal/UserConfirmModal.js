@@ -8,6 +8,9 @@ import './UserConfirmModal.css';
 import Title from '../atomic-components/Title/Title';
 import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
 import { toggleUserConfirm } from '../../redux/actions/UI';
+import Lottie from 'react-lottie';
+import animationData from '../../assets/checkmark.json';
+
 
 export function UserConfirmModal ({ UIState, toggleUserConfirm, updatedCurrentTransaction }) {
 
@@ -16,6 +19,13 @@ export function UserConfirmModal ({ UIState, toggleUserConfirm, updatedCurrentTr
   const restoName = updatedCurrentTransaction && updatedCurrentTransaction.restoId;
   const numBols = updatedCurrentTransaction && updatedCurrentTransaction.numBols;
   
+  const defaultOptions = {
+    loop: false,
+    autoplay: true, 
+    path: 'checkmark.json',
+    animationData: animationData,
+  };
+
   return (
     <div className="user-confirm-modal">
       <Modal
@@ -33,6 +43,9 @@ export function UserConfirmModal ({ UIState, toggleUserConfirm, updatedCurrentTr
           <div className="paper">
             <div className="row">
               <Title text={`${restoName} has provided ${numBols} bowls.`} />
+            </div>
+            <div className="checkmark">
+              <Lottie options={defaultOptions} height={150} width={150}/>
             </div>
             <div className="row">
               <SquareBtn text={'CONFIRM'} />

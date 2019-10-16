@@ -11,6 +11,7 @@ import { toggleUserConfirm } from '../../redux/actions/UI';
 import UserConfirmModal from '../UserConfirmModal/UserConfirmModal';
 import { saveConfirmedTransaction } from '../../redux/actions/transaction';
 
+
 const socket = socketIOClient('localhost:4001');
 
 export function UserHome ({ userData, getUserData, UIState, toggleUserConfirm, saveConfirmedTransaction, currentTransaction }) {
