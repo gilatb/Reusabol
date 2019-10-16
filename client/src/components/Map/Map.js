@@ -21,6 +21,7 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
   const [selectedResto, setSelectedResto] = useState(null);
   const [markerMap, setMarkerMap] = useState({});
   const [infoOpen, setInfoOpen] = useState(false);
+  const [waitAnimation, setWaitAnimation] = useState(false)
 
   useEffect(() => {
     getRestos()
@@ -50,7 +51,8 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
       userLastName: userData.lastName,
       googleImage: userData.googleImage,
     }
-    saveNewTransaction(reqBody)
+    saveNewTransaction(reqBody);
+    setWaitAnimation(true);
   }
 
   useEffect(() => {
@@ -69,14 +71,14 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
 
   const defaultOptionsDino = {
     loop: true,
-    autoplay: true, 
+    autoplay: true,
     path: 'dino.json',
     animationData: animationDataDino,
   };
 
   const defaultOptionsSpinner = {
     loop: true,
-    autoplay: true, 
+    autoplay: true,
     path: 'spinner.json',
     animationData: animationDataSpinner,
   };
@@ -111,23 +113,25 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
             <div className="InfoWindow">
               <h3>{selectedResto.name}</h3>
               <p>{selectedResto.address}</p>
-              <Lottie options={defaultOptionsDino} height={150} width={150}/>
-              <div className="map-buttons">
-                <div>
-                  <SquareBtn
-                    className="Take"
-                    text="Take"
-                    onClick={transactionClickHandler}
-                  />
+              {waitAnimation
+                ? <Lottie options={defaultOptionsDino} height={150} width={150} />
+                : <div className="map-buttons">
+                  <div>
+                    <SquareBtn
+                      className="Take"
+                      text="Take"
+                      onClick={transactionClickHandler}
+                    />
+                  </div>
+                  <div>
+                    <SquareBtn
+                      className="Return"
+                      text="Return"
+                      onClick={transactionClickHandler}
+                    />
+                  </div>
                 </div>
-                <div>
-                  <SquareBtn
-                    className="Return" 
-                    text="Return"
-                    onClick={transactionClickHandler}
-                  />
-                </div>
-              </div>
+              }
             </div>
           </InfoWindow>
         )}
@@ -139,7 +143,7 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
     return <div>Map cannot be loaded right now, sorry.</div>
   }
 
-  return isLoaded ? renderMap() : <Lottie options={defaultOptionsSpinner} height={150} width={150}/>
+  return isLoaded ? renderMap() : <Lottie options={defaultOptionsSpinner} height={150} width={150} />
 }
 
 const mapStateToProps = (state) => {
