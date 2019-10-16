@@ -1,5 +1,6 @@
 .paper {
-  width: 45vh
+  width: 45vh;
+  outline: none;
 }
 
 .text-container {
@@ -10,9 +11,8 @@
   height: 8vh;
 }
 
-.blah {
-  background: grey;
-  height: 5vh;
+.MuiBackdrop-root {
+  background-color: rgba(0, 0, 0, 0.025) !important;
 }
 
 .row {

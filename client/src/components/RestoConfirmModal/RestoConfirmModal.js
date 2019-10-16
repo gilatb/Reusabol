@@ -20,7 +20,7 @@ import giveBowlRight from '../../assets/give-full-bowl-right.png';
 import bwBowl from '../../assets/bw-bowl.png';
 
 
-export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransaction, toggleRestoConfirm, counter, updateCounter, saveUpdatedTransaction }) {
+export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransaction, toggleRestoConfirm, counter, updateCounter, saveUpdatedTransaction, clearCounter }) {
 
   let open = UIState.restoConfirmModal;
   let currentTransDetails = currentTransaction && pendingTransactions.find(el => el.transId === currentTransaction);
@@ -86,7 +86,7 @@ export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransa
               </div>
               <div className="row-with-buttons">
                 <div className="cancel-conf-btn" >
-                  <SquareBtn text={'CANCEL'} onClick={toggleRestoConfirm} />
+                  <SquareBtn text={'CANCEL'} onClick={cancelClickHandler} />
                 </div>
                 <div className="cancel-conf-btn" >
                   <SquareBtn text={'CONFIRM'} onClick={confirmClickHandler} />
