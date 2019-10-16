@@ -50,7 +50,7 @@ exports.getUserDetails = async (req, res) => {
   }
 };
 
-// we don't need this when using the websocket
+// TODO: DELETE ME!
 // exports.getUserPendTrans = async (req, res) => {
 //   try {
 //     const user = await User.findById({
@@ -64,7 +64,6 @@ exports.getUserDetails = async (req, res) => {
 //   }
 // };
 
-//TODO: DELETE IF LINNEA EXPERIMENT DOESN'T WORK
 exports.getUserByGoogleId = async (req, res) => {
   try {
     const user = await User.find({

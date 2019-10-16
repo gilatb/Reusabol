@@ -22,6 +22,7 @@ function MapComponent ({ saveNewTransaction, getRestos, restos, userData }) {
   const [selectedResto, setSelectedResto] = useState(null);
   const [markerMap, setMarkerMap] = useState({});
   const [infoOpen, setInfoOpen] = useState(false);
+  const [pendTransAnimation, setPendTransAnimation] = useState(false) //TODO: add to redux so will toggle when the pop up comes 
 
   useEffect(() => {
     getRestos()
@@ -52,7 +53,8 @@ function MapComponent ({ saveNewTransaction, getRestos, restos, userData }) {
       googleImage: userData.googleImage,
       name: selectedResto.name
     }
-    saveNewTransaction(reqBody)
+    saveNewTransaction(reqBody);
+    setPendTransAnimation(true);
   }
 
   useEffect(() => {
@@ -98,8 +100,7 @@ function MapComponent ({ saveNewTransaction, getRestos, restos, userData }) {
           /* console.log('resto: ', resto) */
           <Marker
             key={resto.id}
-            // position={resto.coordinates} // FIXME:
-            position={{ lat: parseFloat(resto.lat), lng: parseFloat(resto.lng) }} // FIXME:
+            position={{ lat: parseFloat(resto.lat), lng: parseFloat(resto.lng) }}
             onLoad={marker => markerLoadHandler(marker, resto)}
             onClick={event => markerClickHandler(event, resto)}
           />
@@ -113,21 +114,25 @@ function MapComponent ({ saveNewTransaction, getRestos, restos, userData }) {
             <div className="InfoWindow">
               <h3>{selectedResto.name}</h3>
               <p>{selectedResto.address}</p>
-              <Lottie options={defaultOptionsDino} height={150} width={150}/>
-              <div className="map-buttons">
-                <div>
-                  <SquareBtn
-                    className="Take"
-                    text="Take"
-                    onClick={transactionClickHandler}
-                  />
+              {pendTransAnimation
+                ? <Lottie options={defaultOptionsDino} height={150} width={150} />
+                : <div className="map-buttons">
+                  <div>
+                    <SquareBtn
+                      className="Take"
+                      text="Take"
+                      onClick={transactionClickHandler}
+                    />
+                  </div>
+                  <div>
+                    <SquareBtn
+                      className="Return"
+                      text="Return"
+                      onClick={transactionClickHandler}
+                    />
+                  </div>
                 </div>
-                <div>
-                  <SquareBtn
-                    className="Return" text="Return"
-                  />
-                </div>
-              </div>
+              }
             </div>
           </InfoWindow>
         )}
@@ -139,7 +144,7 @@ function MapComponent ({ saveNewTransaction, getRestos, restos, userData }) {
     return <div>Map cannot be loaded right now, sorry.</div>
   }
 
-  return isLoaded ? renderMap() : <Lottie options={defaultOptionsSpinner} height={150} width={150}/>
+  return isLoaded ? renderMap() : <Lottie options={defaultOptionsSpinner} height={150} width={150} />
 }
 
 const mapStateToProps = (state) => {

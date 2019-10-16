@@ -1,5 +1,7 @@
 'use strict';
 
+// TODO: add controller to set initial inventory
+
 const Resto = require('../models/resto.models');
 
 exports.getRestos = async (req, res) => {
@@ -49,7 +51,7 @@ exports.getRestoDetails = async (req, res) => {
   }
 };
 
-// we don't need this when using the websocket
+// TODO: DELETE ME!
 // exports.getRestoPendTrans = async (req, res) => {
 //   try {
 //     const { restaurantId } = req.params;
