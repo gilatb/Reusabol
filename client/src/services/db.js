@@ -13,7 +13,7 @@ export default {
   getRestoData: (googleId) => {
     return fetchRequest(`admin/restos/${googleId}`)
   },
-  generateTransaction: (reqBody) => {
+  createPendTrans: (reqBody) => {
     return fetchRequest('pendTrans', {
       headers: {
         'Content-Type': 'application/json'
