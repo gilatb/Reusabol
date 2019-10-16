@@ -7,7 +7,8 @@ import './Map.css';
 import { saveNewTransaction } from '../../redux/actions/transaction';
 import { getRestos } from '../../redux/actions/restos';
 import Lottie from 'react-lottie';
-import animationData from '../../assets/dino.json';
+import animationDataDino from '../../assets/dino.json';
+import animationDataSpinner from '../../assets/spinner.json';
 
 const API_KEY = process.env.REACT_APP_API_KEY
 
@@ -67,11 +68,18 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
     // eslint-disable-next-line
   }, [])
 
-  const defaultOptions = {
+  const defaultOptionsDino = {
     loop: true,
     autoplay: true, 
     path: 'dino.json',
-    animationData: animationData,
+    animationData: animationDataDino,
+  };
+
+  const defaultOptionsSpinner = {
+    loop: true,
+    autoplay: true, 
+    path: 'spinner.json',
+    animationData: animationDataSpinner,
   };
 
   const renderMap = () => {
@@ -104,7 +112,7 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
             <div className="InfoWindow">
               <h3>{selectedResto.name}</h3>
               <p>{selectedResto.address}</p>
-              <Lottie options={defaultOptions} height={150} width={150}/>
+              <Lottie options={defaultOptionsDino} height={150} width={150}/>
               <div className="map-buttons">
                 <div>
                   <SquareBtn
@@ -130,7 +138,7 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
     return <div>Map cannot be loaded right now, sorry.</div>
   }
 
-  return isLoaded ? renderMap() : <p>Waiting for map to arrive</p> // <Spinner />
+  return isLoaded ? renderMap() : <Lottie options={defaultOptionsSpinner} height={150} width={150}/>
 }
 
 const mapStateToProps = (state) => {
