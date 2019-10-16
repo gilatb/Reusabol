@@ -114,8 +114,10 @@ function MapComponent ({ saveNewTransaction, getRestos, restos, userData, toggle
             onCloseClick={() => setInfoOpen(false)}
           >
             <div className="InfoWindow">
-              <h3>{selectedResto.name}</h3>
-              <p>{selectedResto.address}</p>
+              <div>
+              <h3>{!UIState ? selectedResto.name : 'What do you call a dinosaur with an extensive vocabulary?'}</h3>
+              <p>{!UIState ? selectedResto.address : ''}</p>
+              </div>
               {/* {pendTransAnimation -> local state*/}
               {UIState
                 ? <Lottie options={defaultOptionsDino} height={150} width={150} />

@@ -11,6 +11,7 @@ import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
 import { toggleUserConfirm } from '../../redux/actions/UI';
 import animationData from '../../assets/checkmark.json';
 import services from '../../services';
+import Dinosuccess from '../../assets/dino-success-transparent.png';
 
 export function UserConfirmModal ({ UIState, toggleUserConfirm, updatedCurrentTransaction }) {
 
