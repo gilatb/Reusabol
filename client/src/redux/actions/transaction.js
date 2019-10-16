@@ -28,7 +28,7 @@ export function clearCounter () {
 }
 
 export const saveNewTransaction = (reqBody) => dispatch => {
-  services.db.generateTransaction(reqBody)
+  services.db.createPendTrans(reqBody)
     .then((transactions) => {
       dispatch({
         type: 'SAVE_NEW_TRANSACTION',
