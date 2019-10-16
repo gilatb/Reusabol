@@ -29,13 +29,13 @@ export default (state = INITIAL_STATE, action) => {
     case 'SET_CURRENT_TRANSACTION':
       return {
         ...state,
-        currentTransaction: action.id, // TODO: shouldn't be action.transId?
+        currentTransaction: action.transaction.transId, // TODO: shouldn't be action.transId?
       };
 
     case 'UPDATE_CURRENT_TRANSACTION':
       return {
         ...state,
-        currentTransaction: action.transactions.transaction.transId
+        currentTransaction: action.transactions.transaction.transId,
       };
 
     case 'UPDATE_COUNTER':
@@ -45,14 +45,18 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         counter: updatedValue,
       };
-      case 'CLEAR_COUNTER':
-        return {
-          ...state,
-          counter: 0,
-        };
+    case 'CLEAR_COUNTER':
+      return {
+        ...state,
+        counter: 0,
+      };
     case 'SET_EXCHANGE_TYPE':
       return {
         ...state,
+        currentTransaction: {
+          ...state.currentTransaction,
+          exchangeType: action.exchangeType,
+        }
       };
     case 'SET_PENDING_TRANS':
       return {

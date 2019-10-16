@@ -5,18 +5,18 @@ import './ListItem.css';
 import bowl from '../../assets/bowl-white.png';
 import Subtitle from '../atomic-components/Subtitle/Subtitle';
 import TextField from '../atomic-components/TextField/TextField';
-import Pretitle from '../atomic-components/Pretitle/Pretitle';
+import RestoConfirmModal from '../RestoConfirmModal/RestoConfirmModal';
 
-export default function ListItem ({ pretitle, title, subtitle }) {
+export default function ListItem ({ subtitle, requestTypeText, name, style }) {
 
   return (
       <div className="list-item-row">
-        <div className="column-img">
+        <div className="column-img" style={{background:`${style}`}}>
           <img src={bowl} alt="bowl" className="bowl-logo"/>
         </div>
         <div className="column-text">
-          <Pretitle text={pretitle}/>
-          <Subtitle text={title} />
+          <Subtitle text={requestTypeText} />
+          <Subtitle text={name} />
           <TextField text={subtitle} />
         </div>
       </div>

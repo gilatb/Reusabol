@@ -6,27 +6,31 @@ import './List.css';
 import ListItem from '../ListItem/ListItem';
 import RestoConfirmModal from '../RestoConfirmModal/RestoConfirmModal';
 import { toggleRestoConfirm } from '../../redux/actions/UI';
-import { setCurrentTransaction } from '../../redux/actions/transaction';
+import { setCurrentTransaction, setExchangeType } from '../../redux/actions/transaction';
 
-export function List ({ array, UIState, toggleRestoConfirm, setCurrentTransaction, currentTransaction, pendingTransactions }) {
+export function List ({ array, UIState, toggleRestoConfirm, setCurrentTransaction, currentTransaction, pendingTransactions, setExchangeType }) {
 
-  let currentTransDetails = currentTransaction && pendingTransactions.filter(el => el._id === currentTransaction);
-  let name = currentTransDetails && `${currentTransDetails.userFirstName} ${currentTransDetails.userLastName}`;
+  // let currentTransDetails = currentTransaction && pendingTransactions.filter(el => el.transId === currentTransaction);
+  // let requestType = currentTransaction && currentTransDetails.exchangeType;
+  // requestType && setExchangeType(requestType);
 
+  // let requestType = currentTransaction.exchangeType.toUpperCase();
 
   const clickHandler = (e, el) => {
     toggleRestoConfirm();
-    setCurrentTransaction(el.transId);
+    setCurrentTransaction(el);
   }
 
   return (
     <div className="list">
       {array && array.map(el => {
+
         return <div><ButtonBase className="list-item" type="button" onClick={(e) => clickHandler(e, el)}>
           <ListItem
             key={array[el]}
-            pretitle={`Order by `}
-            title={`${el.userFirstName} ${el.userLastName}`} 
+            style={el.exchangeType === 'Take' ? '#93CA99' : '#C9DA88'}
+            requestTypeText={`${el.exchangeType.toUpperCase()}-A-BOL`}
+            name={`${el.userFirstName} ${el.userLastName}`}
             subtitle={`Order placed at ${el.orderTime}`}
             // image={el.googleImage}
           />
@@ -49,6 +53,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   toggleRestoConfirm: () => dispatch(toggleRestoConfirm()),
   setCurrentTransaction: (id) => dispatch(setCurrentTransaction(id)),
+  setExchangeType: (exchangeType) => dispatch(setExchangeType(exchangeType)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(List);
