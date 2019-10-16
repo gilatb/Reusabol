@@ -9,7 +9,6 @@ exports.createPendTrans = async (req, res) => {
   const hours = new Date().getHours();
   let minutes = new Date().getMinutes();
   minutes = minutes > 9 ? minutes : '0' + minutes;
-
   try {
     const transaction = {
       transId: uuid(),

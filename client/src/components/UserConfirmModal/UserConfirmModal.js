@@ -15,7 +15,6 @@ import animationData from '../../assets/checkmark.json';
 export function UserConfirmModal ({ UIState, toggleUserConfirm, updatedCurrentTransaction }) {
 
   let open = UIState.userConfirmModal;
-  console.log('updatedCurrentTransaction: ', updatedCurrentTransaction);
   const restoName = updatedCurrentTransaction && updatedCurrentTransaction.name;
   const numBols = updatedCurrentTransaction && updatedCurrentTransaction.numBols;
 

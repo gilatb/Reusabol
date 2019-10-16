@@ -38,7 +38,6 @@ export const saveNewTransaction = (reqBody) => dispatch => {
         type: 'UPDATE_CURRENT_TRANSACTION',
         transactions
       })
-
     })
 }
 
