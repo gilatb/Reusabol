@@ -3,7 +3,7 @@ import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps
 import { connect } from 'react-redux';
 
 import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
-import './Map.css';
+import './MapComponent.css';
 import { saveNewTransaction } from '../../redux/actions/transaction';
 import { getRestos, setSelectedResto } from '../../redux/actions/restos';
 import Lottie from 'react-lottie';
@@ -12,19 +12,22 @@ import animationDataSpinner from '../../assets/spinner.json';
 
 const API_KEY = process.env.REACT_APP_API_KEY
 
-function Map ({ saveNewTransaction, getRestos, restos, userData, setSelectedResto }) {
+function MapComponent ({ saveNewTransaction, getRestos, restos, userData, /*setSelectedResto*/ }) {
 
   const [location, setLocation] = useState({
     lat: 42.076613,
     lng: 2.362239833
   });
-  // const [selectedResto, setSelectedResto] = useState('');
+
+  const [selectedResto, setSelectedResto] = useState(null);
   const [markerMap, setMarkerMap] = useState({});
   const [infoOpen, setInfoOpen] = useState(false);
 
   useEffect(() => {
     getRestos()
   }, [])
+
+  // let selectedResto = restos.restoData;
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: API_KEY
@@ -35,10 +38,11 @@ function Map ({ saveNewTransaction, getRestos, restos, userData, setSelectedRest
       return { ...prevState, [resto._id]: marker };
     });
   }
+  // console.log('infoOpen Outside: ', infoOpen);
 
   const markerClickHandler = (event, resto) => {
     setSelectedResto(resto);
-    // console.log('selectedResto: ', selectedResto);
+    // console.log('infoOpen before: ', infoOpen);
     infoOpen ? setInfoOpen(false) : setInfoOpen(true);
   }
 
@@ -50,6 +54,7 @@ function Map ({ saveNewTransaction, getRestos, restos, userData, setSelectedRest
       userFirstName: userData.firstName,
       userLastName: userData.lastName,
       googleImage: userData.googleImage,
+      // name: selectedResto.name
     }
     saveNewTransaction(reqBody)
   }
@@ -151,7 +156,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   saveNewTransaction: (reqBody) => dispatch(saveNewTransaction(reqBody)),
   getRestos: () => dispatch(getRestos()),
-  setSelectedResto: (resto) => dispatch(setSelectedResto(resto)),
+  // setSelectedResto: (resto) => dispatch(setSelectedResto(resto)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Map);
+export default connect(mapStateToProps, mapDispatchToProps)(MapComponent);

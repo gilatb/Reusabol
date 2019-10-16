@@ -45,6 +45,8 @@ export default (state = INITIAL_STATE, action) => {
         counter: updatedValue,
       };
       case 'CLEAR_COUNTER':
+      console.log('i am in the transaction action: ', action);
+      return state;
         return {
           ...state,
           counter: 0,
