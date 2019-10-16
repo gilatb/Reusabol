@@ -7,7 +7,8 @@ const Resto = require('../models/resto.models');
 // TODO: add emit of websocket here 🚀
 exports.createPendTrans = async (req, res) => {
   const hours = new Date().getHours();
-  const minutes = new Date().getMinutes();
+  let minutes = new Date().getMinutes();
+  minutes = minutes > 9 ? minutes : '0' + minutes;
 
   try {
     const transaction = {
