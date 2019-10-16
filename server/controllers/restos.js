@@ -82,7 +82,8 @@ exports.updateRestoDetails = async (req, res) => {
   try {
     const resto = await Resto.findOneAndUpdate(
       { _id: req.params.restoId },
-      { $set: { address: 'Carrer dAvila, 89, 08005 Barcelona' } }
+      { $set: { name: 'Eileen\'s Magic Palace' } }
+      // { $set: { address: 'Carrer dAvila, 89, 08005 Barcelona', lat: 41.380354, lng: 2.134303 } }
     );
     res.status(200);
     res.json({ resto });
