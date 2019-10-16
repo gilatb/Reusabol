@@ -12,7 +12,9 @@ import { saveUpdatedTransaction } from '../../redux/actions/transaction';
 //👇🏻this is how we listen to the emit on the other side of the socket
 const socket = socketIOClient('localhost:4001');
 
-function RestoHome ({ getRestoData, userData, restoData, transaction, saveUpdatedTransaction, pendingTransactions }) {
+function RestoHome ({ getRestoData, userData, restoData, transaction, saveUpdatedTransaction, pendingTransactions, currentTransaction }) {
+
+  // let currentTransDetails = currentTransaction && pendingTransactions.find(el => el.transId === currentTransaction);
 
   useEffect(() => {
     getRestoData()
@@ -40,7 +42,8 @@ const mapStateToProps = (state) => {
   return {
     userData: state.user.userData,
     pendingTransactions: Object.values(state.transaction.pendingTransactions),
-    restoData: state.restos.restoData
+    restoData: state.restos.restoData,
+    // currentTransaction: state.transaction.currentTransaction,
   }
 }
 

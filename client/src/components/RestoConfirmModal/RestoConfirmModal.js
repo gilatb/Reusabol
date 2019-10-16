@@ -25,7 +25,7 @@ import { IoIosAdd } from 'react-icons/io';
 export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransaction, toggleRestoConfirm, counter, updateCounter, saveUpdatedTransaction, clearCounter }) {
 
   let open = UIState.restoConfirmModal;
-  let currentTransDetails = currentTransaction && pendingTransactions.find(el => el.transId === currentTransaction);
+  let currentTransDetails = currentTransaction && pendingTransactions.find(el => el.transId === currentTransaction.transId);
   let name = currentTransDetails && `${currentTransDetails.userFirstName} ${currentTransDetails.userLastName}`;
 
   const confirmClickHandler = (e) => {

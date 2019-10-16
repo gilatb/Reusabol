@@ -3,14 +3,14 @@ import services from '../../services';
 export function setExchangeType (exchangeType) {
   return {
     type: 'SET_EXCHANGE_TYPE',
-    setExchangeType,
+    exchangeType,
   }
 }
 
-export function setCurrentTransaction (id) {
+export function setCurrentTransaction (transaction) {
   return {
     type: 'SET_CURRENT_TRANSACTION',
-    id,
+    transaction,
   }
 }
 
