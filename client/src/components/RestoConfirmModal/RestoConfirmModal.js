@@ -58,7 +58,7 @@ export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransa
         }}
       >
         <Fade in={open}>
-          <div className="paper">
+          <div className="paper-resto-confirm">
             <div className="text-container">
               <div className="row">
                 {/* <div className="column">

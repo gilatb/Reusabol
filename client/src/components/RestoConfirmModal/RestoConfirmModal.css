@@ -1,6 +1,29 @@
-.paper {
+/* .modal-resto {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  z-index: -1;
+  position: fixed;
+  align-items: center;
+  touch-action: none;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-color: red;
+  -webkit-tap-highlight-color: transparent;
+} */
+
+
+.MuiBackdrop-root {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  opacity: 0.1 !important;
+}
+
+.paper-resto-confirm {
   width: 45vh;
   outline: none;
+  background: white;
 }
 
 .text-container {
@@ -9,10 +32,6 @@
 
 .bwBowl-logo {
   height: 8vh;
-}
-
-.MuiBackdrop-root {
-  background-color: rgba(0, 0, 0, 0.025) !important;
 }
 
 .row {
@@ -62,3 +81,4 @@
 .giveBowl-logo {
   height: 30vh;
 }
+
