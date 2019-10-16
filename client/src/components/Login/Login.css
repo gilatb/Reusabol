@@ -13,6 +13,10 @@
   align-items: center;
 }
 
+.login-btn:active {
+  transform: none;
+}
+
 .login-btn {
   background: linear-gradient(135deg,#C9DA88,#3DB6A6);
   color: white;
