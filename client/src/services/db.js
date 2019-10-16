@@ -13,12 +13,30 @@ export default {
   getRestoData: (googleId) => {
     return fetchRequest(`admin/restos/${googleId}`)
   },
-  createPendTrans: (reqBody) => {
+  createPendingTransaction: (reqBody) => {
     return fetchRequest('pendTrans', {
       headers: {
         'Content-Type': 'application/json'
       },
       method: 'POST',
+      body: JSON.stringify(reqBody)
+    });
+  },
+  createPreviousTransaction: (reqBody) => {
+    return fetchRequest('prevTrans', {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify(reqBody)
+    });
+  },
+  deletePendingTransaction: (reqBody) => {
+    return fetchRequest('pendTrans/del', {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'PUT',
       body: JSON.stringify(reqBody)
     });
   },
@@ -36,6 +54,24 @@ export default {
   },
   updateTransaction: (reqBody) => {
     return fetchRequest('pendTrans/updateNumBols',{
+      method: 'PUT',
+      body: JSON.stringify(reqBody),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+  },
+  updateInventoryTake: (reqBody) => {
+    return fetchRequest('inventory/take',{
+      method: 'PUT',
+      body: JSON.stringify(reqBody),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+  },
+  updateInventoryReturn: (reqBody) => {
+    return fetchRequest('inventory/return',{
       method: 'PUT',
       body: JSON.stringify(reqBody),
       headers: {
