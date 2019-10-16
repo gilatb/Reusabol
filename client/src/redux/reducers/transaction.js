@@ -1,10 +1,7 @@
 const INITIAL_STATE = {
   pendingTransactions: [],
   updatedCurrentTransaction: {},
-  currentTransaction: {
-    transId: '',
-    exchangeType: '',
-  },
+  currentTransaction: '',
   counter: 0,
 };
 
@@ -32,19 +29,13 @@ export default (state = INITIAL_STATE, action) => {
     case 'SET_CURRENT_TRANSACTION':
       return {
         ...state,
-        currentTransaction: {
-          transId: action.transaction.transId, // TODO: shouldn't be action.transId?
-          exchangeType: action.transaction.exchangeType
-        }
+        currentTransaction: action.transaction.transId, // TODO: shouldn't be action.transId?
       };
 
     case 'UPDATE_CURRENT_TRANSACTION':
       return {
         ...state,
-        currentTransaction: {
-          ...state.currentTransaction,
-          transId: action.transactions.transaction.transId,
-        }
+        currentTransaction: action.transactions.transaction.transId,
       };
 
     case 'UPDATE_COUNTER':

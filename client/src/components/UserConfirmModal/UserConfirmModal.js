@@ -29,13 +29,13 @@ export function UserConfirmModal ({ UIState, toggleUserConfirm, updatedCurrentTr
     services.db.createPreviousTransaction(updatedCurrentTransaction);
     services.db.deletePendingTransaction(updatedCurrentTransaction);
 
-    updatedCurrentTransaction.exchangeType === 'Take' 
-    && 
-    services.db.updateInventoryTake(updatedCurrentTransaction); 
+    updatedCurrentTransaction.exchangeType === 'Take'
+      &&
+      services.db.updateInventoryTake(updatedCurrentTransaction);
 
-    updatedCurrentTransaction.exchangeType === 'Return' 
-    && 
-    services.db.updateInventoryReturn(updatedCurrentTransaction); 
+    updatedCurrentTransaction.exchangeType === 'Return'
+      &&
+      services.db.updateInventoryReturn(updatedCurrentTransaction);
   }
 
   const cancelClickHandler = (e) => {
@@ -59,14 +59,14 @@ export function UserConfirmModal ({ UIState, toggleUserConfirm, updatedCurrentTr
         <Fade in={open}>
           <div className="paper-user-confirm">
             <div className="row-user-confirm-text">
-              <Title text={`${restoName} has provided ${numBols} bowl(s).`} />
+              <Title text={updatedCurrentTransaction && updatedCurrentTransaction.exchangeType === 'Take' ? `${restoName} has provided ${numBols} bowls.` : `You have returned ${numBols} bowls.`} />
             </div>
             <div className="checkmark">
-              <Lottie options={defaultOptions} height={110} width={110}/>
+              <Lottie options={defaultOptions} height={110} width={110} />
             </div>
             <div className="row">
               <SquareBtn text={'CONFIRM'} onClick={confirmClickHandler} />
-              <SquareBtn text={'CANCEL'} onClick={cancelClickHandler} /> 
+              <SquareBtn text={'CANCEL'} onClick={cancelClickHandler} />
             </div>
           </div>
         </Fade>
@@ -74,6 +74,7 @@ export function UserConfirmModal ({ UIState, toggleUserConfirm, updatedCurrentTr
     </div>
   )
 }
+// style={el.exchangeType === 'Take' ? '#93CA99' : '#C9DA88'}
 
 const mapStateToProps = (state) => {
   return {

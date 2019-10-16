@@ -5,6 +5,7 @@ import './ListItem.css';
 import bowl from '../../assets/bowl-white.png';
 import Subtitle from '../atomic-components/Subtitle/Subtitle';
 import TextField from '../atomic-components/TextField/TextField';
+import RestoConfirmModal from '../RestoConfirmModal/RestoConfirmModal';
 
 export default function ListItem ({ subtitle, requestTypeText, name, style }) {
 

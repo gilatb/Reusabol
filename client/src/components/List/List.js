@@ -20,9 +20,6 @@ export function List ({ array, UIState, toggleRestoConfirm, setCurrentTransactio
     toggleRestoConfirm();
     setCurrentTransaction(el);
   }
-  // let color =
-
-  // = #C9DA88
 
   return (
     <div className="list">
