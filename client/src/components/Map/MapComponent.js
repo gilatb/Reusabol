@@ -22,7 +22,7 @@ function MapComponent ({ saveNewTransaction, getRestos, restos, userData }) {
   const [selectedResto, setSelectedResto] = useState(null);
   const [markerMap, setMarkerMap] = useState({});
   const [infoOpen, setInfoOpen] = useState(false);
-  const [waitAnimation, setWaitAnimation] = useState(false)
+  const [pendTransAnimation, setPendTransAnimation] = useState(false) //TODO: add to redux so will toggle when the pop up comes 
 
   useEffect(() => {
     getRestos()
@@ -54,7 +54,7 @@ function MapComponent ({ saveNewTransaction, getRestos, restos, userData }) {
       name: selectedResto.name
     }
     saveNewTransaction(reqBody);
-    setWaitAnimation(true);
+    setPendTransAnimation(true);
   }
 
   useEffect(() => {
@@ -100,8 +100,7 @@ function MapComponent ({ saveNewTransaction, getRestos, restos, userData }) {
           /* console.log('resto: ', resto) */
           <Marker
             key={resto.id}
-            // position={resto.coordinates} // FIXME:
-            position={{ lat: parseFloat(resto.lat), lng: parseFloat(resto.lng) }} // FIXME:
+            position={{ lat: parseFloat(resto.lat), lng: parseFloat(resto.lng) }}
             onLoad={marker => markerLoadHandler(marker, resto)}
             onClick={event => markerClickHandler(event, resto)}
           />
@@ -115,7 +114,7 @@ function MapComponent ({ saveNewTransaction, getRestos, restos, userData }) {
             <div className="InfoWindow">
               <h3>{selectedResto.name}</h3>
               <p>{selectedResto.address}</p>
-              {waitAnimation
+              {pendTransAnimation
                 ? <Lottie options={defaultOptionsDino} height={150} width={150} />
                 : <div className="map-buttons">
                   <div>
