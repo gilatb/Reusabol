@@ -1,6 +1,6 @@
 // import socketIOClient from 'socket.io-client';
 
-// // the socket should have its own connection 
+// // the socket should have its own connection
 // const socket = socketIOClient('localhost:4001'); // TODO: make it '/transaction' or '/take'
 
 

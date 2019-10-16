@@ -4,7 +4,7 @@ const INITIAL_STATE = {
     name: '',
     lastName: '',
     googleImage: '',
-    userId: null,
+    restoId: '',
     pendingTrans: [],
   }
 }
@@ -19,16 +19,16 @@ export default (state = INITIAL_STATE, action) => {
           ...action.restos
         ]
       };
-      case 'SET_RESTO_DETAILS':
-        return {
-          ...state,
-          restoData: {
-            ...state.restoDetails,
-            name: action.restoDetails.name,
-            googleImage: action.restoDetails.googleImage,
-            restoId: action.restoDetails.restoId,
-          }
-        };
+    case 'SET_RESTO_DETAILS':
+      return {
+        ...state,
+        restoData: {
+          ...state.restoDetails,
+          name: action.restoDetails.name,
+          googleImage: action.restoDetails.googleImage,
+          restoId: action.restoDetails.restoId,
+        }
+      };
     default:
       return state;
   }

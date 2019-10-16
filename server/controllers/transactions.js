@@ -7,8 +7,8 @@ const Resto = require('../models/resto.models');
 // TODO: add emit of websocket here 🚀
 exports.createPendTrans = async (req, res) => {
   const hours = new Date().getHours();
-  const minutes = new Date().getMinutes();
-
+  let minutes = new Date().getMinutes();
+  minutes = minutes > 9 ? minutes : '0' + minutes;
   try {
     const transaction = {
       transId: uuid(),
@@ -19,6 +19,7 @@ exports.createPendTrans = async (req, res) => {
       userFirstName: req.body.userFirstName,
       userLastName: req.body.userLastName,
       googleImage: req.body.googleImage,
+      name: req.body.name,
     };
     const user = await User.findOneAndUpdate(
       { _id: req.body.userId },

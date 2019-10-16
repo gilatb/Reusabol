@@ -6,7 +6,7 @@ import './Footer.css';
 import RestoHistoryModal from '../RestoHistoryModal/RestoHistoryModal';
 import actions from '../../redux/actions';
 
-export function Footer ({ toggleOpenHistory }) {
+export function Footer ({ array, toggleOpenHistory }) {
 
   return (
     <div className="footer">
@@ -15,7 +15,7 @@ export function Footer ({ toggleOpenHistory }) {
         onClick={toggleOpenHistory}
         >PREVIOUS TRANSACTIONS</button>
       {/* <SquareBtn text={'PREVIOUS TRANSACTIONS'} onClick={toggleOpen('restoHistory')} /> */}
-      <RestoHistoryModal/>
+      <RestoHistoryModal array={array}/>
     </div>
   )
 }

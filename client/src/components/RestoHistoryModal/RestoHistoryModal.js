@@ -8,9 +8,10 @@ import './RestoHistoryModal.css';
 import RoundBtn from '../atomic-components/RoundBtn/RoundBtn';
 import Title from '../atomic-components/Title/Title';
 import actions from '../../redux/actions';
+import List from '../List/List';
 
 
-export function RestoHistoryModal ({ UIState, toggleOpenHistory }) {
+export function RestoHistoryModal ({ UIState, toggleOpenHistory, array }) {
 
   let open = UIState.restoHistoryModal;
 
@@ -29,9 +30,9 @@ export function RestoHistoryModal ({ UIState, toggleOpenHistory }) {
       >
         <Fade in={open}>
           <div className="paper">
-            <RoundBtn text={'close'} onClick={toggleOpenHistory}/>
+            <RoundBtn text={'x'} onClick={toggleOpenHistory}/>
             <Title id="transition-modal-title" text={'Transaction history'} />
-            <p id="transition-modal-description">Render the list of previous transactions here.</p>
+            <List array={array} />
           </div>
         </Fade>
       </Modal>

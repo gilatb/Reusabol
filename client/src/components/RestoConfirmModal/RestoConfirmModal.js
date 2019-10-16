@@ -32,6 +32,7 @@ export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransa
       transId: currentTransDetails.transId,
       userId: currentTransDetails.userId,
       restoId: currentTransDetails.restoId,
+      name: currentTransaction.name,
     }
     services.db.updateTransaction(reqBody)
       .then(res => saveConfirmedTransaction(res.resto.pendingTrans.find(el => el.transId === currentTransaction)))
