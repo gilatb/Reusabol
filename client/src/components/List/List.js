@@ -25,9 +25,10 @@ export function List ({ array, UIState, toggleRestoConfirm, setCurrentTransactio
         return <div><ButtonBase className="list-item" type="button" onClick={(e) => clickHandler(e, el)}>
           <ListItem
             key={array[el]}
-            title={`Order by ${el.userFirstName} ${el.userLastName}`}
+            pretitle={`Order by `}
+            title={`${el.userFirstName} ${el.userLastName}`} 
             subtitle={`Order placed at ${el.orderTime}`}
-            image={el.googleImage}
+            // image={el.googleImage}
           />
         </ButtonBase>
           <RestoConfirmModal title={el.userFirstName} />

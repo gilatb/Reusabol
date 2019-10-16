@@ -4,7 +4,6 @@ import './Login.css';
 import logo from '../../assets/logo+slogan.png';
 
 
-
 export default function Login () {
   return (
     <div>

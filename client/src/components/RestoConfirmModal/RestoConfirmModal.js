@@ -18,6 +18,8 @@ import services from '../../services';
 import giveBowlLeft from '../../assets/give-full-bowl-left.png';
 import giveBowlRight from '../../assets/give-full-bowl-right.png';
 import bwBowl from '../../assets/bw-bowl.png';
+import { IoIosRemove } from 'react-icons/io';
+import { IoIosAdd } from 'react-icons/io';
 
 
 export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransaction, toggleRestoConfirm, counter, updateCounter, saveUpdatedTransaction, clearCounter }) {
@@ -58,7 +60,7 @@ export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransa
         }}
       >
         <Fade in={open}>
-          <div className="paper">
+          <div className="paper-resto-confirm">
             <div className="text-container">
               <div className="row">
                 {/* <div className="column">
@@ -76,13 +78,13 @@ export function RestoConfirmModal ({ UIState, pendingTransactions, currentTransa
               </div>
               <div className="row-with-bowl">
                 <div className="column">
-                  <RoundBtn text={'-'} onClick={(e) => updateCounter(e, -1)} />
+                  <RoundBtn text={<IoIosRemove/>} onClick={(e) => updateCounter(e, -1)}/>
                 </div>
                 <div className="column">
                   <img src={bwBowl} alt="bwBowl" className="bwBowl-logo"/>
                 </div>
                 <div className="column">
-                  <RoundBtn text={'+'} onClick={(e) => updateCounter(e, 1)} />
+                  <RoundBtn text={<IoIosAdd/>} onClick={(e) => updateCounter(e, 1)} />
                 </div>
               </div>
               <div className="row-with-buttons">

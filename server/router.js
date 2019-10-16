@@ -33,7 +33,7 @@ router.get('/admin/restos/:googleId', restoContr.getRestoByGoogleId);
 router.put('/resto/:restoId', restoContr.updateRestoDetails);
 // router.post('/admin/user', userContr.createUser);
 // router.post('/admin/resto', restoContr.createResto);
-// router.delete('/admin/user', userContr.deleteUser);
-// router.delete('/admin/resto', restoContr.deleteResto);
+router.delete('/admin/user', userContr.deleteUser);
+router.delete('/admin/resto', restoContr.deleteResto);
 
 module.exports = router;
