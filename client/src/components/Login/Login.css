@@ -13,8 +13,13 @@
   align-items: center;
 }
 
-.login-btn:active {
-  transform: none;
+/* .login-btn:focus,.login-btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+} */
+
+a.login-btn:focus, select:focus {
+  outline: none !important;
 }
 
 .login-btn {
