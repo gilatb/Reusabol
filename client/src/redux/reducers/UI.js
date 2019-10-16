@@ -1,6 +1,7 @@
 const INITIAL_STATE = {
   user: {
     userConfirmModal: false,
+    pendTransAnimation: false,
   },
   resto: {
     restoHistoryModal: false,
@@ -32,6 +33,14 @@ export default (state = INITIAL_STATE, action) => {
             user: {
               ...state.user,
               userConfirmModal: !state.user.userConfirmModal,
+            }
+          };
+      case 'TOGGLE_USER_PEND_TRANS_ANIMATION':
+          return {
+            ...state,
+            user: {
+              ...state.user,
+              pendTransAnimation: !state.user.pendTransAnimation,
             }
           };
     default:

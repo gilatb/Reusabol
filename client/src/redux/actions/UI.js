@@ -15,3 +15,9 @@ export function toggleUserConfirm () {
     type: 'TOGGLE_USER_CONFIRM',
   }
 }
+
+export function toggleUserPendTransAnimation () {
+  return {
+    type: 'TOGGLE_USER_PEND_TRANS_ANIMATION',
+  }
+}

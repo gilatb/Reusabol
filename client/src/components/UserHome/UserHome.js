@@ -7,14 +7,14 @@ import Header from '../Header/Header';
 import Title from '../atomic-components/Title/Title';
 import MapComponent from '../Map/MapComponent';
 import { getUserData } from '../../redux/actions/user';
-import { toggleUserConfirm } from '../../redux/actions/UI';
+import { toggleUserConfirm, toggleUserPendTransAnimation } from '../../redux/actions/UI';
 import UserConfirmModal from '../UserConfirmModal/UserConfirmModal';
 import { saveConfirmedTransaction } from '../../redux/actions/transaction';
 
 
 const socket = socketIOClient('localhost:4001');
 
-export function UserHome ({ userData, getUserData, UIState, toggleUserConfirm, saveConfirmedTransaction, currentTransaction }) {
+export function UserHome ({ userData, getUserData, UIState, toggleUserConfirm, saveConfirmedTransaction, currentTransaction, toggleUserPendTransAnimation }) {
 
   const [pendTrans, setPendTrans] = useState([])
 
@@ -23,6 +23,7 @@ export function UserHome ({ userData, getUserData, UIState, toggleUserConfirm, s
     socket.on('user-receive-transaction', (transactions) => {
       setPendTrans(transactions);
       toggleUserConfirm();
+      toggleUserPendTransAnimation()
     });
   }, [])
 
@@ -61,6 +62,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   getUserData: () => dispatch(getUserData()),
   toggleUserConfirm: () => dispatch(toggleUserConfirm()),
+  toggleUserPendTransAnimation: () => dispatch(toggleUserPendTransAnimation()),
   saveConfirmedTransaction: (transaction) => dispatch(saveConfirmedTransaction(transaction))
 });
 
