@@ -57,9 +57,9 @@ export function UserConfirmModal ({ UIState, toggleUserConfirm, updatedCurrentTr
         }}
       >
         <Fade in={open}>
-          <div className="paper">
+          <div className="paper-user-confirm">
             <div className="row-user-confirm-text">
-              <Title text={`${restoName} has provided ${numBols} bowls.`} />
+              <Title text={`${restoName} has provided ${numBols} bowl(s).`} />
             </div>
             <div className="checkmark">
               <Lottie options={defaultOptions} height={150} width={150}/>

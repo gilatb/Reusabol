@@ -1,3 +1,9 @@
+.paper-user-confirm {
+  background: white;
+  padding: 3vh;
+  outline: none;
+}
+
 .row {
   display: flex;
   flex-direction: row;
@@ -9,10 +15,7 @@
 
 .row-user-confirm-text {
   font-size: 2vh;
-}
-
-.MuiBackdrop-root.user-confirm-modal {
-  background-color: rgba(0, 0, 0, 0.7) !important;
+  font-weight: 600;
 }
 
 .checkmark {
