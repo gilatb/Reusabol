@@ -119,7 +119,8 @@ exports.updateInventoryTake = async (req, res) => {
     );
     const resto = await Resto.findByIdAndUpdate(
       { _id: req.body.restoId },
-      { $inc: { inventory: -req.body.numBols } }
+      { $inc: { inventory: -req.body.numBols } },
+      // {validator: {}} //TODO: 
     );
     res.status(200);
     res.json({ user, resto });
