@@ -7,7 +7,7 @@ import Subtitle from '../atomic-components/Subtitle/Subtitle';
 import TextField from '../atomic-components/TextField/TextField';
 import Pretitle from '../atomic-components/Pretitle/Pretitle';
 
-export default function ListItem ({ pretitle, title, subtitle }) {
+export default function ListItem ({ subtitle, requestTypeText, name }) {
 
   return (
       <div className="list-item-row">
@@ -15,8 +15,8 @@ export default function ListItem ({ pretitle, title, subtitle }) {
           <img src={bowl} alt="bowl" className="bowl-logo"/>
         </div>
         <div className="column-text">
-          <Pretitle text={pretitle}/>
-          <Subtitle text={title} />
+          <Subtitle text={requestTypeText} />
+          <Subtitle text={name} />
           <TextField text={subtitle} />
         </div>
       </div>

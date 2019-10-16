@@ -11,8 +11,9 @@ import { setCurrentTransaction } from '../../redux/actions/transaction';
 export function List ({ array, UIState, toggleRestoConfirm, setCurrentTransaction, currentTransaction, pendingTransactions }) {
 
   let currentTransDetails = currentTransaction && pendingTransactions.filter(el => el._id === currentTransaction);
-  let name = currentTransDetails && `${currentTransDetails.userFirstName} ${currentTransDetails.userLastName}`;
-
+  // let name = currentTransDetails && `${currentTransDetails.userFirstName} ${currentTransDetails.userLastName}`;
+  const requestType = 'TAKE';
+  console.log('currentTransDetails: ', currentTransDetails);
 
   const clickHandler = (e, el) => {
     toggleRestoConfirm();
@@ -25,8 +26,8 @@ export function List ({ array, UIState, toggleRestoConfirm, setCurrentTransactio
         return <div><ButtonBase className="list-item" type="button" onClick={(e) => clickHandler(e, el)}>
           <ListItem
             key={array[el]}
-            pretitle={`Order by `}
-            title={`${el.userFirstName} ${el.userLastName}`} 
+            requestTypeText={`${requestType}-A-BOL`}
+            name={`${el.userFirstName} ${el.userLastName}`}
             subtitle={`Order placed at ${el.orderTime}`}
             // image={el.googleImage}
           />
