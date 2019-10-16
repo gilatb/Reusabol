@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 import { connect } from 'react-redux';
@@ -7,6 +6,9 @@ import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
 import './Map.css';
 import { saveNewTransaction } from '../../redux/actions/transaction';
 import { getRestos } from '../../redux/actions/restos';
+import Lottie from 'react-lottie';
+import animationData from '../../assets/dino.json';
+
 const API_KEY = process.env.REACT_APP_API_KEY
 
 function Map ({ saveNewTransaction, getRestos, restos, userData }) {
@@ -65,6 +67,12 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
     // eslint-disable-next-line
   }, [])
 
+  const defaultOptions = {
+    loop: true,
+    autoplay: true, 
+    path: 'dino.json',
+    animationData: animationData,
+  };
 
   const renderMap = () => {
     return (
@@ -96,6 +104,7 @@ function Map ({ saveNewTransaction, getRestos, restos, userData }) {
             <div className="InfoWindow">
               <h3>{selectedResto.name}</h3>
               <p>{selectedResto.address}</p>
+              <Lottie options={defaultOptions} height={150} width={150}/>
               <div className="map-buttons">
                 <div>
                   <SquareBtn
