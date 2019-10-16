@@ -6,13 +6,14 @@ import SquareBtn from '../atomic-components/SquareBtn/SquareBtn';
 import './MapComponent.css';
 import { saveNewTransaction } from '../../redux/actions/transaction';
 import { getRestos, setSelectedResto } from '../../redux/actions/restos';
+import { toggleUserPendTransAnimation } from '../../redux/actions/UI';
 import Lottie from 'react-lottie';
 import animationDataDino from '../../assets/dino.json';
 import animationDataSpinner from '../../assets/spinner.json';
 
 const API_KEY = process.env.REACT_APP_API_KEY
 
-function MapComponent ({ saveNewTransaction, getRestos, restos, userData }) {
+function MapComponent ({ saveNewTransaction, getRestos, restos, userData, toggleUserPendTransAnimation, UIState }) {
 
   const [location, setLocation] = useState({
     lat: 42.076613,
@@ -22,7 +23,7 @@ function MapComponent ({ saveNewTransaction, getRestos, restos, userData }) {
   const [selectedResto, setSelectedResto] = useState(null);
   const [markerMap, setMarkerMap] = useState({});
   const [infoOpen, setInfoOpen] = useState(false);
-  const [pendTransAnimation, setPendTransAnimation] = useState(false) //TODO: add to redux so will toggle when the pop up comes 
+  // const [pendTransAnimation, setPendTransAnimation] = useState(false) //TODO: add to redux so will toggle when the pop up comes 
 
   useEffect(() => {
     getRestos()
@@ -54,7 +55,8 @@ function MapComponent ({ saveNewTransaction, getRestos, restos, userData }) {
       name: selectedResto.name
     }
     saveNewTransaction(reqBody);
-    setPendTransAnimation(true);
+    // setPendTransAnimation(true);
+    toggleUserPendTransAnimation()
   }
 
   useEffect(() => {
@@ -114,7 +116,8 @@ function MapComponent ({ saveNewTransaction, getRestos, restos, userData }) {
             <div className="InfoWindow">
               <h3>{selectedResto.name}</h3>
               <p>{selectedResto.address}</p>
-              {pendTransAnimation
+              {/* {pendTransAnimation -> local state*/}
+              {UIState
                 ? <Lottie options={defaultOptionsDino} height={150} width={150} />
                 : <div className="map-buttons">
                   <div>
@@ -151,12 +154,14 @@ const mapStateToProps = (state) => {
   return {
     userData: state.user.userData,
     restos: state.restos.restos,
+    UIState: state.UI.user.pendTransAnimation,
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
   saveNewTransaction: (reqBody) => dispatch(saveNewTransaction(reqBody)),
   getRestos: () => dispatch(getRestos()),
+  toggleUserPendTransAnimation: () => dispatch(toggleUserPendTransAnimation()),
   // setSelectedResto: (resto) => dispatch(setSelectedResto(resto)),
 });
 
