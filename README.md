@@ -1,43 +1,63 @@
 # Reusabol
-Circular food packaging service 
 
-TODO: 
-[V] close the resto confirmation modal after clicking on confirm (like what's happening on cancel)
-[ ] make reqBody dynamic in RestoComfirmModal
+<p align="center">
+  <img src="./client/src/assets/logo+slogan.png" />
+</p>
 
+Reusabol is a circular food packaging service, implemented with a mobile-first app. The app has three interfaces: end user, restaurant and admin.
 
-Later: 
-[V] fetch with PUT request to pendTrans to update numBols in both user and resto. 
-[ ] fix -> PUT request doesn't work (only frontend, works with postman) -> probably becasue we have to use 
-    pendingTransaction redux state 
-[ ] finish the cycle of the order:
-    [ ] **GET** request to the user with a socket connection, of the pendingTrans array that was updated 
-    [ ] **DELETE** the pending transaction from user and resto 
-    [ ] **POST** request to the user and resto prevtransactions
-    [ ] toggle UI modal
-[ ] make all way dynamic with flag of the type (*Take*/*Return*)
-[ ] handle cancel request in both ends (user and resto)
-[ ] move the websocket to a middleware
+## Screenshots
+
+<p align="center">
+  <img src="./client/src/assets/Reusabol-mockup.png" />
+</p>
+
+  ![](./client/src/assets/reusabol-demo.gif)
 
 
-Hard coded restos db:
-  const restos = [
-    {
-      id: 1,
-      name: 'Banana place',
-      address: "Carrer d'Àvila, 27, 08005 Barcelona",
-      coordinates: { lat: 41.394205, lng: 2.15400725345 }
-    },
-    {
-      id: 2,
-      name: 'Ice-cream place',
-      address: "Carrer d'Banana, 27, 08005 Barcelona",
-      coordinates: { lat: 41.378205, lng: 2.156007231 }
-    },
-    {
-      id: 3,
-      name: 'Menssana',
-      address: "Carrer d'Àvila, 27, 08005 Barcelona",
-      coordinates: { lat: 41.390765, lng: 2.121554007 }
-    }
-  ];
+## Getting started
+
+1. Clone this repo and enter!
+
+   ```bash
+   git clone git@github.com:gilatb/Reusabol.git
+   cd client
+   ```
+
+2. Install frontend dependencies and start.
+
+   ```bash
+   npm install
+   npm start
+   ```
+
+3. Open a new terminal and go to the server folder
+
+    ```bash
+   cd ..
+   cd server
+   ```
+
+4. Install backend dependencies and start.
+
+   ```bash
+   npm install
+   npm start
+   ```
+
+
+## Tech Stack
+
+* [React.js](https://reactjs.org)
+* [Redux](https://redux.js.org/) 
+* [Express.js](https://expressjs.com/)
+* [MongoDB](https://www.mongodb.com/) 
+* [Mongoose](https://mongoosejs.com/) 
+* [Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/tutorial)
+
+## Developers Team
+
+🌸 Gilat Blumberger - [GitHub](https://github.com/gilatb) - [LinkedIn](https://www.linkedin.com/in/gilat-blumberger/)
+🍉 Linnea Andersson - [GitHub](https://github.com/lmandersson) - [LinkedIn](https://www.linkedin.com/in/linnea-andersson/)
+🧟‍ Andre DiFelice - [GitHub](https://github.com/DiFelice) - [LinkedIn](https://www.linkedin.com/in/difelice/)
+🐳 Eileen Juergens - [GitHub](https://github.com/EileenJuergens) - [LinkedIn](https://www.linkedin.com/in/eileen-jürgens-462595154/)
