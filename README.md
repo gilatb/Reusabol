@@ -1,7 +1,7 @@
 # Reusabol
 
 <p align="center">
-  <img src="./client/src/assets/logo+slogan-smaller.png" />
+  <img src="./client/src/assets/logo+slogan-even-smaller.png" />
 </p>
 
 Reusabol is a circular food packaging service, implemented with a mobile-first app. The app has three interfaces: end user, restaurant and admin.
@@ -14,8 +14,9 @@ Reusabol is a circular food packaging service, implemented with a mobile-first a
 
 ## Demo
 
+<#p align="center">
   ![](./client/src/assets/reusabol-demo.gif)
-
+<#/p>
 
 ## Getting started
 
@@ -57,7 +58,7 @@ Reusabol is a circular food packaging service, implemented with a mobile-first a
 * [Mongoose](https://mongoosejs.com/) 
 * [Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/tutorial)
 
-## Developers Team
+## Developer Team
 
 * Gilat Blumberger - [GitHub](https://github.com/gilatb) - [LinkedIn](https://www.linkedin.com/in/gilat-blumberger/) 🌸
 * Linnea Andersson - [GitHub](https://github.com/lmandersson) - [LinkedIn](https://www.linkedin.com/in/linnea-andersson/) 🍉
