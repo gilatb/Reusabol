@@ -14,9 +14,13 @@ Reusabol is a circular food packaging service, implemented with a mobile-first a
 
 ## Demo
 
-<#p align="center">
+<span style="text-align:center">
   ![](./client/src/assets/reusabol-demo.gif)
-<#/p>
+</span>
+
+<p# align="center">
+  ![](./client/src/assets/reusabol-demo.gif)
+</p>
 
 ## Getting started
 
@@ -61,6 +65,6 @@ Reusabol is a circular food packaging service, implemented with a mobile-first a
 ## Developer Team
 
 * Gilat Blumberger - [GitHub](https://github.com/gilatb) - [LinkedIn](https://www.linkedin.com/in/gilat-blumberger/) 🌸
-* Linnea Andersson - [GitHub](https://github.com/lmandersson) - [LinkedIn](https://www.linkedin.com/in/linnea-andersson/) 🍉
+* Linnea Andersson - [GitHub](https://github.com/lmandersson) - [LinkedIn](https://www.linkedin.com/in/linnea-m-andersson/) 🍉
 * Andre DiFelice - [GitHub](https://github.com/dynoalot) - [LinkedIn](https://www.linkedin.com/in/difelice/) 🧟‍
 * Eileen Juergens - [GitHub](https://github.com/EileenJuergens) - [LinkedIn](https://www.linkedin.com/in/eileen-jürgens-462595154/) 🐳
