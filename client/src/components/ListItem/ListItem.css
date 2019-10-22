@@ -41,6 +41,6 @@
   flex-direction: column;
   flex-basis: 100%;
   flex: 3;
-  padding: 2vh 2vw 3vh 2vw;
+  padding: 1.5vh 2vw 1.5vh 2vw;
   align-items: flex-start;
 }
