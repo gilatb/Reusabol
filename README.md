@@ -4,7 +4,7 @@
   <img src="./client/src/assets/logo+slogan-even-smaller.png" />
 </p>
 
-Reusabol is a circular food packaging service, implemented with a mobile-first app. The app has three interfaces: end user, restaurant and admin.
+Reusabol is a circular food packaging service. A mobile-first approach has been used to develop this app so it's fully responsive, and has three interfaces: end user, restaurant and admin.
 
 ## Screenshots
 
@@ -14,13 +14,7 @@ Reusabol is a circular food packaging service, implemented with a mobile-first a
 
 ## Demo
 
-<span style="text-align:center">
-  ![](./client/src/assets/reusabol-demo.gif)
-</span>
-
-<p# align="center">
-  ![](./client/src/assets/reusabol-demo.gif)
-</p>
+  -> ![](./client/src/assets/reusabol-demo.gif) <-
 
 ## Getting started
 
